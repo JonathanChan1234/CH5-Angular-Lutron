@@ -1,4 +1,4 @@
-<div>A button that sends data to digital join 10 and changes CSS class to "active" when digital FB join 10 is high:</div>
+<!-- <div>A button that sends data to digital join 10 and changes CSS class to "active" when digital FB join 10 is high:</div>
 <button [DigPress]="10" [DigFB]="10">enable -></button><br>
 <div>A button that sends/receives join 11 and is enabled when digital FB join 10 is high:</div>
 <button [DigPress]="11" [DigFB]="11" [DigEnable]="10">show -></button><br>
@@ -14,11 +14,66 @@
 <input type="text" [SerSend]="11">
 <div>A span element that displays serial fb join 11:</div>
 <span [SerFB]="11"></span>
-<div>This button opens a modal/popup on FB join 13:</div>
-<button [DigPress]="13" [DigFB]="13">modal!</button><br>
+<div>This button opens a modal/popup on FB join 13:</div> -->
+<!-- <ch5-button
+        type="success"
+        stretch="width"
+        label="Show Modal"
+        (click)="showModal()"
+    ></ch5-button>
+    <ch5-modal-dialog
+        [show]="visible"
+        stretch="width"
+        hideokbutton="true"
+        hidecancelbutton="true"
+        closable="false"
+        dismissable="false"
+    >
+        <h1>Sample text</h1>
+        <ch5-image id="ex1-img" url="https://picsum.photos/200/300/?random"> </ch5-image>
+        <div>
+            <ch5-button type="danger" label="Close" (click)="hideModal()"></ch5-button>
+        </div>
+    </ch5-modal-dialog> -->
+<!-- <button [DigPress]="13" [DigFB]="13">modal!</button><br />
 <app-modal [VisJoin]="13">
-  <div style="width: 300px; height: 75px; margin: auto; background: gray;">
-      <button [DigPress]="13" style="float: right;">Close</button><br>
-      <div>Button press sends join 13 to close this modal</div>
-  </div>
-</app-modal>
+    <div style="width: 300px; height: 75px; margin: auto; background: gray">
+        <button [DigPress]="13" style="float: right">Close</button><br />
+        <div>Button press sends join 13 to close this modal</div>
+    </div>
+</app-modal> -->
+<div class="root-container">
+    <mat-toolbar>HKT Crestron Go Test</mat-toolbar>
+    <div [ngSwitch]="route">
+        <div *ngSwitchCase="'room_panel'">
+            <app-rooms-panel></app-rooms-panel>
+        </div>
+        <div *ngSwitchCase="'monitoring'">
+            <app-monitoring></app-monitoring>
+        </div>
+        <div *ngSwitchCase="'3'">
+            <div>View 3</div>
+        </div>
+        <div *ngSwitchCase="'4'">
+            <div>View 4</div>
+        </div>
+        <div *ngSwitchCase="'room_view'">
+            <app-room-view></app-room-view>
+        </div>
+        <div *ngSwitchCase="'scene_table'">
+            <app-scene-table></app-scene-table>
+        </div>
+        <div *ngSwitchCase="'scene_details'">
+            <app-scene-details></app-scene-details>
+        </div>
+        <div *ngSwitchCase="'scene_action_create'">
+            <app-scene-action-create></app-scene-action-create>
+        </div>
+        <div *ngSwitchDefault="">
+            <app-rooms-panel></app-rooms-panel>
+        </div>
+    </div>
+    <div class="app-nav-bar">
+        <app-nav-bar></app-nav-bar>
+    </div>
+</div>

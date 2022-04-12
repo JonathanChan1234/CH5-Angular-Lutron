@@ -1,0 +1,23 @@
+<div class="motor-load">
+    <mat-card class="card">
+        <div class="flex-horizontal">
+            <div>
+                <mat-card-title>{{ load.name }}</mat-card-title>
+                <mat-card-subtitle
+                    >{{ load.type | uppercase }} (Integration ID: {{ load.id }})</mat-card-subtitle
+                >
+            </div>
+        </div>
+        <div class="motor-button-container">
+            <button mat-mini-fab aria-label="Raise" color="primary">
+                <mat-icon>keyboard_arrow_left</mat-icon>
+            </button>
+            <button mat-mini-fab aria-label="Stop" color="primary">
+                <mat-icon>stop</mat-icon>
+            </button>
+            <button mat-mini-fab aria-label="Lower" color="primary">
+                <mat-icon>keyboard_arrow_right</mat-icon>
+            </button>
+        </div>
+    </mat-card>
+</div>

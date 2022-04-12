@@ -1,0 +1,13 @@
+.page-nav-bar {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 10%;
+}
+
+.page-nav-bar > *  {
+  flex-grow: 1;  
+  font-size: large;
+  cursor: pointer;
+  height: 100%;
+}

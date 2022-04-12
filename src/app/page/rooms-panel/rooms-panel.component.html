@@ -1,0 +1,5 @@
+<div class="room-panel">
+    <div *ngFor="let item of rooms">
+        <app-room-card [name]="item.room" [count]="item.count"></app-room-card>
+    </div>
+</div>

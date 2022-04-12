@@ -1,0 +1,52 @@
+.add-button-wrapper {
+    margin-bottom: 10px;
+}
+
+.scene-table-wrapper {
+    margin: 20px;
+}
+
+.scene-table-header {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.scene-table-title {
+    font-size: large;
+    font-weight: 500;
+}
+
+.selection-mode-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 10px;
+}
+
+.delete-selection-text {
+    margin: 0px;
+}
+
+.delete-button-wrapper {
+    margin-left: 20px;
+}
+
+.table {
+    width: 100%;
+}
+
+.row {
+    cursor: pointer;
+}
+
+.selectedRow {
+    background-color: rgb(255, 99, 88);
+}
+
+.selection-mode-container {
+    margin-bottom: 10px;
+}

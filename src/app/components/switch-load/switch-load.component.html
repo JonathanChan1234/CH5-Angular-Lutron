@@ -1,0 +1,19 @@
+<div class="switch-load">
+    <mat-card class="card">
+        <div class="flex-horizontal">
+            <div>
+                <mat-card-title>{{ load.name }}</mat-card-title>
+                <mat-card-subtitle
+                    >{{ load.type | uppercase }} (Integration ID: {{ load.id }})</mat-card-subtitle
+                >
+            </div>
+            <p class="state-text">{{ powerState ? 'ON' : 'OFF' }}</p>
+        </div>
+        <div>
+            <mat-slide-toggle
+                (toggleChange)="onToggleChange()"
+                [checked]="powerState"
+            ></mat-slide-toggle>
+        </div>
+    </mat-card>
+</div>

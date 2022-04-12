@@ -1,3 +1,26 @@
 .active {
   background: yellow;
 }
+
+:host {
+    width: 100%;
+    height: 100%;
+}
+
+.root-container {
+  display: flex;
+  flex-direction: column;
+  align-content:stretch;
+  height: 100%;
+  width: 100%;
+}
+
+.app-nav-bar {
+  justify-self: flex-end;
+  margin-top: auto;
+}
+
+
+
+
+
