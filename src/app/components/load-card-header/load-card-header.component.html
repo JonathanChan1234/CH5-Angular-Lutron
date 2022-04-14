@@ -1,0 +1,21 @@
+<div class="flex-horizontal w-100">
+    <div class="w-100" *ngIf="!editMode">
+        <div class="flex-horizontal">
+            <mat-card-title style="text-overflow: ellipsis; overflow: hidden">{{
+                load.name
+            }}</mat-card-title>
+            <div>
+                <mat-icon (click)="changeToEditMode()">edit</mat-icon>
+            </div>
+        </div>
+        <mat-card-subtitle
+            >{{ load.type | uppercase }} (Integration ID: {{ load.id }})</mat-card-subtitle
+        >
+    </div>
+    <form class="form" *ngIf="editMode" (ngSubmit)="changeDeviceName()">
+        <mat-form-field class="field">
+            <input matInput placeholder="Name" [formControl]="nameFormControl" />
+        </mat-form-field>
+        <button mat-button color="primary" type="submit">Change</button>
+    </form>
+</div>

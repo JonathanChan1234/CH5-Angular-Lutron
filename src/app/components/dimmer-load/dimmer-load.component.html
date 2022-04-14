@@ -1,27 +1,18 @@
-<div class="dimmable-load">
-    <mat-card class="card">
-        <div class="flex-horizontal">
-            <div>
-                <mat-card-title>{{ load.name }}</mat-card-title>
-                <mat-card-subtitle
-                    >{{ load.type | uppercase }} (Integration ID: {{ load.id }})</mat-card-subtitle
-                >
-            </div>
-            <p class="valueText">{{ sliderValue }}%</p>
-        </div>
-        <div class="dimmable-control">
-            <mat-slider
-                min="0"
-                max="100"
-                step="1"
-                [value]="sliderValue"
-                (change)="onSliderChange($event)"
-                (input)="onSliderChange($event)"
-            ></mat-slider>
-            <mat-slide-toggle
-                (toggleChange)="onToggleChange()"
-                [checked]="powerState"
-            ></mat-slide-toggle>
-        </div>
-    </mat-card>
-</div>
+<mat-card class="card">
+    <app-load-card-header [load]="load"></app-load-card-header>
+    <div class="dimmable-control">
+        <p class="valueText">{{ sliderValue }}%</p>
+        <mat-slider
+            min="0"
+            max="100"
+            step="1"
+            [value]="sliderValue"
+            (change)="onSliderChange($event)"
+            (input)="onSliderChange($event)"
+        ></mat-slider>
+        <mat-slide-toggle
+            (toggleChange)="onToggleChange()"
+            [checked]="powerState"
+        ></mat-slide-toggle>
+    </div>
+</mat-card>

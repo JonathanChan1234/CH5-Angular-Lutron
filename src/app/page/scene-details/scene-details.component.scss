@@ -15,8 +15,9 @@
 }
 
 .scene-table-title {
-    font-size: large;
-    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+    width: 30%;
 }
 
 .selection-mode-container {

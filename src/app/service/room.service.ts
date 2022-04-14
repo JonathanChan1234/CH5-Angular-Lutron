@@ -1,34 +1,60 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
+import { BehaviorSubject, of, throwError } from 'rxjs';
 import { LOAD, ROOM } from './data';
 
 @Injectable({
     providedIn: 'root',
 })
 export class RoomService {
-    constructor(private http: HttpClient) {}
+    numberOfDevice = new Map<string, number>();
+    room$: BehaviorSubject<{ room: string; count: number }[]>;
 
-    getRoomList() {
-        const numberOfDevice = new Map<string, number>();
+    constructor() {
         for (const room of ROOM) {
-            numberOfDevice.set(room, 0);
+            this.numberOfDevice.set(room, 0);
         }
         for (const load of LOAD) {
-            if (numberOfDevice.has(load.roomId)) {
-                const count = numberOfDevice.get(load.roomId) + 1;
-                numberOfDevice.set(load.roomId, count);
+            if (this.numberOfDevice.has(load.roomId)) {
+                const count = this.numberOfDevice.get(load.roomId) + 1;
+                this.numberOfDevice.set(load.roomId, count);
             }
         }
-        const list: { room: string; count: number }[] = [];
-        for (const [room, count] of numberOfDevice) {
-            list.push({ room, count });
-        }
-        return of(list);
+        this.room$ = new BehaviorSubject(this.getRoomStream());
+    }
+
+    getRoomList() {
+        return this.room$;
     }
 
     getRoomLoadList(room: string) {
         const loadList = LOAD.filter(load => load.roomId === room);
         return of(loadList);
+    }
+
+    changeRoomName(originalName: string, newName: string) {
+        if (originalName === newName) {
+            return of(ROOM);
+        }
+        const roomIndex = ROOM.findIndex(room => room === originalName);
+        if (roomIndex === -1) {
+            return throwError('room does not exist');
+        }
+        const newRoomExist = ROOM.findIndex(room => room === newName);
+        if (newRoomExist !== -1) {
+            return throwError(`room name (${newName}) already exists`);
+        }
+        ROOM[roomIndex] = newName;
+
+        this.numberOfDevice.set(newName, this.numberOfDevice.get(originalName));
+        this.numberOfDevice.delete(originalName);
+        this.room$.next(this.getRoomStream());
+        return of(ROOM);
+    }
+
+    getRoomStream() {
+        return Array.from(this.numberOfDevice, ([key, value]) => ({
+            room: key,
+            count: value,
+        }));
     }
 }

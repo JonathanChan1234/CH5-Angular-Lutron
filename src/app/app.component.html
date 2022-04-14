@@ -43,7 +43,15 @@
     </div>
 </app-modal> -->
 <div class="root-container">
-    <mat-toolbar>HKT Crestron Go Test</mat-toolbar>
+    <div>
+        <mat-toolbar class="app-header flex-horizontal"
+            >Wheelock NKIL6579 Home Automation App
+            <select [formControl]="langForm">
+                <option value="en">Eng</option>
+                <option value="zh">Chi</option>
+            </select>
+        </mat-toolbar>
+    </div>
     <div [ngSwitch]="route">
         <div *ngSwitchCase="'room_panel'">
             <app-rooms-panel></app-rooms-panel>
@@ -54,8 +62,8 @@
         <div *ngSwitchCase="'3'">
             <div>View 3</div>
         </div>
-        <div *ngSwitchCase="'4'">
-            <div>View 4</div>
+        <div *ngSwitchCase="'setting'">
+            <app-setting></app-setting>
         </div>
         <div *ngSwitchCase="'room_view'">
             <app-room-view></app-room-view>

@@ -24,9 +24,18 @@ body {
     margin: 10px;
 }
 
+.edit-name-label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .flex-horizontal {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+}
+
+.w-100 {
+    width: 100%;
 }

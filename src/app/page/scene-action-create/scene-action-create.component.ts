@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { RoomService } from 'src/app/service/room.service';
+import { PAGE_SCENE_DETAILS, PAGE_SCENE_TABLE } from 'src/app/service/route';
 import { RouterService } from 'src/app/service/router.service';
 import { SceneService } from 'src/app/service/scene.service';
 import { Load } from 'src/app/service/type';
@@ -35,19 +36,26 @@ export class SceneActionCreateComponent implements OnInit {
             room: ['', Validators.required],
         });
 
+        this.router.getCurrentRoute().subscribe(route => (this.scene = route?.params?.name));
         this.room$ = this.roomService.getRoomList().pipe(map(list => list.map(l => l.room)));
-        this.load$ = this.roomDeviceGroup.valueChanges.pipe(
-            switchMap(value => {
-                this.selectedRoom = value.room;
-                return this.router.getCurrentRoute();
-            }),
-            switchMap(route => {
-                if (!route?.params?.name) {
+        this.load$ = this.roomDeviceGroup.controls.room.valueChanges.pipe(
+            switchMap(room => {
+                if (!this.scene) {
                     return of([] as Load[]);
                 }
-                const scene = route.params.name;
-                return this.sceneService.getSceneLoadList(scene, this.selectedRoom);
+                return this.sceneService.getSceneLoadList(this.scene, room);
             })
         );
+        this.roomDeviceGroup.controls.device.valueChanges.subscribe(
+            load => (this.selectedLoad = load)
+        );
+    }
+
+    back() {
+        if (this.scene) {
+            this.router.navigate(PAGE_SCENE_DETAILS, { name: this.scene });
+        } else {
+            this.router.navigate(PAGE_SCENE_TABLE);
+        }
     }
 }

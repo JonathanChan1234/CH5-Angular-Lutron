@@ -1,0 +1,30 @@
+<h3 class="switch-control-title">Device State</h3>
+<form [formGroup]="formGroup" (ngSubmit)="addScene()">
+    <div class="switch-control-wrapper">
+        <mat-slide-toggle
+            (toggleChange)="onToggleChange()"
+            [checked]="powerState"
+        ></mat-slide-toggle>
+        <p class="power-state-text">{{ powerState ? 'ON' : 'OFF' }}</p>
+    </div>
+    <div>
+        <mat-form-field appearance="fill">
+            <mat-label>Delay Time</mat-label>
+            <input
+                matInput
+                required
+                type="number"
+                inputmode="numeric"
+                [min]="0"
+                [defaultValue]="0"
+                formControlName="delay"
+            />
+        </mat-form-field>
+        <div>
+            <button mat-raised-button type="submit" color="primary" [disabled]="!formGroup.valid">
+                Confirm
+            </button>
+        </div>
+    </div>
+</form>
+<app-error-message-bar *ngIf="error" [message]="error" (back)="back()"></app-error-message-bar>

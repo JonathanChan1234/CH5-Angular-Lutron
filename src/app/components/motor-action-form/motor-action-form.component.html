@@ -1,0 +1,16 @@
+<form [formGroup]="formGroup" (ngSubmit)="addScene()">
+    <mat-form-field appearance="fill">
+        <mat-label>Action</mat-label>
+        <mat-select required formControlName="motorAction">
+            <mat-option value="raise">Raise</mat-option>
+            <mat-option value="lower">Lower</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <div>
+        <button mat-raised-button type="submit" color="primary" [disabled]="!formGroup.valid">
+            Confirm
+        </button>
+    </div>
+</form>
+
+<app-error-message-bar *ngIf="error" [message]="error" (back)="back()"></app-error-message-bar>

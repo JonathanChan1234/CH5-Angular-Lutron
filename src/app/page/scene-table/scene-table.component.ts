@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatTable } from '@angular/material/table';
 import { PAGE_SCENE_DETAILS } from 'src/app/service/route';
 import { RouterService } from 'src/app/service/router.service';
 import { SceneService } from 'src/app/service/scene.service';
@@ -15,6 +16,7 @@ interface SceneTableRow {
     styleUrls: ['./scene-table.component.scss'],
 })
 export class SceneTableComponent implements OnInit {
+    @ViewChild(MatTable) table: MatTable<SceneTableRow>;
     dataSource!: SceneTableRow[];
     columns = ['name', 'numberOfAction', 'action'];
 
@@ -22,7 +24,6 @@ export class SceneTableComponent implements OnInit {
 
     ngOnInit(): void {
         this.sceneService.getSceneList().subscribe(scenes => {
-            console.log(scenes);
             this.dataSource = scenes.map(scene => ({
                 name: scene.name,
                 numberOfAction: scene.actions.length,
@@ -34,6 +35,17 @@ export class SceneTableComponent implements OnInit {
     addScene() {
         this.sceneService.createNewScene().subscribe(scene => {
             this.router.navigate(PAGE_SCENE_DETAILS, { name: scene });
+        });
+    }
+
+    deleteScene(row: SceneTableRow) {
+        this.sceneService.deleteScene(row.name).subscribe(scenes => {
+            this.dataSource = scenes.map(scene => ({
+                name: scene.name,
+                numberOfAction: scene.actions.length,
+                action: null,
+            }));
+            this.table.renderRows();
         });
     }
 

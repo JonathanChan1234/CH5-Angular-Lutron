@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 import { RouterService } from './service/router.service';
 
 @Component({
@@ -11,11 +13,19 @@ export class AppComponent implements OnInit {
     visible = false;
     route = '';
 
-    constructor(private routerService: RouterService) {}
+    langForm: FormControl;
+
+    constructor(private routerService: RouterService, private translate: TranslateService) {
+        translate.setDefaultLang('en');
+        this.langForm = new FormControl('en');
+    }
 
     ngOnInit(): void {
         this.routerService.getCurrentRoute().subscribe(route => {
             this.route = route.path;
+        });
+        this.langForm.valueChanges.subscribe(value => {
+            this.translate.use(value);
         });
     }
 

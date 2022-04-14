@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
+import { MatTable } from '@angular/material/table';
 import { of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { PAGE_SCENE_ACTION_CREATE, PAGE_SCENE_TABLE } from 'src/app/service/route';
@@ -12,9 +14,14 @@ import { MotorActionType, SceneAction } from 'src/app/service/type';
     styleUrls: ['./scene-details.component.scss'],
 })
 export class SceneDetailsComponent implements OnInit {
+    @ViewChild(MatTable) table: MatTable<SceneAction>;
+
     scene: string;
-    columns = ['load', 'room', 'action'];
+    columns = ['load', 'room', 'action', 'option'];
     dataSource!: SceneAction[];
+
+    editMode = false;
+    nameFormControl: FormControl;
 
     constructor(private router: RouterService, private sceneService: SceneService) {}
 
@@ -33,6 +40,16 @@ export class SceneDetailsComponent implements OnInit {
             .subscribe(actions => {
                 this.dataSource = actions;
             });
+        this.nameFormControl = new FormControl(this.scene, Validators.required);
+    }
+
+    changeToEditMode() {
+        this.editMode = true;
+    }
+
+    changeSceneName() {
+        this.scene = this.nameFormControl.value;
+        this.editMode = false;
     }
 
     getMotorAction(action: MotorActionType) {
@@ -44,6 +61,13 @@ export class SceneDetailsComponent implements OnInit {
             case MotorActionType.STOP:
                 return 'STOP';
         }
+    }
+
+    deleteAction(action: SceneAction) {
+        this.sceneService.deleteActionFromScene(this.scene, action).subscribe(actions => {
+            this.dataSource = actions;
+            this.table.renderRows();
+        });
     }
 
     navigateToSceneTable() {

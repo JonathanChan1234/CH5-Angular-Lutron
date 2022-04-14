@@ -37,4 +37,32 @@ export class SceneService {
         SCENE.push({ name, actions: [] });
         return of(name);
     }
+
+    deleteScene(id: string): Observable<Scene[]> {
+        const sceneIndex = SCENE.findIndex(s => s.name === id);
+        if (sceneIndex === -1) {
+            throw new Error(`Scene (${id}) does not exist`);
+        }
+        SCENE.splice(sceneIndex, 1);
+        return of(SCENE);
+    }
+
+    addActionToScene(id: string, action: SceneAction): Observable<Scene> {
+        const scene = SCENE.find(s => s.name === id);
+        if (!scene) {
+            throw new Error(`Scene (${id}) does not exist`);
+        }
+        scene.actions.push(action);
+        return of(scene);
+    }
+
+    deleteActionFromScene(id: string, action: SceneAction): Observable<SceneAction[]> {
+        const scene = SCENE.find(s => s.name === id);
+        if (!scene) {
+            throw new Error(`Scene (${id}) does not exist`);
+        }
+        const deleteActionIndex = scene.actions.findIndex(a => a.id === action.id);
+        scene.actions.splice(deleteActionIndex, 1);
+        return of(scene.actions);
+    }
 }

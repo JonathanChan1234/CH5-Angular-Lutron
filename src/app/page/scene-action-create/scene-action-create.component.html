@@ -1,5 +1,16 @@
-<div class="action-create-wrapper">
-    <p class="page-title">Create an Action For Your Scene</p>
+<app-error-message-bar
+    *ngIf="!scene"
+    message="Scene does not exist"
+    (back)="back()"
+></app-error-message-bar>
+
+<div *ngIf="scene" class="action-create-wrapper">
+    <div style="display: flex; width: 100%">
+        <p class="page-title">Create an Action For Your Scene</p>
+        <div style="margin-left: auto">
+            <button mat-button (click)="back()" color="primary">Back</button>
+        </div>
+    </div>
     <form [formGroup]="roomDeviceGroup">
         <h3>Step 1: Select a device</h3>
         <div>
@@ -23,21 +34,30 @@
             </mat-form-field>
         </div>
     </form>
-    <div *ngIf="selectedLoad">
+    <div *ngIf="roomDeviceGroup.value.device">
         <h3>
             Step 2: Select the action for
-            {{ selectedLoad.name }} in {{ roomDeviceGroup.value.room.name }}
+            {{ selectedLoad.name }} in {{ roomDeviceGroup.value.room }}
         </h3>
-        <!-- <ng-container [ngSwitch]="load.type">
+        <ng-container [ngSwitch]="selectedLoad.type">
             <ng-container *ngSwitchCase="'dimmer'">
-                <app-dimmer-action-form [sceneId]="scene" [load]="load"></app-dimmer-action-form>
+                <app-dimmer-action-form
+                    [sceneId]="scene"
+                    [load]="selectedLoad"
+                ></app-dimmer-action-form>
             </ng-container>
             <ng-container *ngSwitchCase="'switch'">
-                <app-switch-action-form [sceneId]="scene" [load]="load"></app-switch-action-form>
+                <app-switch-action-form
+                    [sceneId]="scene"
+                    [load]="selectedLoad"
+                ></app-switch-action-form>
             </ng-container>
             <ng-container *ngSwitchCase="'motor'">
-                <app-motor-action-form [sceneId]="scene" [load]="load"></app-motor-action-form>
+                <app-motor-action-form
+                    [sceneId]="scene"
+                    [load]="selectedLoad"
+                ></app-motor-action-form>
             </ng-container>
-        </ng-container> -->
+        </ng-container>
     </div>
 </div>

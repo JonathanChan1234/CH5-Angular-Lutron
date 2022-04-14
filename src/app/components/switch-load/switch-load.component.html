@@ -1,19 +1,10 @@
-<div class="switch-load">
-    <mat-card class="card">
-        <div class="flex-horizontal">
-            <div>
-                <mat-card-title>{{ load.name }}</mat-card-title>
-                <mat-card-subtitle
-                    >{{ load.type | uppercase }} (Integration ID: {{ load.id }})</mat-card-subtitle
-                >
-            </div>
-            <p class="state-text">{{ powerState ? 'ON' : 'OFF' }}</p>
-        </div>
-        <div>
-            <mat-slide-toggle
-                (toggleChange)="onToggleChange()"
-                [checked]="powerState"
-            ></mat-slide-toggle>
-        </div>
-    </mat-card>
-</div>
+<mat-card class="card">
+    <app-load-card-header [load]="load"></app-load-card-header>
+    <div class="flex-horizontal w-100">
+        <mat-slide-toggle
+            (toggleChange)="onToggleChange()"
+            [checked]="powerState"
+        ></mat-slide-toggle>
+        <p class="state-text">{{ powerState ? 'ON' : 'OFF' }}</p>
+    </div>
+</mat-card>

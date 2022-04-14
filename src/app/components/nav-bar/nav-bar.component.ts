@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { PAGE_MONITORING, PAGE_ROOMS_PANEL, PAGE_SCENE_TABLE } from 'src/app/service/route';
+import {
+    PAGE_MONITORING,
+    PAGE_ROOMS_PANEL,
+    PAGE_SCENE_TABLE,
+    PAGE_SETTING,
+} from 'src/app/service/route';
 import { RouterService } from 'src/app/service/router.service';
 
 @Component({
@@ -12,7 +17,7 @@ export class NavBarComponent implements OnInit {
         { label: 'Lighting', route: PAGE_ROOMS_PANEL, icon: 'brightness_high' },
         { label: 'Monitoring', route: PAGE_MONITORING, icon: 'video_call' },
         { label: 'Scene', route: PAGE_SCENE_TABLE, icon: 'memory' },
-        { label: 'Setting', route: '4', icon: 'settings' },
+        { label: 'Setting', route: PAGE_SETTING, icon: 'settings' },
     ];
 
     constructor(private router: RouterService) {}

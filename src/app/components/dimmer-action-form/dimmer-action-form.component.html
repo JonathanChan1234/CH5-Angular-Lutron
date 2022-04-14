@@ -1,0 +1,54 @@
+<form [formGroup]="formGroup" (ngSubmit)="addScene()">
+    <p class="dimmer-title">Dimming Level</p>
+    <div class="dimmer-slider-wrapper">
+        <mat-slider
+            min="0"
+            max="100"
+            step="1"
+            [value]="sliderValue"
+            (change)="onSliderChange($event?.value)"
+            (input)="onSliderChange($event?.value)"
+        ></mat-slider>
+        <mat-slide-toggle
+            (toggleChange)="onToggleChange()"
+            [checked]="powerState"
+        ></mat-slide-toggle>
+        <p class="slider-value-text">{{ sliderValue }}%</p>
+    </div>
+
+    <div>
+        <mat-form-field appearance="fill">
+            <mat-label>Fade Time</mat-label>
+            <input
+                matInput
+                type="number"
+                inputmode="numeric"
+                min="0"
+                required
+                [defaultValue]="2"
+                formControlName="fadeTime"
+            />
+        </mat-form-field>
+    </div>
+
+    <div>
+        <mat-form-field appearance="fill">
+            <mat-label>Delay Time</mat-label>
+            <input
+                matInput
+                type="number"
+                min="0"
+                inputmode="numeric"
+                required
+                [defaultValue]="0"
+                formControlName="delayTime"
+            />
+        </mat-form-field>
+    </div>
+    <div>
+        <button mat-raised-button type="submit" color="primary" [disabled]="!formGroup.valid">
+            Add Action
+        </button>
+    </div>
+</form>
+<app-error-message-bar *ngIf="error" [message]="error" (back)="back()"></app-error-message-bar>

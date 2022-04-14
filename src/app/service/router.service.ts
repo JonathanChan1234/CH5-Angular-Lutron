@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { PAGE_SCENE_ACTION_CREATE } from './route';
+import { PAGE_SCENE_DETAILS } from './route';
 
 type RouteInfo = {
     path: string;
@@ -12,7 +12,7 @@ type RouteInfo = {
 })
 export class RouterService {
     route$ = new BehaviorSubject<RouteInfo>({
-        path: PAGE_SCENE_ACTION_CREATE,
+        path: PAGE_SCENE_DETAILS,
         params: { name: 'Scene 1' },
     });
 
