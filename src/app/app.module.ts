@@ -1,4 +1,4 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -15,7 +15,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppComponent } from './app.component';
 import { DimmerActionFormComponent } from './components/dimmer-action-form/dimmer-action-form.component';
 import { DimmerLoadComponent } from './components/dimmer-load/dimmer-load.component';
@@ -46,6 +45,7 @@ import { SceneActionCreateComponent } from './page/scene-action-create/scene-act
 import { SceneDetailsComponent } from './page/scene-details/scene-details.component';
 import { SceneTableComponent } from './page/scene-table/scene-table.component';
 import { SettingComponent } from './page/setting/setting.component';
+import CustomLoader from './translation/CustomLoader';
 
 @NgModule({
     declarations: [
@@ -100,8 +100,7 @@ import { SettingComponent } from './page/setting/setting.component';
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
-                useFactory: HttpLoaderFactory,
-                deps: [HttpClient],
+                useClass: CustomLoader,
             },
         }),
     ],
@@ -110,7 +109,3 @@ import { SettingComponent } from './page/setting/setting.component';
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}
-
-export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
-    return new TranslateHttpLoader(http);
-}

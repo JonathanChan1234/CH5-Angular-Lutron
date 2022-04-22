@@ -1,5 +1,45 @@
 {
     "header": {
         "title": "會德豐 NKIL6579 智能家居"
+    },
+    "navBar": {
+        "lighting": "燈光",
+        "monitoring": "監控",
+        "setting": "設定",
+        "scene": "場景"
+    },
+    "room": {
+        "device": "個裝置",
+        "dimmer": "調光器",
+        "switch": "開關",
+        "motor": "窗簾",
+        "on": "開",
+        "off": "關"
+    },
+    "scene": {
+        "scene": "場景",
+        "addScene": "増加場景",
+        "name": "場景",
+        "numberOfAction": "動作數",
+        "actions": "動作",
+        "edit": "編輯",
+        "delete": "删除",
+        "back": "上一頁",
+        "selectDevice": "請選擇一個裝置",
+        "selectAction": "請選擇一個動作",
+        "delay": "延遲",
+        "fade": "漸變",
+        "room": "房間",
+        "addAction": "添加動作",
+        "device": "裝置",
+        "createAction": "請添加一個動作",
+        "save": "保存",
+        "raise": "開",
+        "lower": "關",
+        "brightness": "光度",
+        "power": "開關",
+        "on": "開",
+        "off": "關",
+        "options": "選項"
     }
 }

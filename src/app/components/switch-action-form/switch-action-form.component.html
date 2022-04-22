@@ -1,15 +1,17 @@
-<h3 class="switch-control-title">Device State</h3>
+<h3 class="switch-control-title">{{ 'scene.power' | translate }}</h3>
 <form [formGroup]="formGroup" (ngSubmit)="addScene()">
     <div class="switch-control-wrapper">
         <mat-slide-toggle
             (toggleChange)="onToggleChange()"
             [checked]="powerState"
         ></mat-slide-toggle>
-        <p class="power-state-text">{{ powerState ? 'ON' : 'OFF' }}</p>
+        <p class="power-state-text">
+            {{ powerState ? ('scene.on' | translate) : ('scene.off' | translate) }}
+        </p>
     </div>
     <div>
         <mat-form-field appearance="fill">
-            <mat-label>Delay Time</mat-label>
+            <mat-label>{{ 'scene.delay' | translate }}</mat-label>
             <input
                 matInput
                 required
@@ -22,7 +24,7 @@
         </mat-form-field>
         <div>
             <button mat-raised-button type="submit" color="primary" [disabled]="!formGroup.valid">
-                Confirm
+                {{ 'scene.save' | translate }}
             </button>
         </div>
     </div>

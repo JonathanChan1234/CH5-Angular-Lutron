@@ -1,14 +1,14 @@
 <form [formGroup]="formGroup" (ngSubmit)="addScene()">
     <mat-form-field appearance="fill">
-        <mat-label>Action</mat-label>
+        <mat-label>{{ 'scene.actions' | translate }}</mat-label>
         <mat-select required formControlName="motorAction">
-            <mat-option value="raise">Raise</mat-option>
-            <mat-option value="lower">Lower</mat-option>
+            <mat-option value="raise">{{ 'scene.raise' | translate }}</mat-option>
+            <mat-option value="lower">{{ 'scene.lower' | translate }}</mat-option>
         </mat-select>
     </mat-form-field>
     <div>
         <button mat-raised-button type="submit" color="primary" [disabled]="!formGroup.valid">
-            Confirm
+            {{ 'scene.save' | translate }}
         </button>
     </div>
 </form>

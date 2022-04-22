@@ -9,6 +9,7 @@ import { Load } from 'src/app/service/type';
 })
 export class LoadCardHeaderComponent implements OnInit {
     @Input() load!: Load;
+    loadType = '';
     editMode = false;
     nameFormControl: FormControl;
 
@@ -16,6 +17,7 @@ export class LoadCardHeaderComponent implements OnInit {
 
     ngOnInit(): void {
         this.nameFormControl = new FormControl(this.load.name, Validators.required);
+        this.loadType = `room.${this.load.type}`;
     }
 
     changeToEditMode() {

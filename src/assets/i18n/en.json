@@ -1,5 +1,45 @@
 {
     "header": {
         "title": "Wheelock NKIL6579 HA App"
+    },
+    "navBar": {
+        "lighting": "Lighting",
+        "monitoring": "Monitoring",
+        "setting": "Setting",
+        "scene": "Scene"
+    },
+    "room": {
+        "device": "devices",
+        "dimmer": "dimmer",
+        "switch": "switch",
+        "motor": "motor",
+        "on": "ON",
+        "off": "OFF"
+    },
+    "scene": {
+        "scene": "Scene",
+        "addScene": "Add Scene",
+        "name": "name",
+        "numberOfAction": "Number of Actions",
+        "actions": "Actions",
+        "edit": "Edit",
+        "delete": "Delete",
+        "back": "Back",
+        "selectDevice": "Please select a device",
+        "selectAction": "Please select an action",
+        "delay": "Delay",
+        "fade": "Fade",
+        "room": "Room",
+        "addAction": "Add action",
+        "device": "Device",
+        "createAction": "Please create an action",
+        "save": "Save",
+        "raise": "Raise",
+        "lower": "Lower",
+        "brightness": "Brightness",
+        "power": "Power",
+        "on": "ON",
+        "off": "OFF",
+        "options": "Options"
     }
 }

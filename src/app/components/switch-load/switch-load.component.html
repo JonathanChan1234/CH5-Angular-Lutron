@@ -5,6 +5,8 @@
             (toggleChange)="onToggleChange()"
             [checked]="powerState"
         ></mat-slide-toggle>
-        <p class="state-text">{{ powerState ? 'ON' : 'OFF' }}</p>
+        <p class="state-text">
+            {{ powerState ? ('room.on' | translate) : ('room.off' | translate) }}
+        </p>
     </div>
 </mat-card>

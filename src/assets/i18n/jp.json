@@ -1,0 +1,45 @@
+{
+    "header": {
+        "title": "Wheelock NKIL6579 ホームオートメーション"
+    },
+    "navBar": {
+        "lighting": "照明",
+        "monitoring": "监控",
+        "setting": "設定",
+        "scene": "シーン"
+    },
+    "room": {
+        "device": "つの設備",
+        "dimmer": "調光スイッチ",
+        "switch": "スイッチ",
+        "motor": "カーテン",
+        "on": "つける",
+        "off": "消す"
+    },
+    "scene": {
+        "scene": "シーン",
+        "addScene": "シーンを加える",
+        "name": "シーン",
+        "numberOfAction": "動作の数",
+        "actions": "動作",
+        "edit": "編集",
+        "delete": "削除",
+        "back": "戻す",
+        "selectDevice": "設備を選んでください",
+        "selectAction": "動作を選んでください",
+        "delay": "遅延",
+        "fade": "フェード",
+        "room": "ルーム",
+        "addAction": "動作を加える",
+        "device": "設備",
+        "createAction": "動作を決めてください",
+        "save": "保存する",
+        "raise": "開ける",
+        "lower": "閉める",
+        "brightness": "明るさ",
+        "power": "電気",
+        "on": "つける",
+        "off": "消す",
+        "options": "選択"
+    }
+}

@@ -45,10 +45,11 @@
 <div class="root-container">
     <div>
         <mat-toolbar class="app-header flex-horizontal"
-            >Wheelock NKIL6579 Home Automation App
+            >{{ 'header.title' | translate }}
             <select [formControl]="langForm">
-                <option value="en">Eng</option>
-                <option value="zh">Chi</option>
+                <option value="en">English</option>
+                <option value="zh">Chinese</option>
+                <option value="jp">Japanese</option>
             </select>
         </mat-toolbar>
     </div>

@@ -213,13 +213,12 @@ var AppComponent = /** @class */ (function () {
 /*!*******************************!*\
   !*** ./src/app/app.module.ts ***!
   \*******************************/
-/*! exports provided: AppModule, HttpLoaderFactory */
+/*! exports provided: AppModule */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppModule", function() { return AppModule; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpLoaderFactory", function() { return HttpLoaderFactory; });
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm5/http.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm5/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/__ivy_ngcc__/fesm5/forms.js");
@@ -237,37 +236,37 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/__ivy_ngcc__/fesm5/platform-browser.js");
 /* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/__ivy_ngcc__/fesm5/animations.js");
 /* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @ngx-translate/core */ "./node_modules/@ngx-translate/core/__ivy_ngcc__/fesm5/ngx-translate-core.js");
-/* harmony import */ var _ngx_translate_http_loader__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @ngx-translate/http-loader */ "./node_modules/@ngx-translate/http-loader/__ivy_ngcc__/fesm5/ngx-translate-http-loader.js");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _components_dimmer_action_form_dimmer_action_form_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/dimmer-action-form/dimmer-action-form.component */ "./src/app/components/dimmer-action-form/dimmer-action-form.component.ts");
-/* harmony import */ var _components_dimmer_load_dimmer_load_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/dimmer-load/dimmer-load.component */ "./src/app/components/dimmer-load/dimmer-load.component.ts");
-/* harmony import */ var _components_error_message_bar_error_message_bar_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/error-message-bar/error-message-bar.component */ "./src/app/components/error-message-bar/error-message-bar.component.ts");
-/* harmony import */ var _components_load_card_header_load_card_header_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/load-card-header/load-card-header.component */ "./src/app/components/load-card-header/load-card-header.component.ts");
-/* harmony import */ var _components_modal_without_join_modal_without_join_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./components/modal-without-join/modal-without-join.component */ "./src/app/components/modal-without-join/modal-without-join.component.ts");
-/* harmony import */ var _components_motor_action_form_motor_action_form_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./components/motor-action-form/motor-action-form.component */ "./src/app/components/motor-action-form/motor-action-form.component.ts");
-/* harmony import */ var _components_motor_load_motor_load_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./components/motor-load/motor-load.component */ "./src/app/components/motor-load/motor-load.component.ts");
-/* harmony import */ var _components_nav_bar_nav_bar_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./components/nav-bar/nav-bar.component */ "./src/app/components/nav-bar/nav-bar.component.ts");
-/* harmony import */ var _components_nav_child_nav_child_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./components/nav-child/nav-child.component */ "./src/app/components/nav-child/nav-child.component.ts");
-/* harmony import */ var _components_room_card_room_card_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./components/room-card/room-card.component */ "./src/app/components/room-card/room-card.component.ts");
-/* harmony import */ var _components_switch_action_form_switch_action_form_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./components/switch-action-form/switch-action-form.component */ "./src/app/components/switch-action-form/switch-action-form.component.ts");
-/* harmony import */ var _components_switch_load_switch_load_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./components/switch-load/switch-load.component */ "./src/app/components/switch-load/switch-load.component.ts");
-/* harmony import */ var _crestron_ana_fb_directive__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./crestron/ana-fb.directive */ "./src/app/crestron/ana-fb.directive.ts");
-/* harmony import */ var _crestron_ana_send_directive__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./crestron/ana-send.directive */ "./src/app/crestron/ana-send.directive.ts");
-/* harmony import */ var _crestron_dig_enable_directive__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./crestron/dig-enable.directive */ "./src/app/crestron/dig-enable.directive.ts");
-/* harmony import */ var _crestron_dig_fb_directive__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./crestron/dig-fb.directive */ "./src/app/crestron/dig-fb.directive.ts");
-/* harmony import */ var _crestron_dig_press_directive__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./crestron/dig-press.directive */ "./src/app/crestron/dig-press.directive.ts");
-/* harmony import */ var _crestron_dig_visible_directive__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./crestron/dig-visible.directive */ "./src/app/crestron/dig-visible.directive.ts");
-/* harmony import */ var _crestron_modal_modal_component__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./crestron/modal/modal.component */ "./src/app/crestron/modal/modal.component.ts");
-/* harmony import */ var _crestron_ser_fb_directive__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./crestron/ser-fb.directive */ "./src/app/crestron/ser-fb.directive.ts");
-/* harmony import */ var _crestron_ser_send_directive__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./crestron/ser-send.directive */ "./src/app/crestron/ser-send.directive.ts");
-/* harmony import */ var _directive_stop_propagation_directive__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./directive/stop-propagation.directive */ "./src/app/directive/stop-propagation.directive.ts");
-/* harmony import */ var _page_monitoring_monitoring_component__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./page/monitoring/monitoring.component */ "./src/app/page/monitoring/monitoring.component.ts");
-/* harmony import */ var _page_room_view_room_view_component__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ./page/room-view/room-view.component */ "./src/app/page/room-view/room-view.component.ts");
-/* harmony import */ var _page_rooms_panel_rooms_panel_component__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ./page/rooms-panel/rooms-panel.component */ "./src/app/page/rooms-panel/rooms-panel.component.ts");
-/* harmony import */ var _page_scene_action_create_scene_action_create_component__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ./page/scene-action-create/scene-action-create.component */ "./src/app/page/scene-action-create/scene-action-create.component.ts");
-/* harmony import */ var _page_scene_details_scene_details_component__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! ./page/scene-details/scene-details.component */ "./src/app/page/scene-details/scene-details.component.ts");
-/* harmony import */ var _page_scene_table_scene_table_component__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! ./page/scene-table/scene-table.component */ "./src/app/page/scene-table/scene-table.component.ts");
-/* harmony import */ var _page_setting_setting_component__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__(/*! ./page/setting/setting.component */ "./src/app/page/setting/setting.component.ts");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _components_dimmer_action_form_dimmer_action_form_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/dimmer-action-form/dimmer-action-form.component */ "./src/app/components/dimmer-action-form/dimmer-action-form.component.ts");
+/* harmony import */ var _components_dimmer_load_dimmer_load_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/dimmer-load/dimmer-load.component */ "./src/app/components/dimmer-load/dimmer-load.component.ts");
+/* harmony import */ var _components_error_message_bar_error_message_bar_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/error-message-bar/error-message-bar.component */ "./src/app/components/error-message-bar/error-message-bar.component.ts");
+/* harmony import */ var _components_load_card_header_load_card_header_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/load-card-header/load-card-header.component */ "./src/app/components/load-card-header/load-card-header.component.ts");
+/* harmony import */ var _components_modal_without_join_modal_without_join_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/modal-without-join/modal-without-join.component */ "./src/app/components/modal-without-join/modal-without-join.component.ts");
+/* harmony import */ var _components_motor_action_form_motor_action_form_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./components/motor-action-form/motor-action-form.component */ "./src/app/components/motor-action-form/motor-action-form.component.ts");
+/* harmony import */ var _components_motor_load_motor_load_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./components/motor-load/motor-load.component */ "./src/app/components/motor-load/motor-load.component.ts");
+/* harmony import */ var _components_nav_bar_nav_bar_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./components/nav-bar/nav-bar.component */ "./src/app/components/nav-bar/nav-bar.component.ts");
+/* harmony import */ var _components_nav_child_nav_child_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./components/nav-child/nav-child.component */ "./src/app/components/nav-child/nav-child.component.ts");
+/* harmony import */ var _components_room_card_room_card_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./components/room-card/room-card.component */ "./src/app/components/room-card/room-card.component.ts");
+/* harmony import */ var _components_switch_action_form_switch_action_form_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./components/switch-action-form/switch-action-form.component */ "./src/app/components/switch-action-form/switch-action-form.component.ts");
+/* harmony import */ var _components_switch_load_switch_load_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./components/switch-load/switch-load.component */ "./src/app/components/switch-load/switch-load.component.ts");
+/* harmony import */ var _crestron_ana_fb_directive__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./crestron/ana-fb.directive */ "./src/app/crestron/ana-fb.directive.ts");
+/* harmony import */ var _crestron_ana_send_directive__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./crestron/ana-send.directive */ "./src/app/crestron/ana-send.directive.ts");
+/* harmony import */ var _crestron_dig_enable_directive__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./crestron/dig-enable.directive */ "./src/app/crestron/dig-enable.directive.ts");
+/* harmony import */ var _crestron_dig_fb_directive__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./crestron/dig-fb.directive */ "./src/app/crestron/dig-fb.directive.ts");
+/* harmony import */ var _crestron_dig_press_directive__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./crestron/dig-press.directive */ "./src/app/crestron/dig-press.directive.ts");
+/* harmony import */ var _crestron_dig_visible_directive__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./crestron/dig-visible.directive */ "./src/app/crestron/dig-visible.directive.ts");
+/* harmony import */ var _crestron_modal_modal_component__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./crestron/modal/modal.component */ "./src/app/crestron/modal/modal.component.ts");
+/* harmony import */ var _crestron_ser_fb_directive__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./crestron/ser-fb.directive */ "./src/app/crestron/ser-fb.directive.ts");
+/* harmony import */ var _crestron_ser_send_directive__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./crestron/ser-send.directive */ "./src/app/crestron/ser-send.directive.ts");
+/* harmony import */ var _directive_stop_propagation_directive__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./directive/stop-propagation.directive */ "./src/app/directive/stop-propagation.directive.ts");
+/* harmony import */ var _page_monitoring_monitoring_component__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./page/monitoring/monitoring.component */ "./src/app/page/monitoring/monitoring.component.ts");
+/* harmony import */ var _page_room_view_room_view_component__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./page/room-view/room-view.component */ "./src/app/page/room-view/room-view.component.ts");
+/* harmony import */ var _page_rooms_panel_rooms_panel_component__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ./page/rooms-panel/rooms-panel.component */ "./src/app/page/rooms-panel/rooms-panel.component.ts");
+/* harmony import */ var _page_scene_action_create_scene_action_create_component__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ./page/scene-action-create/scene-action-create.component */ "./src/app/page/scene-action-create/scene-action-create.component.ts");
+/* harmony import */ var _page_scene_details_scene_details_component__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ./page/scene-details/scene-details.component */ "./src/app/page/scene-details/scene-details.component.ts");
+/* harmony import */ var _page_scene_table_scene_table_component__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! ./page/scene-table/scene-table.component */ "./src/app/page/scene-table/scene-table.component.ts");
+/* harmony import */ var _page_setting_setting_component__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! ./page/setting/setting.component */ "./src/app/page/setting/setting.component.ts");
+/* harmony import */ var _translation_CustomLoader__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__(/*! ./translation/CustomLoader */ "./src/app/translation/CustomLoader.ts");
 
 
 
@@ -321,7 +320,7 @@ __webpack_require__.r(__webpack_exports__);
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
-    AppModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineNgModule"]({ type: AppModule, bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_18__["AppComponent"]] });
+    AppModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineNgModule"]({ type: AppModule, bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_17__["AppComponent"]] });
     AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjector"]({ factory: function AppModule_Factory(t) { return new (t || AppModule)(); }, providers: [], imports: [[
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_14__["BrowserModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"],
@@ -342,44 +341,43 @@ var AppModule = /** @class */ (function () {
                 _ngx_translate_core__WEBPACK_IMPORTED_MODULE_16__["TranslateModule"].forRoot({
                     loader: {
                         provide: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_16__["TranslateLoader"],
-                        useFactory: HttpLoaderFactory,
-                        deps: [_angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClient"]],
+                        useClass: _translation_CustomLoader__WEBPACK_IMPORTED_MODULE_47__["default"],
                     },
                 }),
             ]] });
     return AppModule;
 }());
 
-(function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵsetNgModuleScope"](AppModule, { declarations: [_app_component__WEBPACK_IMPORTED_MODULE_18__["AppComponent"],
-        _crestron_dig_press_directive__WEBPACK_IMPORTED_MODULE_35__["DigPressDirective"],
-        _crestron_dig_enable_directive__WEBPACK_IMPORTED_MODULE_33__["DigEnableDirective"],
-        _crestron_dig_visible_directive__WEBPACK_IMPORTED_MODULE_36__["DigVisibleDirective"],
-        _crestron_dig_fb_directive__WEBPACK_IMPORTED_MODULE_34__["DigFbDirective"],
-        _crestron_ana_send_directive__WEBPACK_IMPORTED_MODULE_32__["AnaSendDirective"],
-        _crestron_ana_fb_directive__WEBPACK_IMPORTED_MODULE_31__["AnaFbDirective"],
-        _crestron_ser_send_directive__WEBPACK_IMPORTED_MODULE_39__["SerSendDirective"],
-        _crestron_ser_fb_directive__WEBPACK_IMPORTED_MODULE_38__["SerFbDirective"],
-        _crestron_modal_modal_component__WEBPACK_IMPORTED_MODULE_37__["ModalComponent"],
-        _components_modal_without_join_modal_without_join_component__WEBPACK_IMPORTED_MODULE_23__["ModalWithoutJoinComponent"],
-        _components_nav_child_nav_child_component__WEBPACK_IMPORTED_MODULE_27__["NavChildComponent"],
-        _components_nav_bar_nav_bar_component__WEBPACK_IMPORTED_MODULE_26__["NavBarComponent"],
-        _components_room_card_room_card_component__WEBPACK_IMPORTED_MODULE_28__["RoomCardComponent"],
-        _page_rooms_panel_rooms_panel_component__WEBPACK_IMPORTED_MODULE_43__["RoomsPanelComponent"],
-        _page_monitoring_monitoring_component__WEBPACK_IMPORTED_MODULE_41__["MonitoringComponent"],
-        _components_dimmer_load_dimmer_load_component__WEBPACK_IMPORTED_MODULE_20__["DimmerLoadComponent"],
-        _page_room_view_room_view_component__WEBPACK_IMPORTED_MODULE_42__["RoomViewComponent"],
-        _components_switch_load_switch_load_component__WEBPACK_IMPORTED_MODULE_30__["SwitchLoadComponent"],
-        _components_motor_load_motor_load_component__WEBPACK_IMPORTED_MODULE_25__["MotorLoadComponent"],
-        _page_scene_table_scene_table_component__WEBPACK_IMPORTED_MODULE_46__["SceneTableComponent"],
-        _page_scene_details_scene_details_component__WEBPACK_IMPORTED_MODULE_45__["SceneDetailsComponent"],
-        _page_scene_action_create_scene_action_create_component__WEBPACK_IMPORTED_MODULE_44__["SceneActionCreateComponent"],
-        _components_dimmer_action_form_dimmer_action_form_component__WEBPACK_IMPORTED_MODULE_19__["DimmerActionFormComponent"],
-        _components_switch_action_form_switch_action_form_component__WEBPACK_IMPORTED_MODULE_29__["SwitchActionFormComponent"],
-        _components_motor_action_form_motor_action_form_component__WEBPACK_IMPORTED_MODULE_24__["MotorActionFormComponent"],
-        _components_error_message_bar_error_message_bar_component__WEBPACK_IMPORTED_MODULE_21__["ErrorMessageBarComponent"],
-        _directive_stop_propagation_directive__WEBPACK_IMPORTED_MODULE_40__["StopPropagationDirective"],
-        _components_load_card_header_load_card_header_component__WEBPACK_IMPORTED_MODULE_22__["LoadCardHeaderComponent"],
-        _page_setting_setting_component__WEBPACK_IMPORTED_MODULE_47__["SettingComponent"]], imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_14__["BrowserModule"],
+(function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵsetNgModuleScope"](AppModule, { declarations: [_app_component__WEBPACK_IMPORTED_MODULE_17__["AppComponent"],
+        _crestron_dig_press_directive__WEBPACK_IMPORTED_MODULE_34__["DigPressDirective"],
+        _crestron_dig_enable_directive__WEBPACK_IMPORTED_MODULE_32__["DigEnableDirective"],
+        _crestron_dig_visible_directive__WEBPACK_IMPORTED_MODULE_35__["DigVisibleDirective"],
+        _crestron_dig_fb_directive__WEBPACK_IMPORTED_MODULE_33__["DigFbDirective"],
+        _crestron_ana_send_directive__WEBPACK_IMPORTED_MODULE_31__["AnaSendDirective"],
+        _crestron_ana_fb_directive__WEBPACK_IMPORTED_MODULE_30__["AnaFbDirective"],
+        _crestron_ser_send_directive__WEBPACK_IMPORTED_MODULE_38__["SerSendDirective"],
+        _crestron_ser_fb_directive__WEBPACK_IMPORTED_MODULE_37__["SerFbDirective"],
+        _crestron_modal_modal_component__WEBPACK_IMPORTED_MODULE_36__["ModalComponent"],
+        _components_modal_without_join_modal_without_join_component__WEBPACK_IMPORTED_MODULE_22__["ModalWithoutJoinComponent"],
+        _components_nav_child_nav_child_component__WEBPACK_IMPORTED_MODULE_26__["NavChildComponent"],
+        _components_nav_bar_nav_bar_component__WEBPACK_IMPORTED_MODULE_25__["NavBarComponent"],
+        _components_room_card_room_card_component__WEBPACK_IMPORTED_MODULE_27__["RoomCardComponent"],
+        _page_rooms_panel_rooms_panel_component__WEBPACK_IMPORTED_MODULE_42__["RoomsPanelComponent"],
+        _page_monitoring_monitoring_component__WEBPACK_IMPORTED_MODULE_40__["MonitoringComponent"],
+        _components_dimmer_load_dimmer_load_component__WEBPACK_IMPORTED_MODULE_19__["DimmerLoadComponent"],
+        _page_room_view_room_view_component__WEBPACK_IMPORTED_MODULE_41__["RoomViewComponent"],
+        _components_switch_load_switch_load_component__WEBPACK_IMPORTED_MODULE_29__["SwitchLoadComponent"],
+        _components_motor_load_motor_load_component__WEBPACK_IMPORTED_MODULE_24__["MotorLoadComponent"],
+        _page_scene_table_scene_table_component__WEBPACK_IMPORTED_MODULE_45__["SceneTableComponent"],
+        _page_scene_details_scene_details_component__WEBPACK_IMPORTED_MODULE_44__["SceneDetailsComponent"],
+        _page_scene_action_create_scene_action_create_component__WEBPACK_IMPORTED_MODULE_43__["SceneActionCreateComponent"],
+        _components_dimmer_action_form_dimmer_action_form_component__WEBPACK_IMPORTED_MODULE_18__["DimmerActionFormComponent"],
+        _components_switch_action_form_switch_action_form_component__WEBPACK_IMPORTED_MODULE_28__["SwitchActionFormComponent"],
+        _components_motor_action_form_motor_action_form_component__WEBPACK_IMPORTED_MODULE_23__["MotorActionFormComponent"],
+        _components_error_message_bar_error_message_bar_component__WEBPACK_IMPORTED_MODULE_20__["ErrorMessageBarComponent"],
+        _directive_stop_propagation_directive__WEBPACK_IMPORTED_MODULE_39__["StopPropagationDirective"],
+        _components_load_card_header_load_card_header_component__WEBPACK_IMPORTED_MODULE_21__["LoadCardHeaderComponent"],
+        _page_setting_setting_component__WEBPACK_IMPORTED_MODULE_46__["SettingComponent"]], imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_14__["BrowserModule"],
         _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"],
         _angular_forms__WEBPACK_IMPORTED_MODULE_2__["ReactiveFormsModule"],
         _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClientModule"],
@@ -399,36 +397,36 @@ var AppModule = /** @class */ (function () {
         type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"],
         args: [{
                 declarations: [
-                    _app_component__WEBPACK_IMPORTED_MODULE_18__["AppComponent"],
-                    _crestron_dig_press_directive__WEBPACK_IMPORTED_MODULE_35__["DigPressDirective"],
-                    _crestron_dig_enable_directive__WEBPACK_IMPORTED_MODULE_33__["DigEnableDirective"],
-                    _crestron_dig_visible_directive__WEBPACK_IMPORTED_MODULE_36__["DigVisibleDirective"],
-                    _crestron_dig_fb_directive__WEBPACK_IMPORTED_MODULE_34__["DigFbDirective"],
-                    _crestron_ana_send_directive__WEBPACK_IMPORTED_MODULE_32__["AnaSendDirective"],
-                    _crestron_ana_fb_directive__WEBPACK_IMPORTED_MODULE_31__["AnaFbDirective"],
-                    _crestron_ser_send_directive__WEBPACK_IMPORTED_MODULE_39__["SerSendDirective"],
-                    _crestron_ser_fb_directive__WEBPACK_IMPORTED_MODULE_38__["SerFbDirective"],
-                    _crestron_modal_modal_component__WEBPACK_IMPORTED_MODULE_37__["ModalComponent"],
-                    _components_modal_without_join_modal_without_join_component__WEBPACK_IMPORTED_MODULE_23__["ModalWithoutJoinComponent"],
-                    _components_nav_child_nav_child_component__WEBPACK_IMPORTED_MODULE_27__["NavChildComponent"],
-                    _components_nav_bar_nav_bar_component__WEBPACK_IMPORTED_MODULE_26__["NavBarComponent"],
-                    _components_room_card_room_card_component__WEBPACK_IMPORTED_MODULE_28__["RoomCardComponent"],
-                    _page_rooms_panel_rooms_panel_component__WEBPACK_IMPORTED_MODULE_43__["RoomsPanelComponent"],
-                    _page_monitoring_monitoring_component__WEBPACK_IMPORTED_MODULE_41__["MonitoringComponent"],
-                    _components_dimmer_load_dimmer_load_component__WEBPACK_IMPORTED_MODULE_20__["DimmerLoadComponent"],
-                    _page_room_view_room_view_component__WEBPACK_IMPORTED_MODULE_42__["RoomViewComponent"],
-                    _components_switch_load_switch_load_component__WEBPACK_IMPORTED_MODULE_30__["SwitchLoadComponent"],
-                    _components_motor_load_motor_load_component__WEBPACK_IMPORTED_MODULE_25__["MotorLoadComponent"],
-                    _page_scene_table_scene_table_component__WEBPACK_IMPORTED_MODULE_46__["SceneTableComponent"],
-                    _page_scene_details_scene_details_component__WEBPACK_IMPORTED_MODULE_45__["SceneDetailsComponent"],
-                    _page_scene_action_create_scene_action_create_component__WEBPACK_IMPORTED_MODULE_44__["SceneActionCreateComponent"],
-                    _components_dimmer_action_form_dimmer_action_form_component__WEBPACK_IMPORTED_MODULE_19__["DimmerActionFormComponent"],
-                    _components_switch_action_form_switch_action_form_component__WEBPACK_IMPORTED_MODULE_29__["SwitchActionFormComponent"],
-                    _components_motor_action_form_motor_action_form_component__WEBPACK_IMPORTED_MODULE_24__["MotorActionFormComponent"],
-                    _components_error_message_bar_error_message_bar_component__WEBPACK_IMPORTED_MODULE_21__["ErrorMessageBarComponent"],
-                    _directive_stop_propagation_directive__WEBPACK_IMPORTED_MODULE_40__["StopPropagationDirective"],
-                    _components_load_card_header_load_card_header_component__WEBPACK_IMPORTED_MODULE_22__["LoadCardHeaderComponent"],
-                    _page_setting_setting_component__WEBPACK_IMPORTED_MODULE_47__["SettingComponent"],
+                    _app_component__WEBPACK_IMPORTED_MODULE_17__["AppComponent"],
+                    _crestron_dig_press_directive__WEBPACK_IMPORTED_MODULE_34__["DigPressDirective"],
+                    _crestron_dig_enable_directive__WEBPACK_IMPORTED_MODULE_32__["DigEnableDirective"],
+                    _crestron_dig_visible_directive__WEBPACK_IMPORTED_MODULE_35__["DigVisibleDirective"],
+                    _crestron_dig_fb_directive__WEBPACK_IMPORTED_MODULE_33__["DigFbDirective"],
+                    _crestron_ana_send_directive__WEBPACK_IMPORTED_MODULE_31__["AnaSendDirective"],
+                    _crestron_ana_fb_directive__WEBPACK_IMPORTED_MODULE_30__["AnaFbDirective"],
+                    _crestron_ser_send_directive__WEBPACK_IMPORTED_MODULE_38__["SerSendDirective"],
+                    _crestron_ser_fb_directive__WEBPACK_IMPORTED_MODULE_37__["SerFbDirective"],
+                    _crestron_modal_modal_component__WEBPACK_IMPORTED_MODULE_36__["ModalComponent"],
+                    _components_modal_without_join_modal_without_join_component__WEBPACK_IMPORTED_MODULE_22__["ModalWithoutJoinComponent"],
+                    _components_nav_child_nav_child_component__WEBPACK_IMPORTED_MODULE_26__["NavChildComponent"],
+                    _components_nav_bar_nav_bar_component__WEBPACK_IMPORTED_MODULE_25__["NavBarComponent"],
+                    _components_room_card_room_card_component__WEBPACK_IMPORTED_MODULE_27__["RoomCardComponent"],
+                    _page_rooms_panel_rooms_panel_component__WEBPACK_IMPORTED_MODULE_42__["RoomsPanelComponent"],
+                    _page_monitoring_monitoring_component__WEBPACK_IMPORTED_MODULE_40__["MonitoringComponent"],
+                    _components_dimmer_load_dimmer_load_component__WEBPACK_IMPORTED_MODULE_19__["DimmerLoadComponent"],
+                    _page_room_view_room_view_component__WEBPACK_IMPORTED_MODULE_41__["RoomViewComponent"],
+                    _components_switch_load_switch_load_component__WEBPACK_IMPORTED_MODULE_29__["SwitchLoadComponent"],
+                    _components_motor_load_motor_load_component__WEBPACK_IMPORTED_MODULE_24__["MotorLoadComponent"],
+                    _page_scene_table_scene_table_component__WEBPACK_IMPORTED_MODULE_45__["SceneTableComponent"],
+                    _page_scene_details_scene_details_component__WEBPACK_IMPORTED_MODULE_44__["SceneDetailsComponent"],
+                    _page_scene_action_create_scene_action_create_component__WEBPACK_IMPORTED_MODULE_43__["SceneActionCreateComponent"],
+                    _components_dimmer_action_form_dimmer_action_form_component__WEBPACK_IMPORTED_MODULE_18__["DimmerActionFormComponent"],
+                    _components_switch_action_form_switch_action_form_component__WEBPACK_IMPORTED_MODULE_28__["SwitchActionFormComponent"],
+                    _components_motor_action_form_motor_action_form_component__WEBPACK_IMPORTED_MODULE_23__["MotorActionFormComponent"],
+                    _components_error_message_bar_error_message_bar_component__WEBPACK_IMPORTED_MODULE_20__["ErrorMessageBarComponent"],
+                    _directive_stop_propagation_directive__WEBPACK_IMPORTED_MODULE_39__["StopPropagationDirective"],
+                    _components_load_card_header_load_card_header_component__WEBPACK_IMPORTED_MODULE_21__["LoadCardHeaderComponent"],
+                    _page_setting_setting_component__WEBPACK_IMPORTED_MODULE_46__["SettingComponent"],
                 ],
                 imports: [
                     _angular_platform_browser__WEBPACK_IMPORTED_MODULE_14__["BrowserModule"],
@@ -450,19 +448,15 @@ var AppModule = /** @class */ (function () {
                     _ngx_translate_core__WEBPACK_IMPORTED_MODULE_16__["TranslateModule"].forRoot({
                         loader: {
                             provide: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_16__["TranslateLoader"],
-                            useFactory: HttpLoaderFactory,
-                            deps: [_angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClient"]],
+                            useClass: _translation_CustomLoader__WEBPACK_IMPORTED_MODULE_47__["default"],
                         },
                     }),
                 ],
                 providers: [],
-                bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_18__["AppComponent"]],
+                bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_17__["AppComponent"]],
                 schemas: [_angular_core__WEBPACK_IMPORTED_MODULE_1__["CUSTOM_ELEMENTS_SCHEMA"]],
             }]
     }], null, null); })();
-function HttpLoaderFactory(http) {
-    return new _ngx_translate_http_loader__WEBPACK_IMPORTED_MODULE_17__["TranslateHttpLoader"](http);
-}
 
 
 /***/ }),
@@ -3672,6 +3666,65 @@ var MotorActionType;
     MotorActionType[MotorActionType["LOWER"] = 2] = "LOWER";
 })(MotorActionType || (MotorActionType = {}));
 
+
+/***/ }),
+
+/***/ "./src/app/translation/CustomLoader.ts":
+/*!*********************************************!*\
+  !*** ./src/app/translation/CustomLoader.ts ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var _assets_i18n_en_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../assets/i18n/en.json */ "./src/assets/i18n/en.json");
+var _assets_i18n_en_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../../assets/i18n/en.json */ "./src/assets/i18n/en.json", 1);
+/* harmony import */ var _assets_i18n_zh_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../assets/i18n/zh.json */ "./src/assets/i18n/zh.json");
+var _assets_i18n_zh_json__WEBPACK_IMPORTED_MODULE_2___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../../assets/i18n/zh.json */ "./src/assets/i18n/zh.json", 1);
+
+
+
+var CustomLoader = /** @class */ (function () {
+    function CustomLoader() {
+    }
+    CustomLoader.prototype.getTranslation = function (lang) {
+        switch (lang) {
+            case 'eng':
+                return Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["of"])(_assets_i18n_en_json__WEBPACK_IMPORTED_MODULE_1__);
+            case 'zh':
+                return Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["of"])(_assets_i18n_zh_json__WEBPACK_IMPORTED_MODULE_2__);
+            default:
+                return Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["of"])(_assets_i18n_en_json__WEBPACK_IMPORTED_MODULE_1__);
+        }
+    };
+    return CustomLoader;
+}());
+/* harmony default export */ __webpack_exports__["default"] = (CustomLoader);
+
+
+/***/ }),
+
+/***/ "./src/assets/i18n/en.json":
+/*!*********************************!*\
+  !*** ./src/assets/i18n/en.json ***!
+  \*********************************/
+/*! exports provided: header, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"header\":{\"title\":\"Wheelock NKIL6579 HA App\"}}");
+
+/***/ }),
+
+/***/ "./src/assets/i18n/zh.json":
+/*!*********************************!*\
+  !*** ./src/assets/i18n/zh.json ***!
+  \*********************************/
+/*! exports provided: header, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"header\":{\"title\":\"會德豐 NKIL6579 智能家居\"}}");
 
 /***/ }),
 

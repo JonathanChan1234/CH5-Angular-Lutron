@@ -16,8 +16,8 @@ export class AppComponent implements OnInit {
     langForm: FormControl;
 
     constructor(private routerService: RouterService, private translate: TranslateService) {
-        translate.setDefaultLang('en');
-        this.langForm = new FormControl('en');
+        translate.setDefaultLang('jp');
+        this.langForm = new FormControl('jp');
     }
 
     ngOnInit(): void {

@@ -6,16 +6,18 @@
 
 <div *ngIf="scene" class="action-create-wrapper">
     <div style="display: flex; width: 100%">
-        <p class="page-title">Create an Action For Your Scene</p>
+        <p class="page-title">{{ 'scene.createAction' | translate }}</p>
         <div style="margin-left: auto">
-            <button mat-button (click)="back()" color="primary">Back</button>
+            <button mat-button (click)="back()" color="primary">
+                {{ 'scene.back' | translate }}
+            </button>
         </div>
     </div>
     <form [formGroup]="roomDeviceGroup">
-        <h3>Step 1: Select a device</h3>
+        <h3>{{ 'scene.selectDevice' | translate }}</h3>
         <div>
             <mat-form-field appearance="fill">
-                <mat-label>Choose a room</mat-label>
+                <mat-label>{{ 'scene.room' | translate }}</mat-label>
                 <mat-select required formControlName="room">
                     <mat-option *ngFor="let room of room$ | async" [value]="room">
                         {{ room }}
@@ -25,7 +27,7 @@
         </div>
         <div>
             <mat-form-field appearance="fill">
-                <mat-label>Choose a device</mat-label>
+                <mat-label>{{ 'scene.device' | translate }}</mat-label>
                 <mat-select required formControlName="device">
                     <mat-option *ngFor="let load of load$ | async" [value]="load">
                         {{ load.name }} ({{ load.type | uppercase }})
@@ -36,9 +38,9 @@
     </form>
     <div *ngIf="roomDeviceGroup.value.device">
         <h3>
-            Step 2: Select the action for
-            {{ selectedLoad.name }} in {{ roomDeviceGroup.value.room }}
+            {{ 'scene.selectAction' | translate }}
         </h3>
+        <h3>{{ selectedLoad.name }} ({{ roomDeviceGroup.value.room }})</h3>
         <ng-container [ngSwitch]="selectedLoad.type">
             <ng-container *ngSwitchCase="'dimmer'">
                 <app-dimmer-action-form

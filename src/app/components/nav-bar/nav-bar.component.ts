@@ -14,10 +14,10 @@ import { RouterService } from 'src/app/service/router.service';
 })
 export class NavBarComponent implements OnInit {
     children: { label: string; route: string; icon?: string }[] = [
-        { label: 'Lighting', route: PAGE_ROOMS_PANEL, icon: 'brightness_high' },
-        { label: 'Monitoring', route: PAGE_MONITORING, icon: 'video_call' },
-        { label: 'Scene', route: PAGE_SCENE_TABLE, icon: 'memory' },
-        { label: 'Setting', route: PAGE_SETTING, icon: 'settings' },
+        { label: 'navBar.lighting', route: PAGE_ROOMS_PANEL, icon: 'brightness_high' },
+        { label: 'navBar.monitoring', route: PAGE_MONITORING, icon: 'video_call' },
+        { label: 'navBar.scene', route: PAGE_SCENE_TABLE, icon: 'memory' },
+        { label: 'navBar.setting', route: PAGE_SETTING, icon: 'settings' },
     ];
 
     constructor(private router: RouterService) {}
@@ -25,5 +25,9 @@ export class NavBarComponent implements OnInit {
     ngOnInit(): void {}
     navigate(route: string) {
         this.router.navigate(route);
+    }
+
+    tab1Click() {
+        console.log('tab 1 clicked');
     }
 }

@@ -9,7 +9,8 @@
             </div>
         </div>
         <mat-card-subtitle
-            >{{ load.type | uppercase }} (Integration ID: {{ load.id }})</mat-card-subtitle
+            >{{ loadType | translate | uppercase }} (Integration ID:
+            {{ load.id }})</mat-card-subtitle
         >
     </div>
     <form class="form" *ngIf="editMode" (ngSubmit)="changeDeviceName()">

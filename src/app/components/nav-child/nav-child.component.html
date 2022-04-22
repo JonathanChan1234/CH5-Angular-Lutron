@@ -4,5 +4,5 @@
     [class.page-nav-child-selected]="route == currentPath"
 >
     <mat-icon *ngIf="icon">{{ icon }}</mat-icon>
-    <p>{{ label }}</p>
+    <p>{{ label | translate }}</p>
 </div>

@@ -55,9 +55,9 @@ export class SceneDetailsComponent implements OnInit {
     getMotorAction(action: MotorActionType) {
         switch (action) {
             case MotorActionType.LOWER:
-                return 'LOWER';
+                return 'scene.lower';
             case MotorActionType.RAISE:
-                return 'RAISE';
+                return 'scene.raise';
             case MotorActionType.STOP:
                 return 'STOP';
         }
