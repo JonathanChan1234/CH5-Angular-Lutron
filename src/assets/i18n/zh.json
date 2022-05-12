@@ -14,7 +14,9 @@
         "switch": "開關",
         "motor": "窗簾",
         "on": "開",
-        "off": "關"
+        "off": "關",
+        "changeRoomMessage": "房間名更改成功",
+        "changeDeviceMessage": "設備名更改成功"
     },
     "scene": {
         "scene": "場景",

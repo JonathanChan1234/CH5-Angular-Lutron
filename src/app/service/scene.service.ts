@@ -1,68 +1,98 @@
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { getSceneName, LOAD, SCENE } from './data';
-import { Load, Scene, SceneAction } from './type';
+import { Observable, of, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import {
+    DimmerAction,
+    MotorAction,
+    SceneAction,
+    SwitchAction,
+} from '../model/action';
+import { Device } from '../model/device';
+import { Scene } from '../model/scene';
 
 @Injectable({
     providedIn: 'root',
 })
 export class SceneService {
-    constructor() {}
+    constructor(private httpClient: HttpClient) {}
+
+    private handleError(error: HttpErrorResponse) {
+        if (error.status === 0) {
+            // A client-side or network error occurred. Handle it accordingly.
+            console.error('Error at RoomService; Client Side:', error.error);
+        } else {
+            // The backend returned an unsuccessful response code.
+            console.error(
+                `Error at SceneService; Backend returned code ${error.status}, body was: `,
+                error.error.message
+            );
+        }
+        return throwError(new Error(`${error.error.message}`));
+    }
 
     getSceneList(): Observable<Scene[]> {
-        return of(SCENE);
+        return this.httpClient
+            .get<Scene[]>('/scene')
+            .pipe(catchError(this.handleError));
     }
 
-    getSceneActions(name: string): Observable<SceneAction[]> {
-        const s = SCENE.find(scene => scene.name === name);
-        if (!s) {
-            return of([]);
-        }
-        return of(s.actions);
+    getSceneActions(id: string): Observable<SceneAction[]> {
+        return this.httpClient
+            .get<SceneAction[]>(`/scene/${id}/actions`)
+            .pipe(catchError(this.handleError));
     }
 
-    getSceneLoadList(id: string, room: string): Observable<Load[]> {
-        const scene = SCENE.find(s => s.name === id);
-        if (!scene) {
-            throw new Error('Scene does not exist');
-        }
-        const loadList = LOAD.filter(
-            load => scene.actions.findIndex(action => action.id === load.id) === -1
-        ).filter(load => load.roomId === room);
-        return of(loadList);
+    createNewScene(name: string): Observable<Scene> {
+        return this.httpClient
+            .post<Scene>('/scene', { name })
+            .pipe(catchError(this.handleError));
     }
 
-    createNewScene(): Observable<string> {
-        const name = getSceneName();
-        SCENE.push({ name, actions: [] });
-        return of(name);
+    changeSceneName(id: string, name: string): Observable<Scene> {
+        return this.httpClient
+            .put<Scene>(`/scene/${id}`, { name })
+            .pipe(catchError(this.handleError));
     }
 
     deleteScene(id: string): Observable<Scene[]> {
-        const sceneIndex = SCENE.findIndex(s => s.name === id);
-        if (sceneIndex === -1) {
-            throw new Error(`Scene (${id}) does not exist`);
-        }
-        SCENE.splice(sceneIndex, 1);
-        return of(SCENE);
+        return this.httpClient
+            .delete<Scene[]>(`/scene/${id}`)
+            .pipe(catchError(this.handleError));
     }
 
-    addActionToScene(id: string, action: SceneAction): Observable<Scene> {
-        const scene = SCENE.find(s => s.name === id);
-        if (!scene) {
-            throw new Error(`Scene (${id}) does not exist`);
-        }
-        scene.actions.push(action);
-        return of(scene);
+    getSceneLoadList(sceneId: string, room: string): Observable<Device[]> {
+        return this.httpClient
+            .get<Device[]>(`/scene/${sceneId}/devices?room=${room}`)
+            .pipe(catchError(this.handleError));
     }
 
-    deleteActionFromScene(id: string, action: SceneAction): Observable<SceneAction[]> {
-        const scene = SCENE.find(s => s.name === id);
-        if (!scene) {
-            throw new Error(`Scene (${id}) does not exist`);
-        }
-        const deleteActionIndex = scene.actions.findIndex(a => a.id === action.id);
-        scene.actions.splice(deleteActionIndex, 1);
-        return of(scene.actions);
+    addDimmerActionToScene(
+        sceneId: string,
+        action: DimmerAction
+    ): Observable<DimmerAction> {
+        return this.httpClient
+            .post<DimmerAction>(`/scene/${sceneId}/action/dimmer`, action)
+            .pipe(catchError(this.handleError));
+    }
+
+    addSwitchActionToScene(
+        id: string,
+        action: SwitchAction
+    ): Observable<SceneAction> {
+        return of(null);
+    }
+
+    addMotorActionToScene(
+        id: string,
+        action: MotorAction
+    ): Observable<SceneAction> {
+        return of(null);
+    }
+
+    deleteActionFromScene(actionId: string): Observable<SceneAction> {
+        return this.httpClient
+            .delete<SceneAction>(`/scene/action/${actionId}`)
+            .pipe(catchError(this.handleError));
     }
 }

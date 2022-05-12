@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { RouterService } from './service/router.service';
 
 @Component({
@@ -11,20 +13,24 @@ import { RouterService } from './service/router.service';
 export class AppComponent implements OnInit {
     title = 'crcom-basic';
     visible = false;
-    route = '';
+    route$: Observable<string>;
 
     langForm: FormControl;
 
-    constructor(private routerService: RouterService, private translate: TranslateService) {
+    constructor(
+        private routerService: RouterService,
+        private translate: TranslateService
+    ) {
         translate.setDefaultLang('jp');
         this.langForm = new FormControl('jp');
     }
 
     ngOnInit(): void {
-        this.routerService.getCurrentRoute().subscribe(route => {
-            this.route = route.path;
-        });
-        this.langForm.valueChanges.subscribe(value => {
+        this.route$ = this.routerService
+            .getCurrentRoute()
+            .pipe(map((info) => info.path));
+
+        this.langForm.valueChanges.subscribe((value) => {
             this.translate.use(value);
         });
     }

@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
 import { MatSliderChange } from '@angular/material/slider';
-import { DimmerLoad } from 'src/app/service/type';
+import { Device } from 'src/app/model/room';
 
 @Component({
     selector: 'app-dimmer-load',
@@ -9,18 +8,13 @@ import { DimmerLoad } from 'src/app/service/type';
     styleUrls: ['./dimmer-load.component.scss'],
 })
 export class DimmerLoadComponent implements OnInit {
-    @Input() load!: DimmerLoad;
+    @Input() load!: Device;
     sliderValue = 0;
     powerState = false;
-    editMode = false;
-
-    nameFormControl: FormControl;
 
     constructor() {}
 
-    ngOnInit(): void {
-        this.nameFormControl = new FormControl(this.load.name, Validators.required);
-    }
+    ngOnInit(): void {}
 
     onToggleChange(): void {
         const level = this.powerState ? 0 : 100;
@@ -41,14 +35,5 @@ export class DimmerLoadComponent implements OnInit {
         } else {
             this.powerState = false;
         }
-    }
-
-    changeToEditMode() {
-        this.editMode = true;
-    }
-
-    changeDeviceName() {
-        this.load.name = this.nameFormControl.value;
-        this.editMode = false;
     }
 }

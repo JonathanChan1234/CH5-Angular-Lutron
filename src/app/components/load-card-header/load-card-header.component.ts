@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { Load } from 'src/app/service/type';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { TranslateService } from '@ngx-translate/core';
+import { Device } from 'src/app/model/room';
+import { RoomService } from 'src/app/service/room.service';
 
 @Component({
     selector: 'app-load-card-header',
@@ -8,15 +11,22 @@ import { Load } from 'src/app/service/type';
     styleUrls: ['./load-card-header.component.scss'],
 })
 export class LoadCardHeaderComponent implements OnInit {
-    @Input() load!: Load;
+    @Input() load!: Device;
     loadType = '';
     editMode = false;
     nameFormControl: FormControl;
 
-    constructor() {}
+    constructor(
+        private translateService: TranslateService,
+        private roomService: RoomService,
+        private snackBar: MatSnackBar
+    ) {}
 
     ngOnInit(): void {
-        this.nameFormControl = new FormControl(this.load.name, Validators.required);
+        this.nameFormControl = new FormControl(
+            this.load.name,
+            Validators.required
+        );
         this.loadType = `room.${this.load.type}`;
     }
 
@@ -25,7 +35,29 @@ export class LoadCardHeaderComponent implements OnInit {
     }
 
     changeDeviceName() {
-        this.load.name = this.nameFormControl.value;
-        this.editMode = false;
+        const newLoadName = this.nameFormControl.value;
+        if (this.load.name === newLoadName) {
+            this.editMode = false;
+            return;
+        }
+        this.roomService.changeLoadName(this.load.id, newLoadName).subscribe(
+            () => {
+                this.editMode = false;
+                this.load.name = newLoadName;
+                this.snackBar.open(
+                    `✔️ ${this.translateService.instant(
+                        'room.changeDeviceMessage'
+                    )}`,
+                    'close',
+                    {
+                        duration: 2000,
+                    }
+                );
+            },
+            (error) => {
+                this.snackBar.open(`⚠️${error}`, 'close', { duration: 2000 });
+                this.editMode = false;
+            }
+        );
     }
 }

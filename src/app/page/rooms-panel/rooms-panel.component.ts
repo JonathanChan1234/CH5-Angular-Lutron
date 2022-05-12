@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Room } from 'src/app/model/room';
 import { RoomService } from 'src/app/service/room.service';
 
 @Component({
@@ -7,13 +9,10 @@ import { RoomService } from 'src/app/service/room.service';
     styleUrls: ['./rooms-panel.component.scss'],
 })
 export class RoomsPanelComponent implements OnInit {
-    rooms = [];
-
+    rooms$: Observable<Room[]>;
     constructor(private roomService: RoomService) {}
 
     ngOnInit(): void {
-        this.roomService.getRoomList().subscribe(rooms => {
-            this.rooms = rooms;
-        });
+        this.rooms$ = this.roomService.getRoomList();
     }
 }

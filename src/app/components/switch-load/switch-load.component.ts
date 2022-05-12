@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { SwitchLoad } from 'src/app/service/type';
+import { Device } from 'src/app/model/room';
 
 @Component({
     selector: 'app-switch-load',
@@ -7,7 +7,7 @@ import { SwitchLoad } from 'src/app/service/type';
     styleUrls: ['./switch-load.component.scss'],
 })
 export class SwitchLoadComponent implements OnInit {
-    @Input() load: SwitchLoad;
+    @Input() load: Device;
     powerState = false;
 
     constructor() {}

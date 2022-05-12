@@ -3,10 +3,19 @@
         <p class="page-title">{{ name }}</p>
     </div>
     <div class="device-container">
-        <div *ngFor="let load of load$ | async" [ngSwitch]="load.type">
-            <app-dimmer-load [load]="load" *ngSwitchCase="'dimmer'"></app-dimmer-load>
-            <app-switch-load [load]="load" *ngSwitchCase="'switch'"></app-switch-load>
-            <app-motor-load [load]="load" *ngSwitchCase="'motor'"></app-motor-load>
+        <div *ngFor="let load of devices$ | async" [ngSwitch]="load.type">
+            <app-dimmer-load
+                [load]="load"
+                *ngSwitchCase="'dimmer'"
+            ></app-dimmer-load>
+            <app-switch-load
+                [load]="load"
+                *ngSwitchCase="'switch'"
+            ></app-switch-load>
+            <app-motor-load
+                [load]="load"
+                *ngSwitchCase="'motor'"
+            ></app-motor-load>
         </div>
     </div>
 </div>

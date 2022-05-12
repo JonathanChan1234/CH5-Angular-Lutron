@@ -1,60 +1,51 @@
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, of, throwError } from 'rxjs';
-import { LOAD, ROOM } from './data';
+import { throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { Device } from '../model/device';
+import { Room } from '../model/room';
 
 @Injectable({
     providedIn: 'root',
 })
 export class RoomService {
-    numberOfDevice = new Map<string, number>();
-    room$: BehaviorSubject<{ room: string; count: number }[]>;
-
-    constructor() {
-        for (const room of ROOM) {
-            this.numberOfDevice.set(room, 0);
-        }
-        for (const load of LOAD) {
-            if (this.numberOfDevice.has(load.roomId)) {
-                const count = this.numberOfDevice.get(load.roomId) + 1;
-                this.numberOfDevice.set(load.roomId, count);
-            }
-        }
-        this.room$ = new BehaviorSubject(this.getRoomStream());
-    }
+    constructor(private httpClient: HttpClient) {}
 
     getRoomList() {
-        return this.room$;
+        return this.httpClient
+            .get<Room[]>('/room')
+            .pipe(catchError(this.handleError));
     }
 
     getRoomLoadList(room: string) {
-        const loadList = LOAD.filter(load => load.roomId === room);
-        return of(loadList);
+        return this.httpClient
+            .get<Device[]>(`/device?room=${room}`)
+            .pipe(catchError(this.handleError));
     }
 
-    changeRoomName(originalName: string, newName: string) {
-        if (originalName === newName) {
-            return of(ROOM);
-        }
-        const roomIndex = ROOM.findIndex(room => room === originalName);
-        if (roomIndex === -1) {
-            return throwError('room does not exist');
-        }
-        const newRoomExist = ROOM.findIndex(room => room === newName);
-        if (newRoomExist !== -1) {
-            return throwError(`room name (${newName}) already exists`);
-        }
-        ROOM[roomIndex] = newName;
-
-        this.numberOfDevice.set(newName, this.numberOfDevice.get(originalName));
-        this.numberOfDevice.delete(originalName);
-        this.room$.next(this.getRoomStream());
-        return of(ROOM);
+    changeRoomName(id: string, name: string) {
+        return this.httpClient
+            .put(`/room/${id}`, { name })
+            .pipe(catchError(this.handleError));
     }
 
-    getRoomStream() {
-        return Array.from(this.numberOfDevice, ([key, value]) => ({
-            room: key,
-            count: value,
-        }));
+    changeLoadName(id: number, name: string) {
+        return this.httpClient
+            .put(`/device/${id}`, { name })
+            .pipe(catchError(this.handleError));
+    }
+
+    private handleError(error: HttpErrorResponse) {
+        if (error.status === 0) {
+            // A client-side or network error occurred. Handle it accordingly.
+            console.error('Error at RoomService; Client Side:', error.error);
+        } else {
+            // The backend returned an unsuccessful response code.
+            console.error(
+                `Error at RoomService; Backend returned code ${error.status}, body was: `,
+                error.error.message
+            );
+        }
+        return throwError(new Error(`${error.error.message}`));
     }
 }

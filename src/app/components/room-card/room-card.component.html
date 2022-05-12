@@ -2,9 +2,11 @@
     <div class="w-100">
         <div class="flex-horizontal w-100" *ngIf="!editMode">
             <mat-card-title style="text-overflow: ellipsis; overflow: hidden">{{
-                name
+                room.name
             }}</mat-card-title>
-            <mat-icon appClickStopPropagation (click)="editRoom()">edit</mat-icon>
+            <mat-icon appClickStopPropagation (click)="editRoom()"
+                >edit</mat-icon
+            >
         </div>
         <form
             class="flex-horizontal"
@@ -13,12 +15,18 @@
             (ngSubmit)="changeRoomName()"
         >
             <mat-form-field class="field">
-                <input matInput placeholder="Name" [formControl]="nameFormControl" />
+                <input
+                    matInput
+                    placeholder="Name"
+                    [formControl]="nameFormControl"
+                />
             </mat-form-field>
             <button mat-button color="primary" type="submit">Change</button>
         </form>
     </div>
     <div>
-        <mat-card-subtitle>{{ count }} {{ 'room.device' | translate }}</mat-card-subtitle>
+        <mat-card-subtitle
+            >{{ count }} {{ 'room.device' | translate }}</mat-card-subtitle
+        >
     </div>
 </mat-card>

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { PAGE_SCENE_DETAILS } from './route';
+import { PAGE_ROOMS_PANEL } from './route';
 
-type RouteInfo = {
+export type RouteInfo = {
     path: string;
     params: any;
 };
@@ -12,7 +12,7 @@ type RouteInfo = {
 })
 export class RouterService {
     route$ = new BehaviorSubject<RouteInfo>({
-        path: PAGE_SCENE_DETAILS,
+        path: PAGE_ROOMS_PANEL,
         params: { name: 'Scene 1' },
     });
 
@@ -24,5 +24,9 @@ export class RouterService {
 
     getCurrentRoute() {
         return this.route$;
+    }
+
+    getCurrentRouteParams() {
+        return this.route$.getValue().params;
     }
 }

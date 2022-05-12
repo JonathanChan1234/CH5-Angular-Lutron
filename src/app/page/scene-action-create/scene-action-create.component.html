@@ -1,10 +1,10 @@
 <app-error-message-bar
-    *ngIf="!scene"
+    *ngIf="!sceneId"
     message="Scene does not exist"
     (back)="back()"
 ></app-error-message-bar>
 
-<div *ngIf="scene" class="action-create-wrapper">
+<div *ngIf="sceneId" class="action-create-wrapper">
     <div style="display: flex; width: 100%">
         <p class="page-title">{{ 'scene.createAction' | translate }}</p>
         <div style="margin-left: auto">
@@ -19,7 +19,10 @@
             <mat-form-field appearance="fill">
                 <mat-label>{{ 'scene.room' | translate }}</mat-label>
                 <mat-select required formControlName="room">
-                    <mat-option *ngFor="let room of room$ | async" [value]="room">
+                    <mat-option
+                        *ngFor="let room of room$ | async"
+                        [value]="room"
+                    >
                         {{ room }}
                     </mat-option>
                 </mat-select>
@@ -29,7 +32,10 @@
             <mat-form-field appearance="fill">
                 <mat-label>{{ 'scene.device' | translate }}</mat-label>
                 <mat-select required formControlName="device">
-                    <mat-option *ngFor="let load of load$ | async" [value]="load">
+                    <mat-option
+                        *ngFor="let load of load$ | async"
+                        [value]="load"
+                    >
                         {{ load.name }} ({{ load.type | uppercase }})
                     </mat-option>
                 </mat-select>
@@ -44,20 +50,23 @@
         <ng-container [ngSwitch]="selectedLoad.type">
             <ng-container *ngSwitchCase="'dimmer'">
                 <app-dimmer-action-form
-                    [sceneId]="scene"
-                    [load]="selectedLoad"
+                    [sceneId]="sceneId"
+                    [sceneName]="sceneName"
+                    [device]="selectedLoad"
                 ></app-dimmer-action-form>
             </ng-container>
             <ng-container *ngSwitchCase="'switch'">
                 <app-switch-action-form
-                    [sceneId]="scene"
-                    [load]="selectedLoad"
+                    [sceneId]="sceneId"
+                    [sceneName]="sceneName"
+                    [device]="selectedLoad"
                 ></app-switch-action-form>
             </ng-container>
             <ng-container *ngSwitchCase="'motor'">
                 <app-motor-action-form
-                    [sceneId]="scene"
-                    [load]="selectedLoad"
+                    [sceneId]="sceneId"
+                    [sceneName]="sceneName"
+                    [device]="selectedLoad"
                 ></app-motor-action-form>
             </ng-container>
         </ng-container>

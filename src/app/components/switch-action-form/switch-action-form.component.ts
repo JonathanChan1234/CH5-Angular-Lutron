@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Device } from 'src/app/model/device';
 import { PAGE_SCENE_DETAILS, PAGE_SCENE_TABLE } from 'src/app/service/route';
 import { RouterService } from 'src/app/service/router.service';
 import { SceneService } from 'src/app/service/scene.service';
-import { Load, SwitchLoad } from 'src/app/service/type';
 
 @Component({
     selector: 'app-switch-action-form',
@@ -12,9 +12,14 @@ import { Load, SwitchLoad } from 'src/app/service/type';
 })
 export class SwitchActionFormComponent implements OnInit {
     @Input()
-    load!: Load;
+    device!: Device;
+
     @Input()
     sceneId!: string;
+
+    @Input()
+    sceneName!: string;
+
     formGroup!: FormGroup;
     powerState = false;
     error = '';
@@ -27,7 +32,10 @@ export class SwitchActionFormComponent implements OnInit {
 
     ngOnInit(): void {
         this.formGroup = this.formBuilder.group({
-            delay: [0, Validators.compose([Validators.required, Validators.min(0)])],
+            delay: [
+                0,
+                Validators.compose([Validators.required, Validators.min(0)]),
+            ],
         });
     }
 
@@ -37,18 +45,20 @@ export class SwitchActionFormComponent implements OnInit {
 
     addScene() {
         if (!this.formGroup.valid) {
-            alert('Please fill all the required field');
+            this.error = 'Please fill all the required field';
             return;
         }
-        const switchLoad = this.load as SwitchLoad;
+        this.error = '';
         this.sceneService
-            .addActionToScene(this.sceneId, {
-                ...switchLoad,
+            .addSwitchActionToScene(this.sceneId, {
+                device: { ...this.device, type: 'switch' },
                 power: this.powerState,
-                delay: this.formGroup.value.delay,
             })
             .subscribe(() => {
-                this.router.navigate(PAGE_SCENE_DETAILS, { name: this.sceneId });
+                this.router.navigate(PAGE_SCENE_DETAILS, {
+                    id: this.sceneId,
+                    name: this.sceneName,
+                });
             });
     }
 

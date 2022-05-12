@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { Device } from 'src/app/model/device';
 import { RoomService } from 'src/app/service/room.service';
 import { RouterService } from 'src/app/service/router.service';
-import { Load } from 'src/app/service/type';
 
 @Component({
     selector: 'app-room-view',
@@ -12,19 +11,19 @@ import { Load } from 'src/app/service/type';
 })
 export class RoomViewComponent implements OnInit {
     name = '';
-    load$: Observable<Load[]>;
+    devices$: Observable<Device[]>;
 
-    constructor(private router: RouterService, private roomService: RoomService) {}
+    constructor(
+        private router: RouterService,
+        private roomService: RoomService
+    ) {}
 
     ngOnInit(): void {
-        this.load$ = this.router.getCurrentRoute().pipe(
-            switchMap(route => {
-                const name = route?.params?.name;
-                if (!name) {
-                    return of([]);
-                }
-                return this.roomService.getRoomLoadList(name);
-            })
-        );
+        const name = this.router.getCurrentRouteParams()?.name;
+        if (!name) {
+            alert('room name is not found');
+            return;
+        }
+        this.devices$ = this.roomService.getRoomLoadList(name);
     }
 }

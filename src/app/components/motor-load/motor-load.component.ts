@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MotorLoad } from 'src/app/service/type';
+import { Device } from 'src/app/model/room';
 
 @Component({
     selector: 'app-motor-load',
@@ -7,7 +7,7 @@ import { MotorLoad } from 'src/app/service/type';
     styleUrls: ['./motor-load.component.scss'],
 })
 export class MotorLoadComponent implements OnInit {
-    @Input() load!: MotorLoad;
+    @Input() load!: Device;
 
     constructor() {}
 

@@ -1,12 +1,15 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { MatTable } from '@angular/material/table';
-import { of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
-import { PAGE_SCENE_ACTION_CREATE, PAGE_SCENE_TABLE } from 'src/app/service/route';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MotorActionType, SceneAction } from 'src/app/model/action';
+import {
+    PAGE_SCENE_ACTION_CREATE,
+    PAGE_SCENE_TABLE,
+} from 'src/app/service/route';
 import { RouterService } from 'src/app/service/router.service';
 import { SceneService } from 'src/app/service/scene.service';
-import { MotorActionType, SceneAction } from 'src/app/service/type';
+import { errorSnackBarMsg, successSnackBarMsg } from 'src/app/utils/utils';
+import { SceneActionsDataSource } from './SceneActionsDataSource';
 
 @Component({
     selector: 'app-scene-details',
@@ -14,33 +17,34 @@ import { MotorActionType, SceneAction } from 'src/app/service/type';
     styleUrls: ['./scene-details.component.scss'],
 })
 export class SceneDetailsComponent implements OnInit {
-    @ViewChild(MatTable) table: MatTable<SceneAction>;
-
-    scene: string;
+    name: string;
+    sceneId: string;
     columns = ['load', 'room', 'action', 'option'];
-    dataSource!: SceneAction[];
+    dataSource!: SceneActionsDataSource;
 
     editMode = false;
     nameFormControl: FormControl;
 
-    constructor(private router: RouterService, private sceneService: SceneService) {}
+    constructor(
+        private router: RouterService,
+        private sceneService: SceneService,
+        private snackBar: MatSnackBar
+    ) {}
 
     ngOnInit(): void {
-        this.router
-            .getCurrentRoute()
-            .pipe(
-                switchMap(route => {
-                    this.scene = route?.params?.name;
-                    if (!this.scene) {
-                        return of([] as SceneAction[]);
-                    }
-                    return this.sceneService.getSceneActions(this.scene);
-                })
-            )
-            .subscribe(actions => {
-                this.dataSource = actions;
-            });
-        this.nameFormControl = new FormControl(this.scene, Validators.required);
+        const params = this.router.getCurrentRouteParams();
+        this.name = params?.name;
+        this.sceneId = params?.id;
+        if (!this.name || !this.sceneId) {
+            alert('scene name is not found');
+            return;
+        }
+        this.dataSource = new SceneActionsDataSource(
+            this.sceneService,
+            this.sceneId
+        );
+        this.dataSource.loadActions();
+        this.nameFormControl = new FormControl(this.name, Validators.required);
     }
 
     changeToEditMode() {
@@ -48,26 +52,46 @@ export class SceneDetailsComponent implements OnInit {
     }
 
     changeSceneName() {
-        this.scene = this.nameFormControl.value;
-        this.editMode = false;
+        const newName = this.nameFormControl.value;
+        this.sceneService.changeSceneName(this.sceneId, newName).subscribe(
+            () => {
+                this.editMode = false;
+                this.name = newName;
+                this.snackBar.open(
+                    successSnackBarMsg('Change Scene Name Successfully'),
+                    'close',
+                    { duration: 2000 }
+                );
+            },
+            (error) => {
+                this.editMode = false;
+                this.snackBar.open(errorSnackBarMsg(error), 'close', {
+                    duration: 2000,
+                });
+            }
+        );
     }
 
     getMotorAction(action: MotorActionType) {
-        switch (action) {
-            case MotorActionType.LOWER:
-                return 'scene.lower';
-            case MotorActionType.RAISE:
-                return 'scene.raise';
-            case MotorActionType.STOP:
-                return 'STOP';
-        }
+        return action === 'raise' ? 'scene.raise' : 'scene.lower';
     }
 
     deleteAction(action: SceneAction) {
-        this.sceneService.deleteActionFromScene(this.scene, action).subscribe(actions => {
-            this.dataSource = actions;
-            this.table.renderRows();
-        });
+        this.sceneService.deleteActionFromScene(action.id).subscribe(
+            () => {
+                this.dataSource.loadActions();
+                this.snackBar.open(
+                    successSnackBarMsg('Delete Action Successfully'),
+                    'close',
+                    { duration: 2000 }
+                );
+            },
+            (error) => {
+                this.snackBar.open(errorSnackBarMsg(error), 'close', {
+                    duration: 2000,
+                });
+            }
+        );
     }
 
     navigateToSceneTable() {
@@ -75,6 +99,9 @@ export class SceneDetailsComponent implements OnInit {
     }
 
     navigateToActionCreate() {
-        this.router.navigate(PAGE_SCENE_ACTION_CREATE, { name: this.scene });
+        this.router.navigate(PAGE_SCENE_ACTION_CREATE, {
+            name: this.name,
+            id: this.sceneId,
+        });
     }
 }

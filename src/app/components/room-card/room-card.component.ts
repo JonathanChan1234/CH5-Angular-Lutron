@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { TranslateService } from '@ngx-translate/core';
+import { Room } from 'src/app/model/room';
 import { RoomService } from 'src/app/service/room.service';
 import { PAGE_ROOM_VIEW } from 'src/app/service/route';
 import { RouterService } from 'src/app/service/router.service';
@@ -12,22 +14,25 @@ import { RouterService } from 'src/app/service/router.service';
 })
 export class RoomCardComponent implements OnInit {
     @Input()
-    name = '';
+    room: Room;
 
-    @Input()
     count = 0;
-
     editMode = false;
     nameFormControl: FormControl;
 
     constructor(
+        private translationService: TranslateService,
         private router: RouterService,
         private roomService: RoomService,
         private snackBar: MatSnackBar
     ) {}
 
     ngOnInit(): void {
-        this.nameFormControl = new FormControl(this.name, Validators.required);
+        this.nameFormControl = new FormControl(
+            this.room.name,
+            Validators.required
+        );
+        this.count = this.room.devices.length;
     }
 
     editRoom() {
@@ -36,20 +41,37 @@ export class RoomCardComponent implements OnInit {
 
     changeRoomName() {
         if (!this.nameFormControl.valid) {
-            this.snackBar.open('The name is not in the right format', 'close', { duration: 2000 });
+            this.snackBar.open('The name is not in the right format', 'close', {
+                duration: 2000,
+            });
         }
         const newRoomName = this.nameFormControl.value;
-        this.roomService.changeRoomName(this.name, newRoomName).subscribe(
+        if (this.room.name === newRoomName) {
+            this.editMode = false;
+            return;
+        }
+        this.roomService.changeRoomName(this.room.id, newRoomName).subscribe(
             () => {
-                this.editMode = false;
+                this.snackBar.open(
+                    `✔️${this.translationService.instant(
+                        'room.changeRoomMessage'
+                    )}`,
+                    'close',
+                    {
+                        duration: 2000,
+                    }
+                );
+                this.room.name = newRoomName;
             },
-            error => {
-                this.snackBar.open(error, 'close', { duration: 2000 });
-            }
+            (error) => {
+                this.editMode = false;
+                this.snackBar.open(`⚠️${error}`, 'close', { duration: 2000 });
+            },
+            () => (this.editMode = false)
         );
     }
 
     navigateRoom() {
-        this.router.navigate(PAGE_ROOM_VIEW, { name: this.name });
+        this.router.navigate(PAGE_ROOM_VIEW, { name: this.room.name });
     }
 }

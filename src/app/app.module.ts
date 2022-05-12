@@ -1,8 +1,9 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -16,6 +17,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { AppComponent } from './app.component';
+import { CreateSceneDialogComponent } from './components/create-scene-dialog/create-scene-dialog.component';
 import { DimmerActionFormComponent } from './components/dimmer-action-form/dimmer-action-form.component';
 import { DimmerLoadComponent } from './components/dimmer-load/dimmer-load.component';
 import { ErrorMessageBarComponent } from './components/error-message-bar/error-message-bar.component';
@@ -45,6 +47,7 @@ import { SceneActionCreateComponent } from './page/scene-action-create/scene-act
 import { SceneDetailsComponent } from './page/scene-details/scene-details.component';
 import { SceneTableComponent } from './page/scene-table/scene-table.component';
 import { SettingComponent } from './page/setting/setting.component';
+import { ApiInterceptor } from './service/ApiInterceptor';
 import CustomLoader from './translation/CustomLoader';
 
 @NgModule({
@@ -79,6 +82,7 @@ import CustomLoader from './translation/CustomLoader';
         StopPropagationDirective,
         LoadCardHeaderComponent,
         SettingComponent,
+        CreateSceneDialogComponent,
     ],
     imports: [
         BrowserModule,
@@ -97,6 +101,7 @@ import CustomLoader from './translation/CustomLoader';
         MatInputModule,
         MatSelectModule,
         MatSnackBarModule,
+        MatDialogModule,
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
@@ -104,7 +109,9 @@ import CustomLoader from './translation/CustomLoader';
             },
         }),
     ],
-    providers: [],
+    providers: [
+        { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true },
+    ],
     bootstrap: [AppComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

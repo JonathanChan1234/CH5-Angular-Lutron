@@ -1,5 +1,5 @@
 <div class="room-panel">
-    <div *ngFor="let item of rooms">
-        <app-room-card [name]="item.room" [count]="item.count"></app-room-card>
+    <div *ngFor="let room of rooms$ | async">
+        <app-room-card [room]="room"></app-room-card>
     </div>
 </div>

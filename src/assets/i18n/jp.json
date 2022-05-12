@@ -14,7 +14,9 @@
         "switch": "スイッチ",
         "motor": "カーテン",
         "on": "つける",
-        "off": "消す"
+        "off": "消す",
+        "changeRoomMessage": "ルーム名を変更しました",
+        "changeDeviceMessage": "設備名を変更しました"
     },
     "scene": {
         "scene": "シーン",

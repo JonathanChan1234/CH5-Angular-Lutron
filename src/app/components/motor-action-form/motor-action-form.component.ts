@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Device } from 'src/app/model/device';
 import { PAGE_SCENE_DETAILS, PAGE_SCENE_TABLE } from 'src/app/service/route';
 import { RouterService } from 'src/app/service/router.service';
 import { SceneService } from 'src/app/service/scene.service';
-import { Load, MotorActionType, MotorLoad } from 'src/app/service/type';
 
 @Component({
     selector: 'app-motor-action-form',
@@ -11,9 +11,14 @@ import { Load, MotorActionType, MotorLoad } from 'src/app/service/type';
     styleUrls: ['./motor-action-form.component.scss'],
 })
 export class MotorActionFormComponent implements OnInit {
-    @Input() load!: Load;
+    @Input() device!: Device;
+
     @Input() sceneId!: string;
+
+    @Input() sceneName!: string;
+
     formGroup!: FormGroup;
+
     error = '';
 
     constructor(
@@ -34,21 +39,22 @@ export class MotorActionFormComponent implements OnInit {
             return;
         }
         this.error = '';
-        const motorLoad = this.load as MotorLoad;
         this.sceneService
-            .addActionToScene(this.sceneId, {
-                ...motorLoad,
+            .addMotorActionToScene(this.sceneId, {
+                device: { ...this.device, type: 'motor' },
                 action:
                     this.formGroup.value.motorAction === 'raise'
-                        ? MotorActionType.RAISE
-                        : MotorActionType.LOWER,
+                        ? 'raise'
+                        : 'lower',
             })
             .subscribe({
                 next: () => {
-                    this.router.navigate(PAGE_SCENE_DETAILS, { name: this.sceneId });
+                    this.router.navigate(PAGE_SCENE_DETAILS, {
+                        id: this.sceneId,
+                        name: this.sceneName,
+                    });
                 },
-                complete: () => {},
-                error: error => {
+                error: (error) => {
                     this.error = error.message;
                 },
             });

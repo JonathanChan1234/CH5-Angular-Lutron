@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Device } from 'src/app/model/device';
 import { PAGE_SCENE_DETAILS, PAGE_SCENE_TABLE } from 'src/app/service/route';
 import { RouterService } from 'src/app/service/router.service';
 import { SceneService } from 'src/app/service/scene.service';
-import { DimmerLoad, Load } from 'src/app/service/type';
 
 @Component({
     selector: 'app-dimmer-action-form',
@@ -12,10 +12,13 @@ import { DimmerLoad, Load } from 'src/app/service/type';
 })
 export class DimmerActionFormComponent implements OnInit {
     @Input()
-    load!: Load;
+    device!: Device;
 
     @Input()
     sceneId!: string;
+
+    @Input()
+    sceneName!: string;
 
     sliderValue = 0;
     powerState = false;
@@ -30,8 +33,14 @@ export class DimmerActionFormComponent implements OnInit {
 
     ngOnInit(): void {
         this.formGroup = this.formBuilder.group({
-            fadeTime: [2, Validators.compose([Validators.required, Validators.min(0)])],
-            delayTime: [0, Validators.compose([Validators.required, Validators.min(0)])],
+            fadeTime: [
+                2,
+                Validators.compose([Validators.required, Validators.min(0)]),
+            ],
+            delayTime: [
+                0,
+                Validators.compose([Validators.required, Validators.min(0)]),
+            ],
         });
     }
 
@@ -58,25 +67,27 @@ export class DimmerActionFormComponent implements OnInit {
 
     addScene(): void {
         if (!this.formGroup.valid) {
-            this.error = 'Please fill in all the required fields and no negative number is allowed';
+            this.error =
+                'Please fill in all the required fields and no negative number is allowed';
             return;
         }
         this.error = '';
-        const dimmerLoad = this.load as DimmerLoad;
         const { fade, delay } = this.formGroup.value;
         this.sceneService
-            .addActionToScene(this.sceneId, {
-                ...dimmerLoad,
+            .addDimmerActionToScene(this.sceneId, {
+                device: { ...this.device, type: 'dimmer' },
                 brightness: this.sliderValue,
                 delay,
                 fade,
             })
             .subscribe({
                 next: () => {
-                    this.router.navigate(PAGE_SCENE_DETAILS, { name: this.sceneId });
+                    this.router.navigate(PAGE_SCENE_DETAILS, {
+                        id: this.sceneName,
+                        name: this.sceneId,
+                    });
                 },
-                complete: () => {},
-                error: error => {
+                error: (error) => {
                     this.error = error.message;
                 },
             });

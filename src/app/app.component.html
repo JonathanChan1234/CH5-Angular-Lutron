@@ -53,10 +53,13 @@
             </select>
         </mat-toolbar>
     </div>
-    <div [ngSwitch]="route">
-        <div *ngSwitchCase="'room_panel'">
+    <div [ngSwitch]="route$ | async">
+        <ng-container *ngSwitchCase="'room_panel'">
             <app-rooms-panel></app-rooms-panel>
-        </div>
+        </ng-container>
+        <ng-container *ngSwitchCase="'room_view'">
+            <app-room-view></app-room-view>
+        </ng-container>
         <div *ngSwitchCase="'monitoring'">
             <app-monitoring></app-monitoring>
         </div>
@@ -65,9 +68,6 @@
         </div>
         <div *ngSwitchCase="'setting'">
             <app-setting></app-setting>
-        </div>
-        <div *ngSwitchCase="'room_view'">
-            <app-room-view></app-room-view>
         </div>
         <div *ngSwitchCase="'scene_table'">
             <app-scene-table></app-scene-table>

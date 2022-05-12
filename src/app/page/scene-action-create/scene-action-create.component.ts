@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
+import { Device } from 'src/app/model/device';
 import { RoomService } from 'src/app/service/room.service';
 import { PAGE_SCENE_DETAILS, PAGE_SCENE_TABLE } from 'src/app/service/route';
 import { RouterService } from 'src/app/service/router.service';
 import { SceneService } from 'src/app/service/scene.service';
-import { Load } from 'src/app/service/type';
 
 @Component({
     selector: 'app-scene-action-create',
@@ -14,14 +14,15 @@ import { Load } from 'src/app/service/type';
     styleUrls: ['./scene-action-create.component.scss'],
 })
 export class SceneActionCreateComponent implements OnInit {
-    scene!: string;
+    sceneId!: string;
+    sceneName!: string;
 
     roomDeviceGroup!: FormGroup;
     selectedRoom?: string;
-    selectedLoad?: Load;
+    selectedLoad?: Device;
 
     room$!: Observable<string[]>;
-    load$!: Observable<Load[]>;
+    load$!: Observable<Device[]>;
 
     constructor(
         private router: RouterService,
@@ -35,25 +36,35 @@ export class SceneActionCreateComponent implements OnInit {
             device: ['', Validators.required],
             room: ['', Validators.required],
         });
+        this.sceneId = this.router.getCurrentRouteParams()?.id;
+        this.sceneName = this.router.getCurrentRouteParams()?.name;
+        if (!this.sceneId) {
+            alert('Scene Id does not exist');
+            return;
+        }
 
-        this.router.getCurrentRoute().subscribe(route => (this.scene = route?.params?.name));
-        this.room$ = this.roomService.getRoomList().pipe(map(list => list.map(l => l.room)));
+        this.room$ = this.roomService
+            .getRoomList()
+            .pipe(map((list) => list.map((l) => l.name)));
         this.load$ = this.roomDeviceGroup.controls.room.valueChanges.pipe(
-            switchMap(room => {
-                if (!this.scene) {
-                    return of([] as Load[]);
+            switchMap((room) => {
+                if (!this.sceneId) {
+                    return of([] as Device[]);
                 }
-                return this.sceneService.getSceneLoadList(this.scene, room);
+                return this.sceneService.getSceneLoadList(this.sceneId, room);
             })
         );
         this.roomDeviceGroup.controls.device.valueChanges.subscribe(
-            load => (this.selectedLoad = load)
+            (load) => (this.selectedLoad = load)
         );
     }
 
     back() {
-        if (this.scene) {
-            this.router.navigate(PAGE_SCENE_DETAILS, { name: this.scene });
+        if (this.sceneId) {
+            this.router.navigate(PAGE_SCENE_DETAILS, {
+                name: this.sceneName,
+                id: this.sceneId,
+            });
         } else {
             this.router.navigate(PAGE_SCENE_TABLE);
         }

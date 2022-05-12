@@ -14,7 +14,9 @@
         "switch": "switch",
         "motor": "motor",
         "on": "ON",
-        "off": "OFF"
+        "off": "OFF",
+        "changeRoomMessage": "Change room name successfully",
+        "changeDeviceMessage": "Change device name successfully"
     },
     "scene": {
         "scene": "Scene",
