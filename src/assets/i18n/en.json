@@ -26,6 +26,7 @@
         "actions": "Actions",
         "edit": "Edit",
         "delete": "Delete",
+        "start": "Activate",
         "back": "Back",
         "selectDevice": "Please select a device",
         "selectAction": "Please select an action",

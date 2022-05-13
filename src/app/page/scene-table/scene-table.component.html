@@ -30,6 +30,14 @@
                     mat-raised-button
                     color="primary"
                     class="button-wrapper"
+                    (click)="startScene(element)"
+                >
+                    {{ 'scene.start' | translate }}
+                </button>
+                <button
+                    mat-raised-button
+                    color="accent"
+                    class="button-wrapper"
                     (click)="navigateToDetails(element)"
                 >
                     {{ 'scene.edit' | translate }}

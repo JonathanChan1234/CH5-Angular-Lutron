@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Device } from 'src/app/model/room';
+import { Device } from 'src/app/model/device';
 
 @Component({
     selector: 'app-switch-load',

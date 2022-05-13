@@ -8,6 +8,7 @@ import { RouterService } from 'src/app/service/router.service';
 import { SceneService } from 'src/app/service/scene.service';
 import { errorSnackBarMsg, successSnackBarMsg } from 'src/app/utils/utils';
 import { SceneDataSource } from './SceneDataSource';
+declare var CrComLib: any;
 
 @Component({
     selector: 'app-scene-table',
@@ -30,9 +31,13 @@ export class SceneTableComponent implements OnInit {
         this.dataSource.loadScene();
     }
 
+    startScene(scene: Scene) {
+        CrComLib.publishEvent('s', 'scene', 'test');
+    }
+
     addScene() {
         const dialogRef = this.dialog.open(CreateSceneDialogComponent, {
-            width: '250px',
+            width: '300px',
         });
         dialogRef.afterClosed().subscribe((sceneName) => {
             // if the user cancelled the operation, ignore the result

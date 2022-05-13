@@ -26,6 +26,7 @@
         "actions": "動作",
         "edit": "編集",
         "delete": "削除",
+        "start": "発動",
         "back": "戻す",
         "selectDevice": "設備を選んでください",
         "selectAction": "動作を選んでください",

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatSliderChange } from '@angular/material/slider';
-import { Device } from 'src/app/model/room';
+import { Device } from 'src/app/model/device';
 
 @Component({
     selector: 'app-dimmer-load',

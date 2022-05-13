@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
-import { Device } from 'src/app/model/room';
+import { Device } from 'src/app/model/device';
 import { RoomService } from 'src/app/service/room.service';
 
 @Component({

@@ -24,6 +24,7 @@
         "name": "場景",
         "numberOfAction": "動作數",
         "actions": "動作",
+        "start": "啟動",
         "edit": "編輯",
         "delete": "删除",
         "back": "上一頁",
