@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
 import { Device } from 'src/app/model/device';
-import { RoomService } from 'src/app/service/room.service';
+import { AppService } from 'src/app/service/app/app.service';
+import { RoomService } from 'src/app/service/room/room.service';
 
 @Component({
     selector: 'app-load-card-header',
@@ -19,7 +19,7 @@ export class LoadCardHeaderComponent implements OnInit {
     constructor(
         private translateService: TranslateService,
         private roomService: RoomService,
-        private snackBar: MatSnackBar
+        private appService: AppService
     ) {}
 
     ngOnInit(): void {
@@ -44,19 +44,16 @@ export class LoadCardHeaderComponent implements OnInit {
             () => {
                 this.editMode = false;
                 this.load.name = newLoadName;
-                this.snackBar.open(
-                    `✔️ ${this.translateService.instant(
+                this.appService.showSnackBarMsg({
+                    msg: `${this.translateService.instant(
                         'room.changeDeviceMessage'
                     )}`,
-                    'close',
-                    {
-                        duration: 2000,
-                    }
-                );
+                    type: 'success',
+                });
             },
             (error) => {
-                this.snackBar.open(`⚠️${error}`, 'close', { duration: 2000 });
                 this.editMode = false;
+                this.appService.showSnackBarMsg({ type: 'error', msg: error });
             }
         );
     }

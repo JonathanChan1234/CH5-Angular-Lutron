@@ -1,9 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Device } from 'src/app/model/device';
-import { PAGE_SCENE_DETAILS, PAGE_SCENE_TABLE } from 'src/app/service/route';
-import { RouterService } from 'src/app/service/router.service';
-import { SceneService } from 'src/app/service/scene.service';
+import {
+    PAGE_SCENE_DETAILS,
+    PAGE_SCENE_TABLE,
+} from 'src/app/service/router/route';
+import { RouterService } from 'src/app/service/router/router.service';
+import { SceneService } from 'src/app/service/scene/scene.service';
 
 @Component({
     selector: 'app-motor-action-form',
@@ -41,23 +44,23 @@ export class MotorActionFormComponent implements OnInit {
         this.error = '';
         this.sceneService
             .addMotorActionToScene(this.sceneId, {
-                device: { ...this.device, type: 'motor' },
+                deviceId: this.device.id,
                 action:
                     this.formGroup.value.motorAction === 'raise'
                         ? 'raise'
                         : 'lower',
             })
-            .subscribe({
-                next: () => {
+            .subscribe(
+                () => {
                     this.router.navigate(PAGE_SCENE_DETAILS, {
                         id: this.sceneId,
                         name: this.sceneName,
                     });
                 },
-                error: (error) => {
+                (error) => {
                     this.error = error.message;
-                },
-            });
+                }
+            );
     }
 
     back() {

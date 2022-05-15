@@ -3,8 +3,8 @@ import {
     PAGE_ROOMS_PANEL,
     PAGE_SCENE_TABLE,
     PAGE_SETTING,
-} from 'src/app/service/route';
-import { RouterService } from 'src/app/service/router.service';
+} from 'src/app/service/router/route';
+import { RouterService } from 'src/app/service/router/router.service';
 
 @Component({
     selector: 'app-nav-bar',

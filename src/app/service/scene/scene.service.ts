@@ -1,15 +1,20 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of, throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import {
     DimmerAction,
     MotorAction,
     SceneAction,
     SwitchAction,
-} from '../model/action';
-import { Device } from '../model/device';
-import { Scene } from '../model/scene';
+} from '../../model/action';
+import { Device } from '../../model/device';
+import { Scene } from '../../model/scene';
+import {
+    CreateDimmerActionDto,
+    CreateMotorActionDto,
+    CreateSwitchActionDto,
+} from '../dto/CreateSceneActionDto';
 
 @Injectable({
     providedIn: 'root',
@@ -69,7 +74,7 @@ export class SceneService {
 
     addDimmerActionToScene(
         sceneId: string,
-        action: DimmerAction
+        action: CreateDimmerActionDto
     ): Observable<DimmerAction> {
         return this.httpClient
             .post<DimmerAction>(`/scene/${sceneId}/action/dimmer`, action)
@@ -77,17 +82,21 @@ export class SceneService {
     }
 
     addSwitchActionToScene(
-        id: string,
-        action: SwitchAction
-    ): Observable<SceneAction> {
-        return of(null);
+        sceneId: string,
+        action: CreateSwitchActionDto
+    ): Observable<SwitchAction> {
+        return this.httpClient
+            .post<SwitchAction>(`/scene/${sceneId}/action/switch`, action)
+            .pipe(catchError(this.handleError));
     }
 
     addMotorActionToScene(
-        id: string,
-        action: MotorAction
-    ): Observable<SceneAction> {
-        return of(null);
+        sceneId: string,
+        action: CreateMotorActionDto
+    ): Observable<MotorAction> {
+        return this.httpClient
+            .post<MotorAction>(`/scene/${sceneId}/action/motor`, action)
+            .pipe(catchError(this.handleError));
     }
 
     deleteActionFromScene(actionId: string): Observable<SceneAction> {

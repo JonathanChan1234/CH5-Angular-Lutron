@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Device } from 'src/app/model/device';
-import { RoomService } from 'src/app/service/room.service';
-import { RouterService } from 'src/app/service/router.service';
+import { RoomService } from 'src/app/service/room/room.service';
+import { RouterService } from 'src/app/service/router/router.service';
 
 @Component({
     selector: 'app-room-view',

@@ -1,9 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Device } from 'src/app/model/device';
-import { PAGE_SCENE_DETAILS, PAGE_SCENE_TABLE } from 'src/app/service/route';
-import { RouterService } from 'src/app/service/router.service';
-import { SceneService } from 'src/app/service/scene.service';
+import {
+    PAGE_SCENE_DETAILS,
+    PAGE_SCENE_TABLE,
+} from 'src/app/service/router/route';
+import { RouterService } from 'src/app/service/router/router.service';
+import { SceneService } from 'src/app/service/scene/scene.service';
 
 @Component({
     selector: 'app-switch-action-form',
@@ -51,15 +54,20 @@ export class SwitchActionFormComponent implements OnInit {
         this.error = '';
         this.sceneService
             .addSwitchActionToScene(this.sceneId, {
-                device: { ...this.device, type: 'switch' },
+                deviceId: this.device.id,
                 power: this.powerState,
             })
-            .subscribe(() => {
-                this.router.navigate(PAGE_SCENE_DETAILS, {
-                    id: this.sceneId,
-                    name: this.sceneName,
-                });
-            });
+            .subscribe(
+                () => {
+                    this.router.navigate(PAGE_SCENE_DETAILS, {
+                        id: this.sceneId,
+                        name: this.sceneName,
+                    });
+                },
+                (error) => {
+                    this.error = error.message;
+                }
+            );
     }
 
     back() {

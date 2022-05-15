@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MotorActionType, SceneAction } from 'src/app/model/action';
+import { AppService } from 'src/app/service/app/app.service';
 import {
     PAGE_SCENE_ACTION_CREATE,
     PAGE_SCENE_TABLE,
-} from 'src/app/service/route';
-import { RouterService } from 'src/app/service/router.service';
-import { SceneService } from 'src/app/service/scene.service';
-import { errorSnackBarMsg, successSnackBarMsg } from 'src/app/utils/utils';
+} from 'src/app/service/router/route';
+import { RouterService } from 'src/app/service/router/router.service';
+import { SceneService } from 'src/app/service/scene/scene.service';
 import { SceneActionsDataSource } from './SceneActionsDataSource';
 
 @Component({
@@ -28,7 +27,7 @@ export class SceneDetailsComponent implements OnInit {
     constructor(
         private router: RouterService,
         private sceneService: SceneService,
-        private snackBar: MatSnackBar
+        private appService: AppService
     ) {}
 
     ngOnInit(): void {
@@ -57,16 +56,16 @@ export class SceneDetailsComponent implements OnInit {
             () => {
                 this.editMode = false;
                 this.name = newName;
-                this.snackBar.open(
-                    successSnackBarMsg('Change Scene Name Successfully'),
-                    'close',
-                    { duration: 2000 }
-                );
+                this.appService.showSnackBarMsg({
+                    type: 'success',
+                    msg: 'Change Scene Name Successfully',
+                });
             },
             (error) => {
                 this.editMode = false;
-                this.snackBar.open(errorSnackBarMsg(error), 'close', {
-                    duration: 2000,
+                this.appService.showSnackBarMsg({
+                    type: 'error',
+                    msg: error,
                 });
             }
         );
@@ -80,15 +79,15 @@ export class SceneDetailsComponent implements OnInit {
         this.sceneService.deleteActionFromScene(action.id).subscribe(
             () => {
                 this.dataSource.loadActions();
-                this.snackBar.open(
-                    successSnackBarMsg('Delete Action Successfully'),
-                    'close',
-                    { duration: 2000 }
-                );
+                this.appService.showSnackBarMsg({
+                    type: 'success',
+                    msg: 'Delete Action Successfully',
+                });
             },
             (error) => {
-                this.snackBar.open(errorSnackBarMsg(error), 'close', {
-                    duration: 2000,
+                this.appService.showSnackBarMsg({
+                    type: 'error',
+                    msg: error,
                 });
             }
         );

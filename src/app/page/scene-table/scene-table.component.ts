@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { CreateSceneDialogComponent } from 'src/app/components/create-scene-dialog/create-scene-dialog.component';
 import { Scene } from 'src/app/model/scene';
-import { PAGE_SCENE_DETAILS } from 'src/app/service/route';
-import { RouterService } from 'src/app/service/router.service';
-import { SceneService } from 'src/app/service/scene.service';
-import { errorSnackBarMsg, successSnackBarMsg } from 'src/app/utils/utils';
+import { AppService } from 'src/app/service/app/app.service';
+import { CrestronService } from 'src/app/service/crestron/crestron.service';
+import { PAGE_SCENE_DETAILS } from 'src/app/service/router/route';
+import { RouterService } from 'src/app/service/router/router.service';
+import { SceneService } from 'src/app/service/scene/scene.service';
 import { SceneDataSource } from './SceneDataSource';
 declare var CrComLib: any;
 
@@ -23,7 +23,8 @@ export class SceneTableComponent implements OnInit {
         private router: RouterService,
         private sceneService: SceneService,
         private dialog: MatDialog,
-        private snackBar: MatSnackBar
+        private appService: AppService,
+        private crestronService: CrestronService
     ) {}
 
     ngOnInit(): void {
@@ -32,7 +33,7 @@ export class SceneTableComponent implements OnInit {
     }
 
     startScene(scene: Scene) {
-        CrComLib.publishEvent('s', 'scene', 'test');
+        this.crestronService.activateScene(scene.id);
     }
 
     addScene() {
@@ -45,17 +46,18 @@ export class SceneTableComponent implements OnInit {
             // Create new scene after the dialog is closed
             this.sceneService.createNewScene(sceneName).subscribe(
                 () => {
-                    this.snackBar.open(
-                        successSnackBarMsg('Scene created successfully'),
-                        'close',
-                        { duration: 2000 }
-                    );
+                    this.appService.showSnackBarMsg({
+                        type: 'success',
+                        msg: 'Scene created successfully',
+                    });
                     this.dataSource.loadScene();
                 },
                 (error) => {
-                    this.snackBar.open(errorSnackBarMsg(error), 'close', {
-                        duration: 2000,
+                    this.appService.showSnackBarMsg({
+                        type: 'error',
+                        msg: error,
                     });
+                    this.dataSource.loadScene();
                 }
             );
         });
@@ -64,16 +66,16 @@ export class SceneTableComponent implements OnInit {
     deleteScene(scene: Scene) {
         this.sceneService.deleteScene(scene.id).subscribe(
             () => {
-                this.snackBar.open(
-                    successSnackBarMsg('Scene deleted successfully'),
-                    'close',
-                    { duration: 2000 }
-                );
+                this.appService.showSnackBarMsg({
+                    type: 'success',
+                    msg: 'Scene deleted successfully',
+                });
                 this.dataSource.loadScene();
             },
             (error) => {
-                this.snackBar.open(errorSnackBarMsg(error), 'close', {
-                    duration: 2000,
+                this.appService.showSnackBarMsg({
+                    type: 'error',
+                    msg: error,
                 });
             }
         );

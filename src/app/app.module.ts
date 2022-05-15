@@ -40,6 +40,7 @@ import { ModalComponent } from './crestron/modal/modal.component';
 import { SerFbDirective } from './crestron/ser-fb.directive';
 import { SerSendDirective } from './crestron/ser-send.directive';
 import { StopPropagationDirective } from './directive/stop-propagation.directive';
+import { ApiInterceptor } from './http/ApiInterceptor';
 import { MonitoringComponent } from './page/monitoring/monitoring.component';
 import { RoomViewComponent } from './page/room-view/room-view.component';
 import { RoomsPanelComponent } from './page/rooms-panel/rooms-panel.component';
@@ -47,7 +48,6 @@ import { SceneActionCreateComponent } from './page/scene-action-create/scene-act
 import { SceneDetailsComponent } from './page/scene-details/scene-details.component';
 import { SceneTableComponent } from './page/scene-table/scene-table.component';
 import { SettingComponent } from './page/setting/setting.component';
-import { ApiInterceptor } from './service/ApiInterceptor';
 import CustomLoader from './translation/CustomLoader';
 
 @NgModule({

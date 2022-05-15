@@ -1,5 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { Observable, of } from 'rxjs';
 import { Device } from 'src/app/model/device';
+import { CrestronService } from 'src/app/service/crestron/crestron.service';
 
 @Component({
     selector: 'app-switch-load',
@@ -8,13 +11,15 @@ import { Device } from 'src/app/model/device';
 })
 export class SwitchLoadComponent implements OnInit {
     @Input() load: Device;
-    powerState = false;
+    level$: Observable<number> = of(0);
 
-    constructor() {}
+    constructor(private crestronService: CrestronService) {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.level$ = this.crestronService.getLoadFbById(this.load.id);
+    }
 
-    onToggleChange() {
-        this.powerState = !this.powerState;
+    onToggleChange({ checked }: MatSlideToggleChange) {
+        this.crestronService.setSwitchLevel(this.load.id, checked);
     }
 }

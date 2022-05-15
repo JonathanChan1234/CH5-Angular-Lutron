@@ -1,15 +1,26 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Device } from 'src/app/model/device';
+import { CrestronService } from 'src/app/service/crestron/crestron.service';
 
 @Component({
     selector: 'app-motor-load',
     templateUrl: './motor-load.component.html',
     styleUrls: ['./motor-load.component.scss'],
 })
-export class MotorLoadComponent implements OnInit {
+export class MotorLoadComponent {
     @Input() load!: Device;
 
-    constructor() {}
+    constructor(private crestronService: CrestronService) {}
 
-    ngOnInit(): void {}
+    raise() {
+        this.crestronService.setMotorAction(this.load.id, 'raise');
+    }
+
+    stop() {
+        this.crestronService.setMotorAction(this.load.id, 'stop');
+    }
+
+    lower() {
+        this.crestronService.setMotorAction(this.load.id, 'lower');
+    }
 }

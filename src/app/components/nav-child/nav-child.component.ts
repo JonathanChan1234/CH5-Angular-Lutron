@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { RouterService } from 'src/app/service/router.service';
+import { RouterService } from 'src/app/service/router/router.service';
 
 @Component({
     selector: 'app-nav-child',
@@ -21,7 +21,7 @@ export class NavChildComponent implements OnInit {
     constructor(private router: RouterService) {}
 
     ngOnInit(): void {
-        this.router.getCurrentRoute().subscribe(route => {
+        this.router.getCurrentRoute().subscribe((route) => {
             this.currentPath = route.path;
         });
     }

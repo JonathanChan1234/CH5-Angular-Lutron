@@ -1,11 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
 import { Room } from 'src/app/model/room';
-import { RoomService } from 'src/app/service/room.service';
-import { PAGE_ROOM_VIEW } from 'src/app/service/route';
-import { RouterService } from 'src/app/service/router.service';
+import { AppService } from 'src/app/service/app/app.service';
+import { RoomService } from 'src/app/service/room/room.service';
+import { PAGE_ROOM_VIEW } from 'src/app/service/router/route';
+import { RouterService } from 'src/app/service/router/router.service';
 
 @Component({
     selector: 'app-room-card',
@@ -24,7 +24,7 @@ export class RoomCardComponent implements OnInit {
         private translationService: TranslateService,
         private router: RouterService,
         private roomService: RoomService,
-        private snackBar: MatSnackBar
+        private appService: AppService
     ) {}
 
     ngOnInit(): void {
@@ -41,8 +41,9 @@ export class RoomCardComponent implements OnInit {
 
     changeRoomName() {
         if (!this.nameFormControl.valid) {
-            this.snackBar.open('The name is not in the right format', 'close', {
-                duration: 2000,
+            this.appService.showSnackBarMsg({
+                msg: 'Please fill in the name field',
+                type: 'error',
             });
         }
         const newRoomName = this.nameFormControl.value;
@@ -52,20 +53,20 @@ export class RoomCardComponent implements OnInit {
         }
         this.roomService.changeRoomName(this.room.id, newRoomName).subscribe(
             () => {
-                this.snackBar.open(
-                    `✔️${this.translationService.instant(
+                this.appService.showSnackBarMsg({
+                    msg: `${this.translationService.instant(
                         'room.changeRoomMessage'
                     )}`,
-                    'close',
-                    {
-                        duration: 2000,
-                    }
-                );
+                    type: 'success',
+                });
                 this.room.name = newRoomName;
             },
             (error) => {
                 this.editMode = false;
-                this.snackBar.open(`⚠️${error}`, 'close', { duration: 2000 });
+                this.appService.showSnackBarMsg({
+                    msg: error,
+                    type: 'error',
+                });
             },
             () => (this.editMode = false)
         );

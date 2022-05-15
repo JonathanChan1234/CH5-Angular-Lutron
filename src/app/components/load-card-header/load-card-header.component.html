@@ -15,8 +15,19 @@
     </div>
     <form class="form" *ngIf="editMode" (ngSubmit)="changeDeviceName()">
         <mat-form-field class="field">
-            <input matInput placeholder="Name" [formControl]="nameFormControl" />
+            <input
+                matInput
+                placeholder="Name"
+                [formControl]="nameFormControl"
+            />
         </mat-form-field>
-        <button mat-button color="primary" type="submit">Change</button>
+        <button
+            mat-button
+            color="primary"
+            type="submit"
+            [disabled]="!nameFormControl.valid"
+        >
+            Change
+        </button>
     </form>
 </div>

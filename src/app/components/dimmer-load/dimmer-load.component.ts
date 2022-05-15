@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { MatSliderChange } from '@angular/material/slider';
+import { Observable, of } from 'rxjs';
 import { Device } from 'src/app/model/device';
+import { CrestronService } from 'src/app/service/crestron/crestron.service';
 
 @Component({
     selector: 'app-dimmer-load',
@@ -9,31 +12,23 @@ import { Device } from 'src/app/model/device';
 })
 export class DimmerLoadComponent implements OnInit {
     @Input() load!: Device;
-    sliderValue = 0;
-    powerState = false;
+    level$: Observable<number> = of(0);
 
-    constructor() {}
+    constructor(private crestronService: CrestronService) {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.level$ = this.crestronService.getLoadFbById(this.load.id);
+    }
 
-    onToggleChange(): void {
-        const level = this.powerState ? 0 : 100;
-        this.changeBrightness(level);
+    onToggleChange({ checked }: MatSlideToggleChange): void {
+        this.changeBrightness(checked ? 100 : 0);
     }
 
     onSliderChange({ value }: MatSliderChange): void {
-        if (!value) {
-            return;
-        }
         this.changeBrightness(value);
     }
 
     changeBrightness(value: number): void {
-        this.sliderValue = value;
-        if (this.sliderValue > 0) {
-            this.powerState = true;
-        } else {
-            this.powerState = false;
-        }
+        this.crestronService.setDimmerLevel(this.load.id, value);
     }
 }

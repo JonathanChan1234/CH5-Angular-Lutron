@@ -1,13 +1,23 @@
 <mat-card class="card">
     <app-load-card-header [load]="load"></app-load-card-header>
     <div class="motor-button-container">
-        <button mat-mini-fab aria-label="Raise" color="primary">
+        <button
+            mat-mini-fab
+            aria-label="Raise"
+            color="primary"
+            (click)="raise()"
+        >
             <mat-icon>keyboard_arrow_left</mat-icon>
         </button>
-        <button mat-mini-fab aria-label="Stop" color="primary">
+        <button mat-mini-fab aria-label="Stop" color="primary" (click)="stop()">
             <mat-icon>stop</mat-icon>
         </button>
-        <button mat-mini-fab aria-label="Lower" color="primary">
+        <button
+            mat-mini-fab
+            aria-label="Lower"
+            color="primary"
+            (click)="lower()"
+        >
             <mat-icon>keyboard_arrow_right</mat-icon>
         </button>
     </div>

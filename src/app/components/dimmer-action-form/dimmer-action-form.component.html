@@ -26,7 +26,7 @@
                 min="0"
                 required
                 [defaultValue]="2"
-                formControlName="fadeTime"
+                formControlName="fade"
             />
         </mat-form-field>
     </div>
@@ -41,14 +41,18 @@
                 inputmode="numeric"
                 required
                 [defaultValue]="0"
-                formControlName="delayTime"
+                formControlName="delay"
             />
         </mat-form-field>
     </div>
     <div>
-        <button mat-raised-button type="submit" color="primary" [disabled]="!formGroup.valid">
+        <button
+            mat-raised-button
+            type="submit"
+            color="primary"
+            [disabled]="!formGroup.valid"
+        >
             {{ 'scene.save' | translate }}
         </button>
     </div>
 </form>
-<app-error-message-bar *ngIf="error" [message]="error" (back)="back()"></app-error-message-bar>

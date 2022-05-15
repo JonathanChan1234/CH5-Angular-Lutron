@@ -2,8 +2,8 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Device } from '../model/device';
-import { Room } from '../model/room';
+import { Device } from '../../model/device';
+import { Room } from '../../model/room';
 
 @Injectable({
     providedIn: 'root',

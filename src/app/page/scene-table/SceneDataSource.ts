@@ -2,7 +2,7 @@ import { CollectionViewer, DataSource } from '@angular/cdk/collections';
 import { BehaviorSubject, Observable, of, Subscription } from 'rxjs';
 import { catchError, finalize } from 'rxjs/operators';
 import { Scene } from 'src/app/model/scene';
-import { SceneService } from 'src/app/service/scene.service';
+import { SceneService } from 'src/app/service/scene/scene.service';
 
 export class SceneDataSource implements DataSource<Scene> {
     private loadingSubject = new BehaviorSubject<boolean>(false);

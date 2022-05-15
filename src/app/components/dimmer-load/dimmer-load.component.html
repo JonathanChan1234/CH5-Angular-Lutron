@@ -1,18 +1,18 @@
 <mat-card class="card">
     <app-load-card-header [load]="load"></app-load-card-header>
     <div class="dimmable-control">
-        <p class="valueText">{{ sliderValue }}%</p>
+        <p class="valueText">{{ level$ | async }}%</p>
         <mat-slider
             min="0"
             max="100"
             step="1"
-            [value]="sliderValue"
+            [value]="level$ | async"
             (change)="onSliderChange($event)"
             (input)="onSliderChange($event)"
         ></mat-slider>
         <mat-slide-toggle
-            (toggleChange)="onToggleChange()"
-            [checked]="powerState"
+            (change)="onToggleChange($event)"
+            [checked]="(level$ | async) > 0"
         ></mat-slide-toggle>
     </div>
 </mat-card>
