@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Device } from 'src/app/model/device';
+import { AppService } from 'src/app/service/app/app.service';
 import {
     PAGE_SCENE_DETAILS,
     PAGE_SCENE_TABLE,
@@ -23,35 +23,21 @@ export class SwitchActionFormComponent implements OnInit {
     @Input()
     sceneName!: string;
 
-    formGroup!: FormGroup;
     powerState = false;
-    error = '';
 
     constructor(
-        private formBuilder: FormBuilder,
         private sceneService: SceneService,
+        private appService: AppService,
         private router: RouterService
     ) {}
 
-    ngOnInit(): void {
-        this.formGroup = this.formBuilder.group({
-            delay: [
-                0,
-                Validators.compose([Validators.required, Validators.min(0)]),
-            ],
-        });
-    }
+    ngOnInit(): void {}
 
     onToggleChange() {
         this.powerState = !this.powerState;
     }
 
     addScene() {
-        if (!this.formGroup.valid) {
-            this.error = 'Please fill all the required field';
-            return;
-        }
-        this.error = '';
         this.sceneService
             .addSwitchActionToScene(this.sceneId, {
                 deviceId: this.device.id,
@@ -59,13 +45,20 @@ export class SwitchActionFormComponent implements OnInit {
             })
             .subscribe(
                 () => {
+                    this.appService.showSnackBarMsg({
+                        type: 'success',
+                        msg: 'Create actions successfully',
+                    });
                     this.router.navigate(PAGE_SCENE_DETAILS, {
                         id: this.sceneId,
                         name: this.sceneName,
                     });
                 },
                 (error) => {
-                    this.error = error.message;
+                    this.appService.showSnackBarMsg({
+                        type: 'error',
+                        msg: error.message,
+                    });
                 }
             );
     }

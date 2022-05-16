@@ -18,6 +18,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { AppComponent } from './app.component';
 import { CreateSceneDialogComponent } from './components/create-scene-dialog/create-scene-dialog.component';
+import { DeleteSceneDialogComponent } from './components/delete-scene-dialog/delete-scene-dialog.component';
 import { DimmerActionFormComponent } from './components/dimmer-action-form/dimmer-action-form.component';
 import { DimmerLoadComponent } from './components/dimmer-load/dimmer-load.component';
 import { ErrorMessageBarComponent } from './components/error-message-bar/error-message-bar.component';
@@ -83,6 +84,7 @@ import CustomLoader from './translation/CustomLoader';
         LoadCardHeaderComponent,
         SettingComponent,
         CreateSceneDialogComponent,
+        DeleteSceneDialogComponent,
     ],
     imports: [
         BrowserModule,

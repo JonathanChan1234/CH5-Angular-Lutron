@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Device } from 'src/app/model/device';
+import { AppService } from 'src/app/service/app/app.service';
 import {
     PAGE_SCENE_DETAILS,
     PAGE_SCENE_TABLE,
@@ -22,12 +23,11 @@ export class MotorActionFormComponent implements OnInit {
 
     formGroup!: FormGroup;
 
-    error = '';
-
     constructor(
         private formBuilder: FormBuilder,
         private router: RouterService,
-        private sceneService: SceneService
+        private sceneService: SceneService,
+        private appService: AppService
     ) {}
 
     ngOnInit(): void {
@@ -38,10 +38,12 @@ export class MotorActionFormComponent implements OnInit {
 
     addScene(): void {
         if (!this.formGroup.valid) {
-            this.error = 'Please fill the required field';
+            this.appService.showSnackBarMsg({
+                type: 'success',
+                msg: 'Please fill all the required field',
+            });
             return;
         }
-        this.error = '';
         this.sceneService
             .addMotorActionToScene(this.sceneId, {
                 deviceId: this.device.id,
@@ -52,13 +54,20 @@ export class MotorActionFormComponent implements OnInit {
             })
             .subscribe(
                 () => {
+                    this.appService.showSnackBarMsg({
+                        type: 'success',
+                        msg: 'Create action successfully',
+                    });
                     this.router.navigate(PAGE_SCENE_DETAILS, {
                         id: this.sceneId,
                         name: this.sceneName,
                     });
                 },
                 (error) => {
-                    this.error = error.message;
+                    this.appService.showSnackBarMsg({
+                        type: 'error',
+                        msg: error.message,
+                    });
                 }
             );
     }

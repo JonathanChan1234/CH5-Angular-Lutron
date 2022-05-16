@@ -64,7 +64,7 @@ export class RoomCardComponent implements OnInit {
             (error) => {
                 this.editMode = false;
                 this.appService.showSnackBarMsg({
-                    msg: error,
+                    msg: error.message,
                     type: 'error',
                 });
             },

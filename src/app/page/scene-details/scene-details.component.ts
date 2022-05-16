@@ -65,7 +65,7 @@ export class SceneDetailsComponent implements OnInit {
                 this.editMode = false;
                 this.appService.showSnackBarMsg({
                     type: 'error',
-                    msg: error,
+                    msg: error.message,
                 });
             }
         );
@@ -87,7 +87,7 @@ export class SceneDetailsComponent implements OnInit {
             (error) => {
                 this.appService.showSnackBarMsg({
                     type: 'error',
-                    msg: error,
+                    msg: error.message,
                 });
             }
         );

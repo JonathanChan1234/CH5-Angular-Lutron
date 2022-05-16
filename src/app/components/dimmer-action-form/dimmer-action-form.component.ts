@@ -27,7 +27,6 @@ export class DimmerActionFormComponent implements OnInit {
     sliderValue = 0;
     powerState = false;
     formGroup!: FormGroup;
-    error = 'werwe';
 
     constructor(
         private formBuilder: FormBuilder,
@@ -68,11 +67,10 @@ export class DimmerActionFormComponent implements OnInit {
         if (!this.formGroup.valid) {
             this.appService.showSnackBarMsg({
                 msg: "Please fill in all the requried fields and make sure delay and fade time shouldn't be less than 0",
-                type: 'success',
+                type: 'error',
             });
             return;
         }
-        this.error = '';
         const { fade, delay } = this.formGroup.value;
 
         this.sceneService
@@ -84,13 +82,20 @@ export class DimmerActionFormComponent implements OnInit {
             })
             .subscribe(
                 () => {
+                    this.appService.showSnackBarMsg({
+                        msg: 'Create action successfully',
+                        type: 'success',
+                    });
                     this.router.navigate(PAGE_SCENE_DETAILS, {
                         id: this.sceneId,
                         name: this.sceneName,
                     });
                 },
                 (error) => {
-                    this.error = error.message;
+                    this.appService.showSnackBarMsg({
+                        msg: error.message,
+                        type: 'error',
+                    });
                 }
             );
     }

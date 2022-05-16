@@ -53,7 +53,10 @@ export class LoadCardHeaderComponent implements OnInit {
             },
             (error) => {
                 this.editMode = false;
-                this.appService.showSnackBarMsg({ type: 'error', msg: error });
+                this.appService.showSnackBarMsg({
+                    type: 'error',
+                    msg: error.message,
+                });
             }
         );
     }

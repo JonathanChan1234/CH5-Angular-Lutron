@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { filter, switchMap } from 'rxjs/operators';
 import { CreateSceneDialogComponent } from 'src/app/components/create-scene-dialog/create-scene-dialog.component';
+import { DeleteSceneDialogComponent } from 'src/app/components/delete-scene-dialog/delete-scene-dialog.component';
 import { Scene } from 'src/app/model/scene';
 import { AppService } from 'src/app/service/app/app.service';
 import { CrestronService } from 'src/app/service/crestron/crestron.service';
@@ -55,7 +57,7 @@ export class SceneTableComponent implements OnInit {
                 (error) => {
                     this.appService.showSnackBarMsg({
                         type: 'error',
-                        msg: error,
+                        msg: error.message,
                     });
                     this.dataSource.loadScene();
                 }
@@ -64,21 +66,30 @@ export class SceneTableComponent implements OnInit {
     }
 
     deleteScene(scene: Scene) {
-        this.sceneService.deleteScene(scene.id).subscribe(
-            () => {
-                this.appService.showSnackBarMsg({
-                    type: 'success',
-                    msg: 'Scene deleted successfully',
-                });
-                this.dataSource.loadScene();
-            },
-            (error) => {
-                this.appService.showSnackBarMsg({
-                    type: 'error',
-                    msg: error,
-                });
-            }
-        );
+        const dialogRef = this.dialog.open(DeleteSceneDialogComponent, {
+            data: scene.name,
+        });
+        dialogRef
+            .afterClosed()
+            .pipe(
+                filter((result) => result),
+                switchMap(() => this.sceneService.deleteScene(scene.id))
+            )
+            .subscribe(
+                () => {
+                    this.appService.showSnackBarMsg({
+                        type: 'success',
+                        msg: 'Scene deleted successfully',
+                    });
+                    this.dataSource.loadScene();
+                },
+                (error) => {
+                    this.appService.showSnackBarMsg({
+                        type: 'error',
+                        msg: error.message,
+                    });
+                }
+            );
     }
 
     navigateToDetails(scene: Scene) {

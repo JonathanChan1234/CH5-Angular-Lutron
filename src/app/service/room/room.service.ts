@@ -46,6 +46,13 @@ export class RoomService {
                 error.error.message
             );
         }
-        return throwError(new Error(`${error.error.message}`));
+        const errorMsg = error.error.message;
+        console.log(Array.isArray(errorMsg));
+
+        return throwError(
+            new Error(
+                `${Array.isArray(errorMsg) ? errorMsg.join(',') : errorMsg}`
+            )
+        );
     }
 }

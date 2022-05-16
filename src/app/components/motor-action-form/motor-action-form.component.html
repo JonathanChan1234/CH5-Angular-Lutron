@@ -2,15 +2,22 @@
     <mat-form-field appearance="fill">
         <mat-label>{{ 'scene.actions' | translate }}</mat-label>
         <mat-select required formControlName="motorAction">
-            <mat-option value="raise">{{ 'scene.raise' | translate }}</mat-option>
-            <mat-option value="lower">{{ 'scene.lower' | translate }}</mat-option>
+            <mat-option value="raise">{{
+                'scene.raise' | translate
+            }}</mat-option>
+            <mat-option value="lower">{{
+                'scene.lower' | translate
+            }}</mat-option>
         </mat-select>
     </mat-form-field>
     <div>
-        <button mat-raised-button type="submit" color="primary" [disabled]="!formGroup.valid">
+        <button
+            mat-raised-button
+            type="submit"
+            color="primary"
+            [disabled]="!formGroup.valid"
+        >
             {{ 'scene.save' | translate }}
         </button>
     </div>
 </form>
-
-<app-error-message-bar *ngIf="error" [message]="error" (back)="back()"></app-error-message-bar>

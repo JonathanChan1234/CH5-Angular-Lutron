@@ -33,7 +33,12 @@ export class SceneService {
                 error.error.message
             );
         }
-        return throwError(new Error(`${error.error.message}`));
+        const errorMsg = error.error.message;
+        return throwError(
+            new Error(
+                `${Array.isArray(errorMsg) ? errorMsg.join(',') : errorMsg}`
+            )
+        );
     }
 
     getSceneList(): Observable<Scene[]> {

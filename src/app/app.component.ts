@@ -45,7 +45,7 @@ export class AppComponent implements OnInit, OnDestroy {
         );
         this.appSubscription = this.appService.snackBarMsg$.subscribe((msg) => {
             this.snackBar.open(
-                msg.type === 'success' ? `✔️ ${msg.msg}` : `⚠️ ${msg}`,
+                msg.type === 'success' ? `✔️ ${msg.msg}` : `⚠️ ${msg.msg}`,
                 'close',
                 { duration: 2000 }
             );

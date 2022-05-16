@@ -13,7 +13,9 @@ platformBrowserDynamic()
     .bootstrapModule(AppModule)
     .catch((err) => console.error(err));
 
-const ch5Emulator = CrComLib.Ch5Emulator.getInstance();
-const scenario = { cues: [], onStart: [] };
-ch5Emulator.loadScenario(scenario);
-ch5Emulator.run();
+if (!environment.production) {
+    const ch5Emulator = CrComLib.Ch5Emulator.getInstance();
+    const scenario = { cues: [], onStart: [] };
+    ch5Emulator.loadScenario(scenario);
+    ch5Emulator.run();
+}

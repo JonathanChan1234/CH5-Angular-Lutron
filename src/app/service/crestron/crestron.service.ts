@@ -45,17 +45,24 @@ export class CrestronService implements OnDestroy {
     }
 
     setDimmerLevel(id: number, level: number) {
-        // for development only
+        // for testing only
         if (!environment.production)
-            CrComLib.publishEvent('s', this.fbSignal, `${id},${level}`);
-        CrComLib.publishEvent('s', this.controlSignal, `${id},${level}`);
+            CrComLib.publishEvent('s', this.fbSignal, `${id},${level},1,0`);
+        CrComLib.publishEvent('s', this.controlSignal, `${id},${level},1,0`);
     }
 
     setSwitchLevel(id: number, power: boolean) {
+        // for testing only
+        if (!environment.production)
+            CrComLib.publishEvent(
+                's',
+                this.fbSignal,
+                `${id},${power ? 100 : 0},1,0`
+            );
         CrComLib.publishEvent(
             's',
             this.controlSignal,
-            `${id},${power ? 100 : 0}`
+            `${id},${power ? 100 : 0},1,0`
         );
     }
 
@@ -87,14 +94,14 @@ export class CrestronService implements OnDestroy {
             for (const action of actions) {
                 switch (action.device.type) {
                     case 'dimmer':
-                        cmd += `1,${action.device.id},${
-                            (action as DimmerAction).brightness
-                        }/`;
+                        const dimmerAction = action as DimmerAction;
+                        cmd += `1,${action.device.id},${dimmerAction.brightness},${dimmerAction.fade},${dimmerAction.delay}/`;
                         break;
                     case 'switch':
+                        const switchAction = action as SwitchAction;
                         cmd += `2,${action.device.id},${
-                            (action as SwitchAction).power ? 100 : 0
-                        }/`;
+                            switchAction.power ? 100 : 0
+                        },0/`;
                         break;
                     case 'motor':
                         cmd += `3,${action.device.id},${
