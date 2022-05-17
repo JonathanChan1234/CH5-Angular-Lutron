@@ -57,6 +57,7 @@ export class LoadCardHeaderComponent implements OnInit {
                     type: 'error',
                     msg: error.message,
                 });
+                this.nameFormControl.setValue(this.load.name);
             }
         );
     }

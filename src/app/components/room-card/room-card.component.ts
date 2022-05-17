@@ -45,6 +45,7 @@ export class RoomCardComponent implements OnInit {
                 msg: 'Please fill in the name field',
                 type: 'error',
             });
+            return;
         }
         const newRoomName = this.nameFormControl.value;
         if (this.room.name === newRoomName) {
@@ -67,8 +68,8 @@ export class RoomCardComponent implements OnInit {
                     msg: error.message,
                     type: 'error',
                 });
-            },
-            () => (this.editMode = false)
+                this.nameFormControl.setValue(this.room.name);
+            }
         );
     }
 

@@ -11,9 +11,9 @@ declare var CrComLib: any;
     providedIn: 'root',
 })
 export class CrestronService implements OnDestroy {
-    fbSignal = 'load';
-    controlSignal = 'control';
-    sceneSignal = 'scene';
+    fbSignal = '1';
+    controlSignal = '2';
+    sceneSignal = '3';
 
     private crestronSubscription: number;
     private lutronDeviceFbMap: Map<number, number> = new Map();
@@ -28,10 +28,10 @@ export class CrestronService implements OnDestroy {
         );
         if (!environment.production) {
             CrComLib.subscribeState('s', this.controlSignal, (val: string) => {
-                console.log(val);
+                console.log(`From control signal: ${val}`);
             });
             CrComLib.subscribeState('s', this.sceneSignal, (val: string) => {
-                console.log(val);
+                console.log(`From scene signal: ${val}`);
             });
         }
     }
@@ -48,7 +48,7 @@ export class CrestronService implements OnDestroy {
         // for testing only
         if (!environment.production)
             CrComLib.publishEvent('s', this.fbSignal, `${id},${level},1,0`);
-        CrComLib.publishEvent('s', this.controlSignal, `${id},${level},1,0`);
+        CrComLib.publishEvent('s', this.controlSignal, `1,${id},${level},1,0`);
     }
 
     setSwitchLevel(id: number, power: boolean) {
@@ -57,12 +57,12 @@ export class CrestronService implements OnDestroy {
             CrComLib.publishEvent(
                 's',
                 this.fbSignal,
-                `${id},${power ? 100 : 0},1,0`
+                `${id},${power ? 100 : 0},0`
             );
         CrComLib.publishEvent(
             's',
             this.controlSignal,
-            `${id},${power ? 100 : 0},1,0`
+            `2,${id},${power ? 100 : 0},0`
         );
     }
 
@@ -70,14 +70,14 @@ export class CrestronService implements OnDestroy {
         CrComLib.publishEvent(
             's',
             this.controlSignal,
-            `${id},${action === 'raise' ? 2 : action === 'lower' ? 3 : 4}`
+            `3,${id},${action === 'raise' ? 2 : action === 'lower' ? 3 : 4}`
         );
     }
 
     loadFbCallback(params: string) {
         // parse the feedback params string
         const paramsList = params.split(',');
-        if (paramsList.length !== 2) return;
+        if (paramsList.length !== 4) return;
         const [idString, levelString] = paramsList;
         const id = parseInt(idString, 10);
         const level = parseInt(levelString, 10);

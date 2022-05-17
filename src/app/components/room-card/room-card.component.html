@@ -1,9 +1,15 @@
 <mat-card class="room-card" (click)="navigateRoom()">
     <div class="w-100">
         <div class="flex-horizontal w-100" *ngIf="!editMode">
-            <mat-card-title style="text-overflow: ellipsis; overflow: hidden">{{
-                room.name
-            }}</mat-card-title>
+            <mat-card-title
+                style="
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    height: 30px;
+                    white-space: nowrap;
+                "
+                >{{ room.name }}</mat-card-title
+            >
             <mat-icon appClickStopPropagation (click)="editRoom()"
                 >edit</mat-icon
             >

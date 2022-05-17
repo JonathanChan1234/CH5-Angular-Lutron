@@ -6,7 +6,7 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { BASE_URL } from './config';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class ApiInterceptor implements HttpInterceptor {
@@ -16,7 +16,7 @@ export class ApiInterceptor implements HttpInterceptor {
     ): Observable<HttpEvent<any>> {
         const requestUrl = req.url;
         req = req.clone({
-            url: BASE_URL + requestUrl,
+            url: environment.url + requestUrl,
         });
         // move to next HttpClient request life cycle
         return next.handle(req);

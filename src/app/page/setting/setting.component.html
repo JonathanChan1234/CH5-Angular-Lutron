@@ -1,1 +1,11 @@
-<p>setting works!</p>
+<div style="margin: 10px">
+    <h3>Settings</h3>
+    <mat-form-field appearance="fill">
+        <mat-label>Language</mat-label>
+        <mat-select required [formControl]="langFormControl">
+            <mat-option value="en">English</mat-option>
+            <mat-option value="zh">Chinese</mat-option>
+            <mat-option value="jp">Japanese</mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>

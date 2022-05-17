@@ -1,27 +1,35 @@
-# CrcomBasic
+# Crestron CH5 Project in Angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.7.
+> Crestron CH5 UI Project aims at integrating with Lutron HWQS System (Individual Load Control/Scene Editing)
 
-## Development server
+## Development (running in web browser)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+``` bash
+yarn start
+```
 
-## Code scaffolding
+## Build the project
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+``` bash
+yarn build
+```
 
-## Build
+## Deploy the project (to Crestron Touch Panel)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+***Need to change the IP address of the touch panel in package.json***
 
-## Running unit tests
+``` bash
+yarn archive
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Project Structure
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+    ├──app              # Root directory of the source files
+        ├── components  # UI components used in the project
+        ├── crestron    # Directive for Crestron signal joining 
+        ├── directive   # Helper Directive for UI components
+        ├── http        # HTTP interceptor
+        ├── model       # Typescript types used in HTTP
+        ├── page        # Entry components of each route
+        ├── service     # Angular service for handling business logic
+        ├── translation # ngx-translate custom loader

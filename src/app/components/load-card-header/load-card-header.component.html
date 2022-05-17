@@ -1,9 +1,15 @@
 <div class="flex-horizontal w-100">
     <div class="w-100" *ngIf="!editMode">
         <div class="flex-horizontal">
-            <mat-card-title style="text-overflow: ellipsis; overflow: hidden">{{
-                load.name
-            }}</mat-card-title>
+            <mat-card-title
+                style="
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    height: 30px;
+                    white-space: nowrap;
+                "
+                >{{ load.name }}</mat-card-title
+            >
             <div>
                 <mat-icon (click)="changeToEditMode()">edit</mat-icon>
             </div>
