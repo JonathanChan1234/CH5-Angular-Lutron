@@ -11,9 +11,12 @@ declare var CrComLib: any;
     providedIn: 'root',
 })
 export class CrestronService implements OnDestroy {
-    fbSignal = '1';
+    fbSignal = 'fb';
     controlSignal = '2';
     sceneSignal = '3';
+
+    fb$ = new BehaviorSubject<string>('');
+    interval: any;
 
     private crestronSubscription: number;
     private lutronDeviceFbMap: Map<number, number> = new Map();
@@ -26,6 +29,7 @@ export class CrestronService implements OnDestroy {
             this.fbSignal,
             this.loadFbCallback.bind(this)
         );
+
         if (!environment.production) {
             CrComLib.subscribeState('s', this.controlSignal, (val: string) => {
                 console.log(`From control signal: ${val}`);
@@ -34,6 +38,11 @@ export class CrestronService implements OnDestroy {
                 console.log(`From scene signal: ${val}`);
             });
         }
+
+        this.interval = setInterval(
+            () => this.fb$.next(String(Math.ceil(Math.random() * 1000))),
+            5000
+        );
     }
 
     getLoadFbById(id: number) {
@@ -47,7 +56,7 @@ export class CrestronService implements OnDestroy {
     setDimmerLevel(id: number, level: number) {
         // for testing only
         if (!environment.production)
-            CrComLib.publishEvent('s', this.fbSignal, `${id},${level},1,0`);
+            CrComLib.publishEvent('s', this.fbSignal, `${id},${level}`);
         CrComLib.publishEvent('s', this.controlSignal, `1,${id},${level},1,0`);
     }
 
@@ -57,7 +66,7 @@ export class CrestronService implements OnDestroy {
             CrComLib.publishEvent(
                 's',
                 this.fbSignal,
-                `${id},${power ? 100 : 0},0`
+                `${id},${power ? 100 : 0}`
             );
         CrComLib.publishEvent(
             's',
@@ -75,17 +84,23 @@ export class CrestronService implements OnDestroy {
     }
 
     loadFbCallback(params: string) {
+        this.fb$.next(params);
         // parse the feedback params string
         const paramsList = params.split(',');
-        if (paramsList.length !== 4) return;
+        if (paramsList.length !== 2) return;
         const [idString, levelString] = paramsList;
         const id = parseInt(idString, 10);
         const level = parseInt(levelString, 10);
         if (isNaN(id) || isNaN(level)) return;
+        console.log(`fb received id: ${id}, level: ${level}`);
 
         // update the map and the subject
         this.lutronDeviceFbMap.set(id, level);
         this.lutronDeviceFb$.next(this.lutronDeviceFbMap);
+    }
+
+    getFbLog() {
+        return this.fb$;
     }
 
     activateScene(sceneId: string) {
@@ -124,5 +139,6 @@ export class CrestronService implements OnDestroy {
             this.fbSignal,
             this.crestronSubscription
         );
+        clearInterval(this.interval);
     }
 }

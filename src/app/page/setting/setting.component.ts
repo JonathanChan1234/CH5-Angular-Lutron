@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { CrestronService } from 'src/app/service/crestron/crestron.service';
 
 @Component({
     selector: 'app-setting',
@@ -11,8 +12,13 @@ import { Subscription } from 'rxjs';
 export class SettingComponent implements OnInit, OnDestroy {
     langFormControl: FormControl;
     formSubscription!: Subscription;
+    fb: string;
+    fb$: Observable<string>;
 
-    constructor(private translate: TranslateService) {
+    constructor(
+        private translate: TranslateService,
+        private crestronService: CrestronService
+    ) {
         this.langFormControl = new FormControl('en', Validators.required);
     }
 
@@ -20,6 +26,8 @@ export class SettingComponent implements OnInit, OnDestroy {
         this.formSubscription = this.langFormControl.valueChanges.subscribe(
             (lang) => this.translate.use(lang)
         );
+        this.fb$ = this.crestronService.getFbLog();
+        this.crestronService.getFbLog().subscribe((val) => (this.fb = val));
     }
 
     ngOnDestroy(): void {

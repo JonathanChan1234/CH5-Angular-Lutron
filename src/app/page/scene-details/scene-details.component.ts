@@ -52,6 +52,10 @@ export class SceneDetailsComponent implements OnInit {
 
     changeSceneName() {
         const newName = this.nameFormControl.value;
+        if (newName === this.name) {
+            this.editMode = false;
+            return;
+        }
         this.sceneService.changeSceneName(this.sceneId, newName).subscribe(
             () => {
                 this.editMode = false;

@@ -46,10 +46,15 @@
     <div>
         <mat-toolbar class="app-header flex-horizontal"
             >{{ 'header.title' | translate }}
+            <p *ngIf="(debug$ | async) === 'dev'">Fb: {{ fb$ | async }}</p>
             <select [formControl]="langForm">
                 <option value="en">English</option>
                 <option value="zh">Chinese</option>
                 <option value="jp">Japanese</option>
+            </select>
+            <select [formControl]="debugForm">
+                <option value="prod">Prod</option>
+                <option value="dev">Dev</option>
             </select>
         </mat-toolbar>
     </div>
@@ -62,9 +67,6 @@
         </ng-container>
         <div *ngSwitchCase="'monitoring'">
             <app-monitoring></app-monitoring>
-        </div>
-        <div *ngSwitchCase="'3'">
-            <div>View 3</div>
         </div>
         <div *ngSwitchCase="'setting'">
             <app-setting></app-setting>

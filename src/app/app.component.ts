@@ -2,9 +2,10 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AppService } from './service/app/app.service';
+import { CrestronService } from './service/crestron/crestron.service';
 import { RouterService } from './service/router/router.service';
 
 @Component({
@@ -18,19 +19,25 @@ export class AppComponent implements OnInit, OnDestroy {
     route$: Observable<string>;
 
     langForm: FormControl;
+    debugForm: FormControl;
 
     langSubscription: Subscription;
     appSubscription: Subscription;
+
+    fb$: Subject<string>;
+    debug$: Observable<'prod' | 'dev'>;
 
     constructor(
         private routerService: RouterService,
         private appService: AppService,
         private translate: TranslateService,
-        private snackBar: MatSnackBar
+        private snackBar: MatSnackBar,
+        private crestronService: CrestronService
     ) {
         this.defaultLang = 'en';
         translate.setDefaultLang(this.defaultLang);
         this.langForm = new FormControl(this.defaultLang);
+        this.debugForm = new FormControl('prod');
     }
 
     ngOnInit(): void {
@@ -50,6 +57,8 @@ export class AppComponent implements OnInit, OnDestroy {
                 { duration: 2000 }
             );
         });
+        this.fb$ = this.crestronService.getFbLog();
+        this.debug$ = this.debugForm.valueChanges;
     }
 
     showModal() {
