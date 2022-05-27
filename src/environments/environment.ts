@@ -5,6 +5,8 @@
 export const environment = {
     production: false,
     url: 'http://localhost:3000',
+    remoteLoggerIP: '192.168.86.249',
+    remoteLoggerPort: 8080,
 };
 
 /*

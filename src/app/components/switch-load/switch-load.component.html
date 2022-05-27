@@ -3,14 +3,10 @@
     <div class="flex-horizontal w-100">
         <mat-slide-toggle
             (change)="onToggleChange($event)"
-            [checked]="(level$ | async) === 100"
+            [checked]="power"
         ></mat-slide-toggle>
         <p class="state-text">
-            {{
-                (level$ | async) === 100
-                    ? ('room.on' | translate)
-                    : ('room.off' | translate)
-            }}
+            {{ power ? ('room.on' | translate) : ('room.off' | translate) }}
         </p>
     </div>
 </mat-card>

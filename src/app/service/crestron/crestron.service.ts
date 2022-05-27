@@ -1,5 +1,5 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { DimmerAction, MotorAction, SwitchAction } from 'src/app/model/action';
 import { environment } from 'src/environments/environment';
@@ -11,19 +11,19 @@ declare var CrComLib: any;
     providedIn: 'root',
 })
 export class CrestronService implements OnDestroy {
-    fbSignal = 'fb';
+    fbSignal = environment.production ? '1' : 'fb';
     controlSignal = '2';
     sceneSignal = '3';
+    loadPromptSignal = '1';
 
-    fb$ = new BehaviorSubject<string>('');
-    interval: any;
 
     private crestronSubscription: number;
     private lutronDeviceFbMap: Map<number, number> = new Map();
-    private lutronDeviceFb$: BehaviorSubject<Map<number, number>>;
+    private lutronDeviceFb$: Subject<Map<number, number>>;
 
     constructor(private sceneService: SceneService) {
-        this.lutronDeviceFb$ = new BehaviorSubject(this.lutronDeviceFbMap);
+        this.lutronDeviceFb$ = new Subject();
+
         this.crestronSubscription = CrComLib.subscribeState(
             's',
             this.fbSignal,
@@ -38,11 +38,6 @@ export class CrestronService implements OnDestroy {
                 console.log(`From scene signal: ${val}`);
             });
         }
-
-        this.interval = setInterval(
-            () => this.fb$.next(String(Math.ceil(Math.random() * 1000))),
-            5000
-        );
     }
 
     getLoadFbById(id: number) {
@@ -53,7 +48,12 @@ export class CrestronService implements OnDestroy {
         return this.lutronDeviceFb$.pipe(map((fb) => fb.get(id)));
     }
 
+    askForLoadFb(id: number) {
+       CrComLib.publishEvent('n', this.loadPromptSignal, id) ;
+    }
+
     setDimmerLevel(id: number, level: number) {
+        console.log(`set dimmer id ${id} to level ${level}`);
         // for testing only
         if (!environment.production)
             CrComLib.publishEvent('s', this.fbSignal, `${id},${level}`);
@@ -61,6 +61,7 @@ export class CrestronService implements OnDestroy {
     }
 
     setSwitchLevel(id: number, power: boolean) {
+        console.log(`set switchw id ${id} to power ${power}`);
         // for testing only
         if (!environment.production)
             CrComLib.publishEvent(
@@ -76,6 +77,7 @@ export class CrestronService implements OnDestroy {
     }
 
     setMotorAction(id: number, action: 'raise' | 'lower' | 'stop') {
+        console.log(`set motor id ${id} to action ${action}`);
         CrComLib.publishEvent(
             's',
             this.controlSignal,
@@ -84,7 +86,6 @@ export class CrestronService implements OnDestroy {
     }
 
     loadFbCallback(params: string) {
-        this.fb$.next(params);
         // parse the feedback params string
         const paramsList = params.split(',');
         if (paramsList.length !== 2) return;
@@ -92,15 +93,10 @@ export class CrestronService implements OnDestroy {
         const id = parseInt(idString, 10);
         const level = parseInt(levelString, 10);
         if (isNaN(id) || isNaN(level)) return;
-        console.log(`fb received id: ${id}, level: ${level}`);
 
         // update the map and the subject
         this.lutronDeviceFbMap.set(id, level);
         this.lutronDeviceFb$.next(this.lutronDeviceFbMap);
-    }
-
-    getFbLog() {
-        return this.fb$;
     }
 
     activateScene(sceneId: string) {
@@ -139,6 +135,5 @@ export class CrestronService implements OnDestroy {
             this.fbSignal,
             this.crestronSubscription
         );
-        clearInterval(this.interval);
     }
 }

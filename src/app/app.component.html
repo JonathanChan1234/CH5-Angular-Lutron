@@ -46,15 +46,10 @@
     <div>
         <mat-toolbar class="app-header flex-horizontal"
             >{{ 'header.title' | translate }}
-            <p *ngIf="(debug$ | async) === 'dev'">Fb: {{ fb$ | async }}</p>
             <select [formControl]="langForm">
                 <option value="en">English</option>
                 <option value="zh">Chinese</option>
                 <option value="jp">Japanese</option>
-            </select>
-            <select [formControl]="debugForm">
-                <option value="prod">Prod</option>
-                <option value="dev">Dev</option>
             </select>
         </mat-toolbar>
     </div>

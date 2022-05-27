@@ -1,7 +1,13 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+    ChangeDetectorRef,
+    Component,
+    Input,
+    OnDestroy,
+    OnInit,
+} from '@angular/core';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { MatSliderChange } from '@angular/material/slider';
-import { Observable, of } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { Device } from 'src/app/model/device';
 import { CrestronService } from 'src/app/service/crestron/crestron.service';
 
@@ -10,14 +16,24 @@ import { CrestronService } from 'src/app/service/crestron/crestron.service';
     templateUrl: './dimmer-load.component.html',
     styleUrls: ['./dimmer-load.component.scss'],
 })
-export class DimmerLoadComponent implements OnInit {
+export class DimmerLoadComponent implements OnInit, OnDestroy {
     @Input() load!: Device;
-    level$: Observable<number> = of(0);
+    level = 0;
+    crestronSubscription: Subscription;
 
-    constructor(private crestronService: CrestronService) {}
+    constructor(
+        private crestronService: CrestronService,
+        private changeDetectorRef: ChangeDetectorRef
+    ) {}
 
     ngOnInit(): void {
-        this.level$ = this.crestronService.getLoadFbById(this.load.id);
+        this.crestronSubscription = this.crestronService
+            .getLoadFbById(this.load.id)
+            .subscribe((value) => {
+                this.level = value;
+                this.changeDetectorRef.detectChanges();
+            });
+        this.crestronService.askForLoadFb(this.load.id);
     }
 
     onToggleChange({ checked }: MatSlideToggleChange): void {
@@ -30,5 +46,9 @@ export class DimmerLoadComponent implements OnInit {
 
     changeBrightness(value: number): void {
         this.crestronService.setDimmerLevel(this.load.id, value);
+    }
+
+    ngOnDestroy(): void {
+        this.crestronSubscription.unsubscribe();
     }
 }
