@@ -1,9 +1,11 @@
 import dayjs from 'dayjs';
 import hash from 'hash-it';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
-export abstract class CacheServiceService<T> {
-    readonly CACHE_DURATION = 5;
+export abstract class CacheService<T> {
+    // cache the data for 5 mins in production (1 min in development)
+    readonly CACHE_DURATION = environment.production ? 5 : 1;
     readonly DEFAULT_KEY = 'default';
 
     private cache: {
@@ -34,6 +36,10 @@ export abstract class CacheServiceService<T> {
     }
 
     clearCache(object?: object) {
+        if (!object) {
+            this.cache = {};
+            return;
+        }
         const key = object ? hash(object) : this.DEFAULT_KEY;
         if (!this.cache[key]) return;
         delete this.cache[key];

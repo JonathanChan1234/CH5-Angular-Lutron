@@ -3,9 +3,9 @@
         "title": "Wheelock NKIL6579 HA App"
     },
     "navBar": {
-        "lighting": "Lighting",
+        "room": "Room",
         "monitoring": "Monitoring",
-        "setting": "Setting",
+        "setting": "Settings",
         "scene": "Scene"
     },
     "room": {

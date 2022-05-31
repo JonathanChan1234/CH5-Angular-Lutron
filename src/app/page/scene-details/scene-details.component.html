@@ -5,7 +5,7 @@
     <div *ngIf="sceneId">
         <div class="scene-table-header">
             <div class="scene-table-title" *ngIf="!editMode">
-                <p class="page-title edit-name-label">
+                <p class="page-title edit-name-label scene-name-label">
                     {{ 'scene.scene' | translate }}: {{ name }}
                 </p>
                 <mat-icon (click)="changeToEditMode()">edit</mat-icon>

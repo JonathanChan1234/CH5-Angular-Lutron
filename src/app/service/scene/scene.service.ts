@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, finalize, shareReplay } from 'rxjs/operators';
 import {
     DimmerAction,
     MotorAction,
@@ -15,12 +15,16 @@ import {
     CreateMotorActionDto,
     CreateSwitchActionDto,
 } from '../dto/CreateSceneActionDto';
+import { SceneCacheService } from './scene-cache.service';
 
 @Injectable({
     providedIn: 'root',
 })
 export class SceneService {
-    constructor(private httpClient: HttpClient) {}
+    constructor(
+        private httpClient: HttpClient,
+        private sceneCacheSerivce: SceneCacheService
+    ) {}
 
     private handleError(error: HttpErrorResponse) {
         if (error.status === 0) {
@@ -42,9 +46,14 @@ export class SceneService {
     }
 
     getSceneList(): Observable<Scene[]> {
-        return this.httpClient
-            .get<Scene[]>('/scene')
-            .pipe(catchError(this.handleError));
+        let scene$ = this.sceneCacheSerivce.getValue();
+        if (!scene$) {
+            scene$ = this.httpClient
+                .get<Scene[]>('/scene')
+                .pipe(shareReplay(1), catchError(this.handleError));
+            this.sceneCacheSerivce.setValue(scene$);
+        }
+        return scene$;
     }
 
     getSceneActions(id: string): Observable<SceneAction[]> {
@@ -54,21 +63,25 @@ export class SceneService {
     }
 
     createNewScene(name: string): Observable<Scene> {
-        return this.httpClient
-            .post<Scene>('/scene', { name })
-            .pipe(catchError(this.handleError));
+        return this.httpClient.post<Scene>('/scene', { name }).pipe(
+            catchError(this.handleError),
+            finalize(() => this.sceneCacheSerivce.clearCache())
+        );
     }
 
     changeSceneName(id: string, name: string): Observable<Scene> {
-        return this.httpClient
-            .put<Scene>(`/scene/${id}`, { name })
-            .pipe(catchError(this.handleError));
+        return this.httpClient.put<Scene>(`/scene/${id}`, { name }).pipe(
+            catchError(this.handleError),
+            finalize(() => this.sceneCacheSerivce.clearCache())
+        );
     }
 
     deleteScene(id: string): Observable<Scene[]> {
-        return this.httpClient
-            .delete<Scene[]>(`/scene/${id}`)
-            .pipe(catchError(this.handleError));
+        this.sceneCacheSerivce.clearCache();
+        return this.httpClient.delete<Scene[]>(`/scene/${id}`).pipe(
+            catchError(this.handleError),
+            finalize(() => this.sceneCacheSerivce.clearCache())
+        );
     }
 
     getSceneLoadList(sceneId: string, room: string): Observable<Device[]> {

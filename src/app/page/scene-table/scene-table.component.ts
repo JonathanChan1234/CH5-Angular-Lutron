@@ -42,11 +42,15 @@ export class SceneTableComponent implements OnInit {
         const dialogRef = this.dialog.open(CreateSceneDialogComponent, {
             width: '300px',
         });
-        dialogRef.afterClosed().subscribe((sceneName) => {
-            // if the user cancelled the operation, ignore the result
-            if (!sceneName) return;
-            // Create new scene after the dialog is closed
-            this.sceneService.createNewScene(sceneName).subscribe(
+        dialogRef
+            .afterClosed()
+            .pipe(
+                filter((sceneName) => sceneName),
+                switchMap((sceneName) =>
+                    this.sceneService.createNewScene(sceneName)
+                )
+            )
+            .subscribe(
                 () => {
                     this.appService.showSnackBarMsg({
                         type: 'success',
@@ -59,10 +63,8 @@ export class SceneTableComponent implements OnInit {
                         type: 'error',
                         msg: error.message,
                     });
-                    this.dataSource.loadScene();
                 }
             );
-        });
     }
 
     deleteScene(scene: Scene) {

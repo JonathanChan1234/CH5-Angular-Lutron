@@ -5,7 +5,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AppService } from './service/app/app.service';
-import { LogService } from './service/log.service';
 import { RouterService } from './service/router/router.service';
 
 @Component({
@@ -28,8 +27,7 @@ export class AppComponent implements OnInit, OnDestroy {
         private routerService: RouterService,
         private appService: AppService,
         private translate: TranslateService,
-        private snackBar: MatSnackBar,
-        private logger: LogService
+        private snackBar: MatSnackBar
     ) {
         this.defaultLang = 'en';
         translate.setDefaultLang(this.defaultLang);
@@ -53,7 +51,6 @@ export class AppComponent implements OnInit, OnDestroy {
                 { duration: 2000 }
             );
         });
-        this.logger.log('hello world');
     }
 
     showModal() {

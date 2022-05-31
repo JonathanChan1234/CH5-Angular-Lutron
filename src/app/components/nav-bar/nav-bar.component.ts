@@ -14,7 +14,7 @@ import { RouterService } from 'src/app/service/router/router.service';
 export class NavBarComponent {
     children: { label: string; route: string; icon?: string }[] = [
         {
-            label: 'navBar.lighting',
+            label: 'navBar.room',
             route: PAGE_ROOMS_PANEL,
             icon: 'brightness_high',
         },

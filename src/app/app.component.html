@@ -1,59 +1,8 @@
-<!-- <div>A button that sends data to digital join 10 and changes CSS class to "active" when digital FB join 10 is high:</div>
-<button [DigPress]="10" [DigFB]="10">enable -></button><br>
-<div>A button that sends/receives join 11 and is enabled when digital FB join 10 is high:</div>
-<button [DigPress]="11" [DigFB]="11" [DigEnable]="10">show -></button><br>
-<div>A button that sends/receives join 12 and is visible when digital FB join 11 is high:</div>
-<button [DigPress]="12" [DigFB]="12" [DigVisible]="11">join 12</button>
-<br>
-<div>An input slider that sends data to analog join 11:</div>
-<input type="range" min="0" max="100" step="5" [AnaSend]="11">
-<br>
-<div>A read-only slider (gauge) on analog feedback join 11:</div>
-<input type="range" min="0" max="100" [AnaFB]="11" style="pointer-events:none">
-<div>A text input box that sends data to serial join 11:</div>
-<input type="text" [SerSend]="11">
-<div>A span element that displays serial fb join 11:</div>
-<span [SerFB]="11"></span>
-<div>This button opens a modal/popup on FB join 13:</div> -->
-<!-- <ch5-button
-        type="success"
-        stretch="width"
-        label="Show Modal"
-        (click)="showModal()"
-    ></ch5-button>
-    <ch5-modal-dialog
-        [show]="visible"
-        stretch="width"
-        hideokbutton="true"
-        hidecancelbutton="true"
-        closable="false"
-        dismissable="false"
-    >
-        <h1>Sample text</h1>
-        <ch5-image id="ex1-img" url="https://picsum.photos/200/300/?random"> </ch5-image>
-        <div>
-            <ch5-button type="danger" label="Close" (click)="hideModal()"></ch5-button>
-        </div>
-    </ch5-modal-dialog> -->
-<!-- <button [DigPress]="13" [DigFB]="13">modal!</button><br />
-<app-modal [VisJoin]="13">
-    <div style="width: 300px; height: 75px; margin: auto; background: gray">
-        <button [DigPress]="13" style="float: right">Close</button><br />
-        <div>Button press sends join 13 to close this modal</div>
-    </div>
-</app-modal> -->
 <div class="root-container">
-    <div>
-        <mat-toolbar class="app-header flex-horizontal"
-            >{{ 'header.title' | translate }}
-            <select [formControl]="langForm">
-                <option value="en">English</option>
-                <option value="zh">Chinese</option>
-                <option value="jp">Japanese</option>
-            </select>
-        </mat-toolbar>
+    <div class="app-header">
+        <mat-toolbar>{{ 'header.title' | translate }} </mat-toolbar>
     </div>
-    <div [ngSwitch]="route$ | async">
+    <div [ngSwitch]="route$ | async" class="main-container">
         <ng-container *ngSwitchCase="'room_panel'">
             <app-rooms-panel></app-rooms-panel>
         </ng-container>

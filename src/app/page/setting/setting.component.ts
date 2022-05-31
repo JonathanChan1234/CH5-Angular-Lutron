@@ -2,6 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { DeviceCacheService } from 'src/app/service/room/device-cache.service';
+import { RoomCacheService } from 'src/app/service/room/room-cache.service';
+import { SceneCacheService } from 'src/app/service/scene/scene-cache.service';
 
 @Component({
     selector: 'app-setting',
@@ -12,7 +15,12 @@ export class SettingComponent implements OnInit, OnDestroy {
     langFormControl: FormControl;
     formSubscription!: Subscription;
 
-    constructor(private translate: TranslateService) {
+    constructor(
+        private translate: TranslateService,
+        private roomCacheService: RoomCacheService,
+        private deviceCacheService: DeviceCacheService,
+        private sceneCacheService: SceneCacheService
+    ) {
         this.langFormControl = new FormControl('en', Validators.required);
     }
 
@@ -20,6 +28,12 @@ export class SettingComponent implements OnInit, OnDestroy {
         this.formSubscription = this.langFormControl.valueChanges.subscribe(
             (lang) => this.translate.use(lang)
         );
+    }
+
+    clearCache(): void {
+        this.roomCacheService.clearCache();
+        this.deviceCacheService.clearCache();
+        this.sceneCacheService.clearCache();
     }
 
     ngOnDestroy(): void {

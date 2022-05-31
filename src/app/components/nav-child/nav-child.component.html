@@ -3,6 +3,10 @@
     class="page-nav-child"
     [class.page-nav-child-selected]="route == currentPath"
 >
-    <mat-icon *ngIf="icon">{{ icon }}</mat-icon>
-    <p>{{ label | translate }}</p>
+    <div>
+        <mat-icon *ngIf="icon">{{ icon }}</mat-icon>
+    </div>
+    <div>
+        <p>{{ label | translate }}</p>
+    </div>
 </div>

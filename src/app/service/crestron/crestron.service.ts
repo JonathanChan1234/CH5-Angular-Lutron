@@ -16,7 +16,6 @@ export class CrestronService implements OnDestroy {
     sceneSignal = '3';
     loadPromptSignal = '1';
 
-
     private crestronSubscription: number;
     private lutronDeviceFbMap: Map<number, number> = new Map();
     private lutronDeviceFb$: Subject<Map<number, number>>;
@@ -49,7 +48,7 @@ export class CrestronService implements OnDestroy {
     }
 
     askForLoadFb(id: number) {
-       CrComLib.publishEvent('n', this.loadPromptSignal, id) ;
+        CrComLib.publishEvent('n', this.loadPromptSignal, id);
     }
 
     setDimmerLevel(id: number, level: number) {
@@ -100,32 +99,36 @@ export class CrestronService implements OnDestroy {
     }
 
     activateScene(sceneId: string) {
-        let cmd = '';
+        const cmd: string[] = [];
         this.sceneService.getSceneActions(sceneId).subscribe((actions) => {
             for (const action of actions) {
                 switch (action.device.type) {
                     case 'dimmer':
                         const dimmerAction = action as DimmerAction;
-                        cmd += `1,${action.device.id},${dimmerAction.brightness},${dimmerAction.fade},${dimmerAction.delay}/`;
+                        cmd.push(
+                            `1,${action.device.id},${dimmerAction.brightness},${dimmerAction.fade},${dimmerAction.delay}`
+                        );
                         break;
                     case 'switch':
                         const switchAction = action as SwitchAction;
-                        cmd += `2,${action.device.id},${
-                            switchAction.power ? 100 : 0
-                        },0/`;
+                        cmd.push(
+                            `2,${action.device.id},${
+                                switchAction.power ? 100 : 0
+                            },0`
+                        );
                         break;
                     case 'motor':
-                        cmd += `3,${action.device.id},${
-                            (action as MotorAction).action === 'raise' ? 2 : 3
-                        }/`;
+                        cmd.push(
+                            `3,${action.device.id},${
+                                (action as MotorAction).action === 'raise'
+                                    ? 2
+                                    : 3
+                            }`
+                        );
                         break;
                 }
             }
-            CrComLib.publishEvent(
-                's',
-                this.sceneSignal,
-                cmd.substring(0, cmd.length - 1)
-            );
+            CrComLib.publishEvent('s', this.sceneSignal, cmd.join('/'));
         });
     }
 

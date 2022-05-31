@@ -1,16 +1,15 @@
 import { TestBed } from '@angular/core/testing';
-
-import { CacheServiceService } from './cache-service.service';
+import { CacheService } from './cache.service';
 
 describe('CacheServiceService', () => {
-  let service: CacheServiceService;
+    let service: CacheService<any>;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(CacheServiceService);
-  });
+    beforeEach(() => {
+        TestBed.configureTestingModule({});
+        service = TestBed.inject(CacheService);
+    });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
+    it('should be created', () => {
+        expect(service).toBeTruthy();
+    });
 });

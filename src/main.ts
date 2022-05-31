@@ -19,3 +19,14 @@ if (!environment.production) {
     ch5Emulator.loadScenario(scenario);
     ch5Emulator.run();
 }
+
+if (environment.production) {
+    const appendar = CrComLib.getRemoteAppender(
+        environment.remoteLoggerIP,
+        environment.remoteLoggerPort
+    );
+    const logger = CrComLib.getLogger(appendar, true);
+    logger.subscribeDockerStatus.subscribe((message: string) => {
+        console.log(message);
+    });
+}

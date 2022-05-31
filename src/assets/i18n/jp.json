@@ -3,7 +3,7 @@
         "title": "Wheelock NKIL6579 ホームオートメーション"
     },
     "navBar": {
-        "lighting": "照明",
+        "room": "ルーム",
         "monitoring": "监控",
         "setting": "設定",
         "scene": "シーン"

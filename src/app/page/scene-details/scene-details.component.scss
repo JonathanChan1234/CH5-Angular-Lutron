@@ -17,7 +17,10 @@
 .scene-table-title {
     display: flex;
     justify-content: space-between;
-    width: 30%;
+}
+
+.scene-name-label {
+    margin-right: 10px;
 }
 
 .selection-mode-container {
