@@ -1,12 +1,12 @@
 <div
     (click)="navigate()"
     class="page-nav-child"
-    [class.page-nav-child-selected]="route == currentPath"
+    [class.page-nav-child-selected]="route === (currentSelection$ | async)"
 >
     <div>
         <mat-icon *ngIf="icon">{{ icon }}</mat-icon>
     </div>
     <div>
-        <p>{{ label | translate }}</p>
+        <p class="mat-small nav-child-text">{{ label | translate }}</p>
     </div>
 </div>

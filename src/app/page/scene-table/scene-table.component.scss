@@ -1,8 +1,11 @@
 .wrapper {
     margin: 20px;
 }
-.table {
+
+.scene-table-header {
     width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
 
 .button-container {
@@ -20,4 +23,8 @@
 .scene-name-cell {
     width: 80%;
     margin-right: 10px;
+}
+
+.scene-list-item {
+    width: 100%;
 }

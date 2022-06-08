@@ -1,5 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { RouterService } from 'src/app/service/router/router.service';
+import { BehaviorSubject } from 'rxjs';
+import {
+    BottomNavigation,
+    RouterService,
+} from 'src/app/service/router/router.service';
 
 @Component({
     selector: 'app-nav-child',
@@ -8,7 +12,7 @@ import { RouterService } from 'src/app/service/router/router.service';
 })
 export class NavChildComponent implements OnInit {
     @Input()
-    route = '';
+    route: BottomNavigation;
 
     @Input()
     label = '';
@@ -16,17 +20,16 @@ export class NavChildComponent implements OnInit {
     @Input()
     icon = '';
 
-    currentPath = '';
+    currentSelection$: BehaviorSubject<BottomNavigation>;
 
     constructor(private router: RouterService) {}
 
     ngOnInit(): void {
-        this.router.getCurrentRoute().subscribe((route) => {
-            this.currentPath = route.path;
-        });
+        this.currentSelection$ = this.router.getCurrentSelection();
     }
 
     navigate() {
+        this.router.changeSelection(this.route);
         this.router.navigate(this.route);
     }
 }

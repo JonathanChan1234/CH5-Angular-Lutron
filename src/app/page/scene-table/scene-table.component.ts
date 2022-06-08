@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
 import { filter, switchMap } from 'rxjs/operators';
 import { CreateSceneDialogComponent } from 'src/app/components/create-scene-dialog/create-scene-dialog.component';
 import { DeleteSceneDialogComponent } from 'src/app/components/delete-scene-dialog/delete-scene-dialog.component';
@@ -10,7 +11,6 @@ import { PAGE_SCENE_DETAILS } from 'src/app/service/router/route';
 import { RouterService } from 'src/app/service/router/router.service';
 import { SceneService } from 'src/app/service/scene/scene.service';
 import { SceneDataSource } from './SceneDataSource';
-declare var CrComLib: any;
 
 @Component({
     selector: 'app-scene-table',
@@ -18,6 +18,7 @@ declare var CrComLib: any;
     styleUrls: ['./scene-table.component.scss'],
 })
 export class SceneTableComponent implements OnInit {
+    scenes$: Observable<Scene[]>;
     dataSource!: SceneDataSource;
     columns = ['name', 'action'];
 
@@ -32,9 +33,10 @@ export class SceneTableComponent implements OnInit {
     ngOnInit(): void {
         this.dataSource = new SceneDataSource(this.sceneService);
         this.dataSource.loadScene();
+        this.scenes$ = this.sceneService.getSceneList();
     }
 
-    startScene(scene: Scene) {
+    activateScene(scene: Scene) {
         this.crestronService.activateScene(scene.id);
     }
 

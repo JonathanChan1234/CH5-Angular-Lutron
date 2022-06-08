@@ -19,7 +19,7 @@
         "changeDeviceMessage": "Change device name successfully"
     },
     "scene": {
-        "scene": "Scene",
+        "scene": "Scenes",
         "addScene": "Add Scene",
         "name": "name",
         "numberOfAction": "Number of Actions",
