@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { MotorActionType, SceneAction } from 'src/app/model/action';
 import { AppService } from 'src/app/service/app/app.service';
 import {
@@ -8,7 +9,6 @@ import {
 } from 'src/app/service/router/route';
 import { RouterService } from 'src/app/service/router/router.service';
 import { SceneService } from 'src/app/service/scene/scene.service';
-import { SceneActionsDataSource } from './SceneActionsDataSource';
 
 @Component({
     selector: 'app-scene-details',
@@ -18,8 +18,7 @@ import { SceneActionsDataSource } from './SceneActionsDataSource';
 export class SceneDetailsComponent implements OnInit {
     name: string;
     sceneId: string;
-    columns = ['load', 'room', 'action', 'option'];
-    dataSource!: SceneActionsDataSource;
+    actions$: Observable<SceneAction[]>;
 
     editMode = false;
     nameFormControl: FormControl;
@@ -38,12 +37,8 @@ export class SceneDetailsComponent implements OnInit {
             alert('scene name is not found');
             return;
         }
-        this.dataSource = new SceneActionsDataSource(
-            this.sceneService,
-            this.sceneId
-        );
-        this.dataSource.loadActions();
         this.nameFormControl = new FormControl(this.name, Validators.required);
+        this.actions$ = this.sceneService.getSceneActions(this.sceneId);
     }
 
     changeToEditMode() {
@@ -83,7 +78,7 @@ export class SceneDetailsComponent implements OnInit {
     deleteAction(action: SceneAction) {
         this.sceneService.deleteActionFromScene(action.id).subscribe(
             () => {
-                this.dataSource.loadActions();
+                this.actions$ = this.sceneService.getSceneActions(this.sceneId);
                 this.appService.showSnackBarMsg({
                     type: 'success',
                     msg: 'Delete Action Successfully',

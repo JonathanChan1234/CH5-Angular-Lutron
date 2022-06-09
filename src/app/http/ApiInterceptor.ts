@@ -10,10 +10,25 @@ import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class ApiInterceptor implements HttpInterceptor {
+    private excludedUrlsRegex: RegExp[];
+    private excludedUrls = ['.svg'];
+
+    constructor() {
+        this.excludedUrlsRegex =
+            this.excludedUrls.map(
+                (urlPattern) => new RegExp(urlPattern, 'i')
+            ) || [];
+    }
+
     intercept(
         req: HttpRequest<any>,
         next: HttpHandler
     ): Observable<HttpEvent<any>> {
+        const passThrough = !!this.excludedUrlsRegex.find((regex) =>
+            regex.test(req.url)
+        );
+        if (passThrough) return next.handle(req);
+
         const requestUrl = req.url;
         req = req.clone({
             url: environment.url + requestUrl,

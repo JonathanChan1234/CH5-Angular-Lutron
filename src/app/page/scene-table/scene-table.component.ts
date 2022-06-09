@@ -10,7 +10,6 @@ import { CrestronService } from 'src/app/service/crestron/crestron.service';
 import { PAGE_SCENE_DETAILS } from 'src/app/service/router/route';
 import { RouterService } from 'src/app/service/router/router.service';
 import { SceneService } from 'src/app/service/scene/scene.service';
-import { SceneDataSource } from './SceneDataSource';
 
 @Component({
     selector: 'app-scene-table',
@@ -19,7 +18,6 @@ import { SceneDataSource } from './SceneDataSource';
 })
 export class SceneTableComponent implements OnInit {
     scenes$: Observable<Scene[]>;
-    dataSource!: SceneDataSource;
     columns = ['name', 'action'];
 
     constructor(
@@ -31,8 +29,6 @@ export class SceneTableComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.dataSource = new SceneDataSource(this.sceneService);
-        this.dataSource.loadScene();
         this.scenes$ = this.sceneService.getSceneList();
     }
 
@@ -58,7 +54,7 @@ export class SceneTableComponent implements OnInit {
                         type: 'success',
                         msg: 'Scene created successfully',
                     });
-                    this.dataSource.loadScene();
+                    this.scenes$ = this.sceneService.getSceneList();
                 },
                 (error) => {
                     this.appService.showSnackBarMsg({
@@ -85,7 +81,7 @@ export class SceneTableComponent implements OnInit {
                         type: 'success',
                         msg: 'Scene deleted successfully',
                     });
-                    this.dataSource.loadScene();
+                    this.scenes$ = this.sceneService.getSceneList();
                 },
                 (error) => {
                     this.appService.showSnackBarMsg({

@@ -19,7 +19,7 @@ export class RouterService {
     readonly DEFAULT_ROUTE: BottomNavigation = PAGE_SCENE_TABLE;
     route$ = new BehaviorSubject<RouteInfo>({
         path: this.DEFAULT_ROUTE,
-        params: { name: 'Scene 1' },
+        params: null,
     });
 
     private currentSelection$ = new BehaviorSubject<BottomNavigation>(

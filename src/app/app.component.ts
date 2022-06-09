@@ -1,6 +1,7 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { MatIconRegistry } from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { DomSanitizer } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -12,26 +13,35 @@ import { RouterService } from './service/router/router.service';
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit {
     defaultLang: 'en' | 'zh' | 'jp';
-    visible = false;
     route$: Observable<string>;
-
-    langForm: FormControl;
-    debugForm: FormControl;
-
-    langSubscription: Subscription;
     appSubscription: Subscription;
 
     constructor(
         private routerService: RouterService,
         private appService: AppService,
         private translate: TranslateService,
-        private snackBar: MatSnackBar
+        private snackBar: MatSnackBar,
+        private matIconRegistry: MatIconRegistry,
+        private domSanitizer: DomSanitizer
     ) {
         this.defaultLang = 'en';
         translate.setDefaultLang(this.defaultLang);
-        this.langForm = new FormControl(this.defaultLang);
+        this.matIconRegistry.addSvgIconInNamespace(
+            'custom',
+            'switch',
+            this.domSanitizer.bypassSecurityTrustResourceUrl(
+                `assets/icon/switch.svg`
+            )
+        );
+        this.matIconRegistry.addSvgIconInNamespace(
+            'custom',
+            'curtain',
+            this.domSanitizer.bypassSecurityTrustResourceUrl(
+                `assets/icon/curtain.svg`
+            )
+        );
     }
 
     ngOnInit(): void {
@@ -39,11 +49,6 @@ export class AppComponent implements OnInit, OnDestroy {
             .getCurrentRoute()
             .pipe(map((info) => info.path));
 
-        this.langSubscription = this.langForm.valueChanges.subscribe(
-            (value) => {
-                this.translate.use(value);
-            }
-        );
         this.appSubscription = this.appService.snackBarMsg$.subscribe((msg) => {
             this.snackBar.open(
                 msg.type === 'success' ? `✔️ ${msg.msg}` : `⚠️ ${msg.msg}`,
@@ -53,20 +58,7 @@ export class AppComponent implements OnInit, OnDestroy {
         });
     }
 
-    showModal() {
-        this.visible = true;
-    }
-
-    hideModal() {
-        this.visible = false;
-    }
-
     navigate(route: string) {
         this.routerService.navigate(route);
-    }
-
-    ngOnDestroy(): void {
-        this.langSubscription.unsubscribe();
-        this.appSubscription.unsubscribe();
     }
 }

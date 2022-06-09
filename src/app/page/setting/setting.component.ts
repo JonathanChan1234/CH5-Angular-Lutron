@@ -21,7 +21,10 @@ export class SettingComponent implements OnInit, OnDestroy {
         private deviceCacheService: DeviceCacheService,
         private sceneCacheService: SceneCacheService
     ) {
-        this.langFormControl = new FormControl('en', Validators.required);
+        this.langFormControl = new FormControl(
+            translate.currentLang,
+            Validators.required
+        );
     }
 
     ngOnInit(): void {

@@ -41,88 +41,72 @@
         </div>
 
         <div>
-            <table
-                #table
-                mat-table
-                [dataSource]="dataSource"
-                class="mat-elevation-z8 table"
-            >
-                <ng-container matColumnDef="load">
-                    <th mat-header-cell *matHeaderCellDef>
-                        {{ 'scene.device' | translate }}
-                    </th>
-                    <td mat-cell *matCellDef="let element">
-                        {{ element.device.name }}
-                    </td>
-                </ng-container>
-
-                <ng-container matColumnDef="room">
-                    <th mat-header-cell *matHeaderCellDef>
-                        {{ 'scene.room' | translate }}
-                    </th>
-                    <td mat-cell *matCellDef="let element">
-                        {{ element.device.room.name }}
-                    </td>
-                </ng-container>
-
-                <ng-container matColumnDef="action">
-                    <th mat-header-cell *matHeaderCellDef>
-                        {{ 'scene.actions' | translate }}
-                    </th>
-                    <td mat-cell *matCellDef="let element">
-                        <div *ngIf="element.device.type === 'motor'">
-                            {{ getMotorAction(element.action) | translate }}
-                        </div>
-                        <div *ngIf="element.device.type === 'dimmer'">
-                            <div>
-                                {{ 'scene.brightness' | translate }}:
-                                {{ element.brightness }}%
-                            </div>
-                            <div>
-                                {{ 'scene.delay' | translate }}:
-                                {{ element.delay }}s
-                            </div>
-                            <div>
-                                {{ 'scene.fade' | translate }}:
-                                {{ element.fade }}s
-                            </div>
-                        </div>
-                        <div *ngIf="element.device.type === 'switch'">
-                            <div>
-                                {{ 'scene.power' | translate }}:
-                                {{
-                                    element.power
-                                        ? ('scene.on' | translate)
-                                        : ('scene.off' | translate)
-                                }}
-                            </div>
-                        </div>
-                    </td>
-                </ng-container>
-
-                <ng-container matColumnDef="option">
-                    <th mat-header-cell *matHeaderCellDef>
-                        {{ 'scene.options' | translate }}
-                    </th>
-                    <td mat-cell *matCellDef="let element">
-                        <button
-                            mat-raised-button
-                            color="warn"
-                            (click)="deleteAction(element)"
-                        >
-                            {{ 'scene.delete' | translate }}
-                        </button>
-                    </td>
-                </ng-container>
-
-                <tr mat-header-row *matHeaderRowDef="columns"></tr>
-                <tr
-                    mat-row
-                    *matRowDef="let row; let i = index; columns: columns"
-                    longPress
-                    class="row"
-                ></tr>
-            </table>
+            <mat-list *ngFor="let action of actions$ | async">
+                <mat-list-item
+                    class="scene-action-list-item"
+                    *ngIf="action.device.type == 'dimmer'"
+                >
+                    <mat-icon mat-list-icon>brightness_high</mat-icon>
+                    <div matLine class="scene-action-device-text">
+                        {{ action.device.name }}
+                    </div>
+                    <div matLine mat-small class="scene-action-location-text">
+                        {{ action.device.room.name }}
+                    </div>
+                    <div matLine mat-small>
+                        {{ 'scene.actions' | translate }}:
+                        {{ $any(action).brightness }}% ({{
+                            'scene.delay' | translate
+                        }}: {{ $any(action).delay }}s)
+                    </div>
+                    <button mat-icon-button (click)="deleteAction(action)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </mat-list-item>
+                <mat-list-item
+                    class="scene-action-list-item"
+                    *ngIf="action.device.type == 'switch'"
+                >
+                    <mat-icon mat-list-icon svgIcon="custom:switch"></mat-icon>
+                    <div matLine class="scene-action-device-text">
+                        {{ action.device.name }}
+                    </div>
+                    <div matLine mat-small class="scene-action-location-text">
+                        {{ action.device.room.name }}
+                    </div>
+                    <div matLine mat-small>
+                        {{ 'scene.actions' | translate }}:
+                        {{
+                            $any(action).power
+                                ? ('scene.on' | translate)
+                                : ('scene.off' | translate)
+                        }}
+                    </div>
+                    <button mat-icon-button (click)="deleteAction(action)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </mat-list-item>
+                <mat-list-item
+                    class="scene-action-list-item"
+                    *ngIf="action.device.type == 'motor'"
+                >
+                    <mat-icon mat-list-icon svgIcon="custom:curtain"></mat-icon>
+                    <div matLine class="scene-action-device-text">
+                        {{ action.device.name }}
+                    </div>
+                    <div matLine mat-small class="scene-action-location-text">
+                        {{ action.device.room.name }}
+                    </div>
+                    <div matLine mat-small>
+                        {{ 'scene.actions' | translate }}:
+                        {{ getMotorAction($any(action).action) | translate }}
+                    </div>
+                    <button mat-icon-button (click)="deleteAction(action)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+            </mat-list>
         </div>
     </div>
 </div>

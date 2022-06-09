@@ -1,15 +1,30 @@
 <div class="flex-horizontal w-100">
     <div class="w-100" *ngIf="!editMode">
         <div class="flex-horizontal">
-            <mat-card-title
-                style="
-                    text-overflow: ellipsis;
-                    overflow: hidden;
-                    height: 30px;
-                    white-space: nowrap;
-                "
-                >{{ load.name }}</mat-card-title
-            >
+            <div class="flex-horizontal">
+                <div mat-card-avatar>
+                    <mat-icon *ngIf="load.type == 'dimmer'"
+                        >brightness_high</mat-icon
+                    >
+                    <mat-icon
+                        *ngIf="load.type == 'switch'"
+                        svgIcon="custom:switch"
+                    ></mat-icon>
+                    <mat-icon
+                        *ngIf="load.type == 'motor'"
+                        svgIcon="custom:curtain"
+                    ></mat-icon>
+                </div>
+                <mat-card-title
+                    style="
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                        height: 30px;
+                        white-space: nowrap;
+                    "
+                    >{{ load.name }}</mat-card-title
+                >
+            </div>
             <div>
                 <mat-icon (click)="changeToEditMode()">edit</mat-icon>
             </div>
