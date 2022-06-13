@@ -45,7 +45,8 @@ export class SceneService {
         );
     }
 
-    getSceneList(): Observable<Scene[]> {
+    getSceneList(clearCache: boolean): Observable<Scene[]> {
+        if (clearCache) this.sceneCacheSerivce.clearCache();
         let scene$ = this.sceneCacheSerivce.getValue();
         if (!scene$) {
             scene$ = this.httpClient

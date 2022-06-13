@@ -29,7 +29,7 @@ export class SceneTableComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.scenes$ = this.sceneService.getSceneList();
+        this.scenes$ = this.sceneService.getSceneList(false);
     }
 
     activateScene(scene: Scene) {
@@ -54,7 +54,7 @@ export class SceneTableComponent implements OnInit {
                         type: 'success',
                         msg: 'Scene created successfully',
                     });
-                    this.scenes$ = this.sceneService.getSceneList();
+                    this.scenes$ = this.sceneService.getSceneList(true);
                 },
                 (error) => {
                     this.appService.showSnackBarMsg({
@@ -81,7 +81,7 @@ export class SceneTableComponent implements OnInit {
                         type: 'success',
                         msg: 'Scene deleted successfully',
                     });
-                    this.scenes$ = this.sceneService.getSceneList();
+                    this.scenes$ = this.sceneService.getSceneList(true);
                 },
                 (error) => {
                     this.appService.showSnackBarMsg({

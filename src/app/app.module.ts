@@ -35,15 +35,6 @@ import { NavChildComponent } from './components/nav-child/nav-child.component';
 import { RoomCardComponent } from './components/room-card/room-card.component';
 import { SwitchActionFormComponent } from './components/switch-action-form/switch-action-form.component';
 import { SwitchLoadComponent } from './components/switch-load/switch-load.component';
-import { AnaFbDirective } from './crestron/ana-fb.directive';
-import { AnaSendDirective } from './crestron/ana-send.directive';
-import { DigEnableDirective } from './crestron/dig-enable.directive';
-import { DigFbDirective } from './crestron/dig-fb.directive';
-import { DigPressDirective } from './crestron/dig-press.directive';
-import { DigVisibleDirective } from './crestron/dig-visible.directive';
-import { ModalComponent } from './crestron/modal/modal.component';
-import { SerFbDirective } from './crestron/ser-fb.directive';
-import { SerSendDirective } from './crestron/ser-send.directive';
 import { StopPropagationDirective } from './directive/stop-propagation.directive';
 import { ApiInterceptor } from './http/ApiInterceptor';
 import { MonitoringComponent } from './page/monitoring/monitoring.component';
@@ -58,15 +49,6 @@ import CustomLoader from './translation/CustomLoader';
 @NgModule({
     declarations: [
         AppComponent,
-        DigPressDirective,
-        DigEnableDirective,
-        DigVisibleDirective,
-        DigFbDirective,
-        AnaSendDirective,
-        AnaFbDirective,
-        SerSendDirective,
-        SerFbDirective,
-        ModalComponent,
         ModalWithoutJoinComponent,
         NavChildComponent,
         NavBarComponent,

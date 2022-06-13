@@ -61,6 +61,7 @@ export class RoomCardComponent implements OnInit {
                     type: 'success',
                 });
                 this.room.name = newRoomName;
+                this.editMode = false;
             },
             (error) => {
                 this.editMode = false;
