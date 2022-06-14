@@ -4,6 +4,13 @@
     width: 300px;
 }
 
+.card-title {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    height: 30px;
+    white-space: nowrap;
+}
+
 .state-text {
     font-weight: 500;
     font-size: large;

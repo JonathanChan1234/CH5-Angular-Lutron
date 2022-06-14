@@ -15,15 +15,9 @@
                         svgIcon="custom:curtain"
                     ></mat-icon>
                 </div>
-                <mat-card-title
-                    style="
-                        text-overflow: ellipsis;
-                        overflow: hidden;
-                        height: 30px;
-                        white-space: nowrap;
-                    "
-                    >{{ load.name }}</mat-card-title
-                >
+                <mat-card-title class="card-title">{{
+                    load.name
+                }}</mat-card-title>
             </div>
             <div>
                 <mat-icon (click)="changeToEditMode()">edit</mat-icon>

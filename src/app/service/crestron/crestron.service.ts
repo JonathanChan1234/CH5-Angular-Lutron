@@ -52,7 +52,6 @@ export class CrestronService implements OnDestroy {
     }
 
     setDimmerLevel(id: number, level: number) {
-        console.log(`set dimmer id ${id} to level ${level}`);
         // for testing only
         if (!environment.production)
             CrComLib.publishEvent('s', this.fbSignal, `${id},${level}`);
@@ -60,7 +59,6 @@ export class CrestronService implements OnDestroy {
     }
 
     setSwitchLevel(id: number, power: boolean) {
-        console.log(`set switchw id ${id} to power ${power}`);
         // for testing only
         if (!environment.production)
             CrComLib.publishEvent(
@@ -76,7 +74,6 @@ export class CrestronService implements OnDestroy {
     }
 
     setMotorAction(id: number, action: 'raise' | 'lower' | 'stop') {
-        console.log(`set motor id ${id} to action ${action}`);
         CrComLib.publishEvent(
             's',
             this.controlSignal,

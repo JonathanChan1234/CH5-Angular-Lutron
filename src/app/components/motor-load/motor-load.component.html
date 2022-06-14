@@ -3,17 +3,25 @@
     <div class="motor-button-container">
         <button
             mat-mini-fab
+            id="motor-raise-button"
             aria-label="Raise"
             color="primary"
             (click)="raise()"
         >
             <mat-icon>keyboard_arrow_left</mat-icon>
         </button>
-        <button mat-mini-fab aria-label="Stop" color="primary" (click)="stop()">
+        <button
+            mat-mini-fab
+            id="motor-stop-button"
+            aria-label="Stop"
+            color="primary"
+            (click)="stop()"
+        >
             <mat-icon>stop</mat-icon>
         </button>
         <button
             mat-mini-fab
+            id="motor-lower-button"
             aria-label="Lower"
             color="primary"
             (click)="lower()"
