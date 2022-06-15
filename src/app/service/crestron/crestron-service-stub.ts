@@ -15,13 +15,18 @@ export default class CrestronServiceStub {
         // No need to implement for mock service
     }
 
+    setDimmerLevel(id: number, level: number) {
+        this.map.set(id, level);
+        this.fb$.next(this.map);
+    }
+
     setSwitchLevel(id: number, power: boolean) {
         this.map.set(id, power ? 100 : 0);
         this.fb$.next(this.map);
     }
 
     setMotorAction(id: number, action: 'raise' | 'stop' | 'lower') {
-        // No need to implement for mock service
-        console.log(`set motor action ${action} for id ${id}`);
+        // Return the parameter as validation
+        return { id, action };
     }
 }
