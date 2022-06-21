@@ -6,8 +6,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSlideToggleHarness } from '@angular/material/slide-toggle/testing';
 import { TranslateModule } from '@ngx-translate/core';
-import CrestronServiceStub from 'src/app/service/crestron/crestron-service-stub';
 import { CrestronService } from 'src/app/service/crestron/crestron.service';
+import CrestronServiceStub from 'src/app/service/stub/crestron-service-stub';
 import { SwitchLoadComponent } from './switch-load.component';
 
 describe('SwitchLoadComponent', () => {

@@ -8,8 +8,8 @@ import { MatSlideToggleHarness } from '@angular/material/slide-toggle/testing';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatSliderHarness } from '@angular/material/slider/testing';
 import { TranslateModule } from '@ngx-translate/core';
-import CrestronServiceStub from 'src/app/service/crestron/crestron-service-stub';
 import { CrestronService } from 'src/app/service/crestron/crestron.service';
+import CrestronServiceStub from 'src/app/service/stub/crestron-service-stub';
 import { DimmerLoadComponent } from './dimmer-load.component';
 
 describe('DimmerLoadComponent', () => {

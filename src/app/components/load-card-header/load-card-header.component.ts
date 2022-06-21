@@ -17,9 +17,9 @@ export class LoadCardHeaderComponent implements OnInit {
     nameFormControl: FormControl;
 
     constructor(
-        private translateService: TranslateService,
-        private roomService: RoomService,
-        private appService: AppService
+        readonly translateService: TranslateService,
+        readonly roomService: RoomService,
+        readonly appService: AppService
     ) {}
 
     ngOnInit(): void {

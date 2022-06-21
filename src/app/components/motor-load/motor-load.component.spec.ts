@@ -1,22 +1,20 @@
 import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
-import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonHarness } from '@angular/material/button/testing';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
-import CrestronServiceStub from 'src/app/service/crestron/crestron-service-stub';
 import { CrestronService } from 'src/app/service/crestron/crestron.service';
+import CrestronServiceStub from 'src/app/service/stub/crestron-service-stub';
 import { MotorLoadComponent } from './motor-load.component';
 
 describe('MotorLoadComponent', () => {
     let component: MotorLoadComponent;
     let fixture: ComponentFixture<MotorLoadComponent>;
     let loader: HarnessLoader;
-    let de: DebugElement;
-    let el: HTMLElement;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({

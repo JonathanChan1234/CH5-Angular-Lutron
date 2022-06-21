@@ -3,16 +3,18 @@
         <div class="flex-horizontal">
             <div class="flex-horizontal">
                 <div mat-card-avatar>
-                    <mat-icon *ngIf="load.type == 'dimmer'"
+                    <mat-icon *ngIf="load.type == 'dimmer'" class="dimmer-icon"
                         >brightness_high</mat-icon
                     >
                     <mat-icon
                         *ngIf="load.type == 'switch'"
                         svgIcon="custom:switch"
+                        class="switch-icon"
                     ></mat-icon>
                     <mat-icon
                         *ngIf="load.type == 'motor'"
                         svgIcon="custom:curtain"
+                        class="motor-icon"
                     ></mat-icon>
                 </div>
                 <mat-card-title class="card-title">{{
@@ -20,7 +22,9 @@
                 }}</mat-card-title>
             </div>
             <div>
-                <mat-icon (click)="changeToEditMode()">edit</mat-icon>
+                <mat-icon (click)="changeToEditMode()" class="edit-device-icon"
+                    >edit</mat-icon
+                >
             </div>
         </div>
         <mat-card-subtitle
@@ -28,7 +32,11 @@
             {{ load.id }})</mat-card-subtitle
         >
     </div>
-    <form class="form" *ngIf="editMode" (ngSubmit)="changeDeviceName()">
+    <form
+        class="edit-device-form"
+        *ngIf="editMode"
+        (ngSubmit)="changeDeviceName()"
+    >
         <mat-form-field class="field">
             <input
                 matInput
