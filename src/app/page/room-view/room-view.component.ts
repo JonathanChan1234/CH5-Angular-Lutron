@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { catchError, finalize } from 'rxjs/operators';
 import { Device } from 'src/app/model/device';
 import { RoomService } from 'src/app/service/room/room.service';
 import { RouterService } from 'src/app/service/router/router.service';
@@ -10,7 +11,9 @@ import { RouterService } from 'src/app/service/router/router.service';
     styleUrls: ['./room-view.component.scss'],
 })
 export class RoomViewComponent implements OnInit {
-    name = '';
+    name!: string;
+    loading$ = new BehaviorSubject<boolean>(true);
+    error$ = new BehaviorSubject<string>('');
     devices$: Observable<Device[]>;
 
     constructor(
@@ -19,11 +22,18 @@ export class RoomViewComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        const name = this.router.getCurrentRouteParams()?.name;
-        if (!name) {
-            alert('room name is not found');
+        this.name = this.router.getCurrentRouteParams()?.name;
+        if (!this.name) {
+            this.error$.next('Oops! Room not found');
             return;
         }
-        this.devices$ = this.roomService.getRoomLoadList(name);
+        this.error$.next('');
+        this.devices$ = this.roomService.getRoomLoadList(this.name).pipe(
+            catchError((error) => {
+                this.error$.next(error.message);
+                return of([]);
+            }),
+            finalize(() => this.loading$.next(false))
+        );
     }
 }

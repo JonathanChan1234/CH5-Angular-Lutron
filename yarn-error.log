@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add @type/dayjs
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add -D jasmine-marble
 
 PATH: 
   C:\Python310\Scripts\;C:\Python310\;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\jonat\AppData\Local\Programs\Python\Python37\Scripts\;C:\Users\jonat\AppData\Local\Programs\Python\Python37\;C:\Users\jonat\AppData\Local\Microsoft\WindowsApps;C:\Users\jonat\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\JetBrains\PyCharm Community Edition 2020.1.2\bin;C:\Program Files\MySQL\MySQL Server 8.0\bin;C:\Users\jonat\AppData\Local\Yarn\bin;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2020.2.1\bin;C:\Gradle\gradle-6.6.1\bin;C:\Program Files\Redis;C:\Users\jonat\AppData\Local\Android\Sdk\platform-tools;C:\Program Files\PostgreSQL\13\bin;C:\Program Files\heroku\bin;C:\Users\jonat\AppData\Roaming\npm
@@ -14,7 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@type%2fdayjs: Not found
+  Error: https://registry.yarnpkg.com/jasmine-marble: Not found
       at Request.params.callback [as _callback] (C:\Program Files (x86)\Yarn\lib\cli.js:66096:18)
       at Request.self.callback (C:\Program Files (x86)\Yarn\lib\cli.js:140748:22)
       at Request.emit (node:events:390:28)
@@ -56,7 +56,6 @@ npm manifest:
           "@crestron/ch5-theme": "^1.0.0",
           "@ngx-translate/core": "12",
           "@ngx-translate/http-loader": "5",
-          "bootstrap": "^4.4.0",
           "dayjs": "^1.11.2",
           "hash-it": "^5.0.2",
           "rxjs": "~6.5.4",
@@ -2116,11 +2115,6 @@ Lockfile:
     version "1.0.0"
     resolved "https://registry.yarnpkg.com/boolbase/-/boolbase-1.0.0.tgz#68dff5fbe60c51eb37725ea9e3ed310dcc1e776e"
     integrity sha1-aN/1++YMUes3cl6p4+0xDcwed24=
-  
-  bootstrap@^4.4.0:
-    version "4.6.1"
-    resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.6.1.tgz#bc25380c2c14192374e8dec07cf01b2742d222a2"
-    integrity sha512-0dj+VgI9Ecom+rvvpNZ4MUZJz8dcX7WCX+eTID9+/8HgOkv3dsRzi8BGeZJCQU6flWQVYxwTQnEZFrmJSEO7og==
   
   boxen@^4.2.0:
     version "4.2.0"

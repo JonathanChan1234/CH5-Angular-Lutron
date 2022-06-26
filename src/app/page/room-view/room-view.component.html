@@ -1,21 +1,31 @@
-<div>
+<div *ngIf="name" class="room-view-container">
     <div class="page-title-container">
         <p class="page-title">{{ name }}</p>
     </div>
-    <div class="device-container">
-        <div *ngFor="let load of devices$ | async" [ngSwitch]="load.type">
-            <app-dimmer-load
-                [load]="load"
-                *ngSwitchCase="'dimmer'"
-            ></app-dimmer-load>
-            <app-switch-load
-                [load]="load"
-                *ngSwitchCase="'switch'"
-            ></app-switch-load>
-            <app-motor-load
-                [load]="load"
-                *ngSwitchCase="'motor'"
-            ></app-motor-load>
-        </div>
+
+    <div class="loading-spinner" *ngIf="loading$ | async">
+        <p>Loading...</p>
+        <mat-spinner></mat-spinner>
+    </div>
+
+    <div
+        class="device-container"
+        *ngFor="let load of devices$ | async"
+        [ngSwitch]="load.type"
+    >
+        <app-dimmer-load
+            [load]="load"
+            *ngSwitchCase="'dimmer'"
+        ></app-dimmer-load>
+        <app-switch-load
+            [load]="load"
+            *ngSwitchCase="'switch'"
+        ></app-switch-load>
+        <app-motor-load [load]="load" *ngSwitchCase="'motor'"></app-motor-load>
     </div>
 </div>
+
+<app-error-message-bar
+    *ngIf="(error$ | async) !== ''"
+    [message]="error$ | async"
+></app-error-message-bar>
