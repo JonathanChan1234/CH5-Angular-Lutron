@@ -10,6 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -28,7 +29,6 @@ import { DimmerActionFormComponent } from './components/dimmer-action-form/dimme
 import { DimmerLoadComponent } from './components/dimmer-load/dimmer-load.component';
 import { ErrorMessageBarComponent } from './components/error-message-bar/error-message-bar.component';
 import { LoadCardHeaderComponent } from './components/load-card-header/load-card-header.component';
-import { ModalWithoutJoinComponent } from './components/modal-without-join/modal-without-join.component';
 import { MotorActionFormComponent } from './components/motor-action-form/motor-action-form.component';
 import { MotorLoadComponent } from './components/motor-load/motor-load.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
@@ -50,7 +50,6 @@ import CustomLoader from './translation/CustomLoader';
 @NgModule({
     declarations: [
         AppComponent,
-        ModalWithoutJoinComponent,
         NavChildComponent,
         NavBarComponent,
         RoomCardComponent,
@@ -96,6 +95,7 @@ import CustomLoader from './translation/CustomLoader';
         MatMenuModule,
         MatTooltipModule,
         MatProgressSpinnerModule,
+        MatProgressBarModule,
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,

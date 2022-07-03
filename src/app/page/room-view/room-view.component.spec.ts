@@ -145,6 +145,8 @@ describe('RoomViewComponent (no error)', () => {
     });
 
     it('should render room view', () => {
+        // NgOnInit
+        fixture.detectChanges();
         const errMsgBar = debugElement.query(
             By.directive(TestErrorMessageBarComponent)
         );
@@ -159,6 +161,7 @@ describe('RoomViewComponent (no error)', () => {
             .withContext('Should call getRoomLoadList')
             .toHaveBeenCalled();
         // Check if loading spinner exists
+        expect(errMsgBar).toBeNull();
         expect(loadingSpinner).toBeTruthy();
 
         // flush to execute the queue
@@ -168,6 +171,7 @@ describe('RoomViewComponent (no error)', () => {
         const deviceContainer = debugElement.queryAll(
             By.css('.device-container')
         );
+
         loadingSpinner = debugElement.query(By.css('.loading-spinner'));
 
         // check if the loading spinner and error message does not exist and the room view can be rendered
@@ -215,7 +219,7 @@ describe('RoomViewComponent (error)', () => {
             spyRouterService.getCurrentRouteParams.and.returnValue({
                 name: 'test room',
             });
-        const load$ = cold('--#|', null, new Error('Test Error'));
+        const load$ = cold('--#|', null, new Error('room service error'));
         getRoomLoadList = spyRoomService.getRoomLoadList.and.returnValue(load$);
 
         TestBed.configureTestingModule({
@@ -242,6 +246,8 @@ describe('RoomViewComponent (error)', () => {
     });
 
     it('should render the error message bar', () => {
+        fixture.detectChanges();
+
         let errMsgBar = debugElement.query(
             By.directive(TestErrorMessageBarComponent)
         );
@@ -254,18 +260,10 @@ describe('RoomViewComponent (error)', () => {
         getTestScheduler().flush();
         fixture.detectChanges();
 
-        const deviceContainer = debugElement.queryAll(
-            By.css('.device-container')
-        );
         errMsgBar = debugElement.query(
             By.directive(TestErrorMessageBarComponent)
         );
-
         loadingSpinner = debugElement.query(By.css('.loading-spinner'));
-
-        // check the device$ would return empty array
-        expect(deviceContainer.length).toBe(0);
-
         // check if the loading spinner and error message does not exist and the room view can be rendered
         expect(loadingSpinner).toBeNull();
         expect(errMsgBar).toBeTruthy();

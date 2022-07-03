@@ -7,6 +7,7 @@ import { MatButtonHarness } from '@angular/material/button/testing';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
+import { Device } from 'src/app/model/device';
 import { CrestronService } from 'src/app/service/crestron/crestron.service';
 import { MotorLoadComponent } from './motor-load.component';
 
@@ -15,6 +16,17 @@ describe('MotorLoadComponent', () => {
     let fixture: ComponentFixture<MotorLoadComponent>;
     let loader: HarnessLoader;
     let spyCrestronService: jasmine.SpyObj<CrestronService>;
+
+    const testLoad: Device = {
+        id: 10,
+        name: 'test',
+        room: {
+            id: 'testId',
+            name: 'test room',
+            devices: [],
+        },
+        type: 'motor',
+    };
 
     beforeEach(async(() => {
         spyCrestronService = jasmine.createSpyObj('CrestronService', [
@@ -41,16 +53,7 @@ describe('MotorLoadComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(MotorLoadComponent);
         component = fixture.componentInstance;
-        component.load = {
-            id: 10,
-            name: 'test',
-            room: {
-                id: 'testId',
-                name: 'test room',
-                devices: [],
-            },
-            type: 'motor',
-        };
+        component.load = testLoad;
         loader = TestbedHarnessEnvironment.loader(fixture);
         fixture.detectChanges();
     });
@@ -66,7 +69,7 @@ describe('MotorLoadComponent', () => {
             MatButtonHarness.with({ selector: '#motor-raise-button' })
         );
         await motorRaiseButton.click();
-        expect(setMotorAction).toHaveBeenCalled();
+        expect(setMotorAction).toHaveBeenCalledWith(testLoad.id, 'raise');
     });
 
     it('expect motor to stop', async () => {
@@ -77,7 +80,7 @@ describe('MotorLoadComponent', () => {
             MatButtonHarness.with({ selector: '#motor-stop-button' })
         );
         await motorStopButton.click();
-        expect(setMotorAction).toHaveBeenCalled();
+        expect(setMotorAction).toHaveBeenCalledWith(testLoad.id, 'stop');
     });
 
     it('expect motor to lower', async () => {
@@ -88,6 +91,6 @@ describe('MotorLoadComponent', () => {
             MatButtonHarness.with({ selector: '#motor-lower-button' })
         );
         await motorLowerButton.click();
-        expect(setMotorAction).toHaveBeenCalled();
+        expect(setMotorAction).toHaveBeenCalledWith(testLoad.id, 'lower');
     });
 });

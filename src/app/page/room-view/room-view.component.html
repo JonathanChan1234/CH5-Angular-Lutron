@@ -10,7 +10,7 @@
 
     <div
         class="device-container"
-        *ngFor="let load of devices$ | async"
+        *ngFor="let load of devices"
         [ngSwitch]="load.type"
     >
         <app-dimmer-load
@@ -28,4 +28,5 @@
 <app-error-message-bar
     *ngIf="(error$ | async) !== ''"
     [message]="error$ | async"
+    (back)="backToRoomPanel()"
 ></app-error-message-bar>

@@ -1,5 +1,27 @@
 <div class="room-panel">
-    <div *ngFor="let room of rooms$ | async">
-        <app-room-card [room]="room"></app-room-card>
+    <div class="loading-spinner" *ngIf="loading$ | async">
+        <p>Loading...</p>
+        <mat-spinner mode="indeterminate"></mat-spinner>
+    </div>
+    <div class="refresh-button-container" *ngIf="!(loading$ | async)">
+        <button
+            mat-button
+            color="primary"
+            class="refresh-button"
+            (click)="refresh()"
+        >
+            <mat-icon>refresh</mat-icon>
+        </button>
+    </div>
+    <div class="room-card-container" *ngIf="rooms$ | async">
+        <div class="room-card" *ngFor="let room of rooms$ | async">
+            <app-room-card [room]="room"></app-room-card>
+        </div>
+    </div>
+    <div class="error-message-container" *ngIf="error$ | async">
+        <app-error-message-bar
+            *ngIf="error$ | async as error"
+            [message]="error ? error.message : ''"
+        ></app-error-message-bar>
     </div>
 </div>

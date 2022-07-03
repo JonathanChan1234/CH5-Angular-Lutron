@@ -1,6 +1,21 @@
 .room-panel {
-     display: flex;
-     flex-direction: row;
-     flex-wrap: wrap;
-     justify-content: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+.room-card-container {
+    width: 100%;
+}
+
+.refresh-button-container {
+    width: 100%;
+}
+
+.refresh-button {
+    display: block;
+    margin-left: auto;
+    margin-right: 0;
 }

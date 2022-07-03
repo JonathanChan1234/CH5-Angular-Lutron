@@ -3,3 +3,10 @@
     height: 100px;
     margin: 10px;
 }
+
+.room-card-title {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    height: 30px;
+    white-space: nowrap;
+}

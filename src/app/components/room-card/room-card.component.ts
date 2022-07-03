@@ -48,10 +48,13 @@ export class RoomCardComponent implements OnInit {
             return;
         }
         const newRoomName = this.nameFormControl.value;
+
+        // ignore when the room name does not change
         if (this.room.name === newRoomName) {
             this.editMode = false;
             return;
         }
+
         this.roomService.changeRoomName(this.room.id, newRoomName).subscribe(
             () => {
                 this.appService.showSnackBarMsg({

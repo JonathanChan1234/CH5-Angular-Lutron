@@ -1,21 +1,21 @@
 <mat-card class="room-card" (click)="navigateRoom()">
     <div class="w-100">
-        <div class="flex-horizontal w-100" *ngIf="!editMode">
-            <mat-card-title
-                style="
-                    text-overflow: ellipsis;
-                    overflow: hidden;
-                    height: 30px;
-                    white-space: nowrap;
-                "
-                >{{ room.name }}</mat-card-title
-            >
-            <mat-icon appClickStopPropagation (click)="editRoom()"
+        <div
+            class="flex-horizontal w-100 room-card-title-container"
+            *ngIf="!editMode"
+        >
+            <mat-card-title class="room-card-title">{{
+                room.name
+            }}</mat-card-title>
+            <mat-icon
+                appClickStopPropagation
+                (click)="editRoom()"
+                class="edit-icon-button"
                 >edit</mat-icon
             >
         </div>
         <form
-            class="flex-horizontal"
+            class="flex-horizontal edit-room-form"
             *ngIf="editMode"
             appClickStopPropagation
             (ngSubmit)="changeRoomName()"
@@ -38,7 +38,7 @@
         </form>
     </div>
     <div>
-        <mat-card-subtitle
+        <mat-card-subtitle class="room-device-subtitle"
             >{{ count }} {{ 'room.device' | translate }}</mat-card-subtitle
         >
     </div>
