@@ -4,10 +4,7 @@ import {
     PAGE_SCENE_TABLE,
     PAGE_SETTING,
 } from 'src/app/service/router/route';
-import {
-    BottomNavigation,
-    RouterService,
-} from 'src/app/service/router/router.service';
+import { BottomNavigation } from 'src/app/service/router/router.service';
 
 @Component({
     selector: 'app-nav-bar',
@@ -24,10 +21,4 @@ export class NavBarComponent {
         { label: 'navBar.scene', route: PAGE_SCENE_TABLE, icon: 'memory' },
         { label: 'navBar.setting', route: PAGE_SETTING, icon: 'settings' },
     ];
-
-    constructor(private router: RouterService) {}
-
-    navigate(route: string) {
-        this.router.navigate(route);
-    }
 }

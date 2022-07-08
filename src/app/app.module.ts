@@ -38,7 +38,6 @@ import { SwitchActionFormComponent } from './components/switch-action-form/switc
 import { SwitchLoadComponent } from './components/switch-load/switch-load.component';
 import { StopPropagationDirective } from './directive/stop-propagation.directive';
 import { ApiInterceptor } from './http/ApiInterceptor';
-import { MonitoringComponent } from './page/monitoring/monitoring.component';
 import { RoomViewComponent } from './page/room-view/room-view.component';
 import { RoomsPanelComponent } from './page/rooms-panel/rooms-panel.component';
 import { SceneActionCreateComponent } from './page/scene-action-create/scene-action-create.component';
@@ -54,7 +53,6 @@ import CustomLoader from './translation/CustomLoader';
         NavBarComponent,
         RoomCardComponent,
         RoomsPanelComponent,
-        MonitoringComponent,
         DimmerLoadComponent,
         RoomViewComponent,
         SwitchLoadComponent,
