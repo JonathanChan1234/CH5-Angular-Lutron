@@ -7,9 +7,9 @@ import {
 } from '@angular/core';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { MatSliderChange } from '@angular/material/slider';
-import { Subscription } from 'rxjs';
 import { Device } from 'src/app/model/device';
-import { CrestronService } from 'src/app/service/crestron/crestron.service';
+
+declare var CrComLib: any;
 
 @Component({
     selector: 'app-dimmer-load',
@@ -19,36 +19,41 @@ import { CrestronService } from 'src/app/service/crestron/crestron.service';
 export class DimmerLoadComponent implements OnInit, OnDestroy {
     @Input() load!: Device;
     level = 0;
-    crestronSubscription: Subscription;
+    subscriptionId?: string;
 
-    constructor(
-        private crestronService: CrestronService,
-        private changeDetectorRef: ChangeDetectorRef
-    ) {}
+    constructor(private changeDetectorRef: ChangeDetectorRef) {}
 
     ngOnInit(): void {
-        this.crestronSubscription = this.crestronService
-            .getLoadFbById(this.load.id)
-            .subscribe((value) => {
-                this.level = value;
-                this.changeDetectorRef.detectChanges();
-            });
-        this.crestronService.askForLoadFb(this.load.id);
+        this.subscriptionId = CrComLib.subscribeState(
+            'n',
+            this.load.joinId.toString(),
+            this.onFeedbackReceived.bind(this)
+        );
+    }
+
+    onFeedbackReceived(value: number) {
+        this.level = value;
+        this.changeDetectorRef.detectChanges();
     }
 
     onToggleChange({ checked }: MatSlideToggleChange): void {
-        this.changeBrightness(checked ? 100 : 0);
+        this.setBrightness(checked ? 100 : 0);
     }
 
     onSliderChange({ value }: MatSliderChange): void {
-        this.changeBrightness(value);
+        this.setBrightness(value);
     }
 
-    changeBrightness(value: number): void {
-        this.crestronService.setDimmerLevel(this.load.id, value);
+    setBrightness(value: number): void {
+        CrComLib.publishEvent('n', this.load.joinId.toString(), value);
     }
 
     ngOnDestroy(): void {
-        this.crestronSubscription.unsubscribe();
+        if (!this.subscriptionId) return;
+        CrComLib.unsubscribeState(
+            'n',
+            this.load.toString(),
+            this.subscriptionId
+        );
     }
 }

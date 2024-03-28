@@ -1,0 +1,13 @@
+  @use '../../../theme/color' as color;
+
+  .volume-slider-container {
+
+      .volume-slider-wrapper {
+          width: 100%;
+          background-color: color.$button-color;
+          padding: 10px;
+          border-radius: 5px;
+          display: flex;
+          justify-content: center;
+      }
+  }

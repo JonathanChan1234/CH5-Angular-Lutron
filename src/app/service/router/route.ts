@@ -6,3 +6,4 @@ export const PAGE_SCENE_DETAILS = 'scene_details';
 export const PAGE_SCENE_ACTION_CREATE = 'scene_action_create';
 export const PAGE_SCENE_ACTION_EDIT = 'scene_action_edit';
 export const PAGE_SETTING = 'setting';
+export const PAGE_AV_REMOTE = 'av_remote';

@@ -1,0 +1,19 @@
+.app-toolbar {
+    background-color: var(--background-color);
+
+    .app-toolbar-content-container {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        color: var(--text-color);
+
+        .dark-mode-toggle-container {
+            display: flex;
+            align-items: center;
+
+            .dark-mode-toggle {
+                padding-left: 10px;
+            }
+        }
+    }
+}

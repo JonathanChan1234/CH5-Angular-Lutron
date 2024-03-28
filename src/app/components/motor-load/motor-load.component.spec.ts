@@ -8,15 +8,19 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
 import { CrestronService } from 'src/app/service/crestron/crestron.service';
-import CrestronServiceStub from 'src/app/service/stub/crestron-service-stub';
 import { MotorLoadComponent } from './motor-load.component';
 
 describe('MotorLoadComponent', () => {
     let component: MotorLoadComponent;
     let fixture: ComponentFixture<MotorLoadComponent>;
     let loader: HarnessLoader;
+    let spyCrestronService: jasmine.SpyObj<CrestronService>;
 
     beforeEach(async(() => {
+        spyCrestronService = jasmine.createSpyObj<CrestronService>(
+            'CrestronService',
+            ['setMotorAction']
+        );
         TestBed.configureTestingModule({
             declarations: [MotorLoadComponent],
             imports: [
@@ -28,7 +32,7 @@ describe('MotorLoadComponent', () => {
             providers: [
                 {
                     provide: CrestronService,
-                    useValue: new CrestronServiceStub(),
+                    useValue: spyCrestronService,
                 },
             ],
             schemas: [NO_ERRORS_SCHEMA],
@@ -56,21 +60,39 @@ describe('MotorLoadComponent', () => {
         expect(component).toBeTruthy();
     });
 
-    it('should set motor action', async () => {
+    it('should raise motor action', async () => {
+        const setMotorAction =
+            spyCrestronService.setMotorAction.and.returnValue();
         const motorRaiseButton = await loader.getHarness(
             MatButtonHarness.with({ selector: '#motor-raise-button' })
         );
+
+        // raise
         await motorRaiseButton.click();
-        expect(motorRaiseButton).toBeTruthy();
+        expect(setMotorAction).toHaveBeenCalled();
+    });
+
+    it('should stop the motor action', async () => {
+        const setMotorAction =
+            spyCrestronService.setMotorAction.and.returnValue();
+
+        // stop
         const motorStopButton = await loader.getHarness(
             MatButtonHarness.with({ selector: '#motor-stop-button' })
         );
         await motorStopButton.click();
-        expect(motorStopButton).toBeTruthy();
+        expect(setMotorAction).toHaveBeenCalled();
+    });
+
+    it('should lower the motor action', async () => {
+        const setMotorAction =
+            spyCrestronService.setMotorAction.and.returnValue();
+
+        // lower
         const motorLowerButton = await loader.getHarness(
             MatButtonHarness.with({ selector: '#motor-lower-button' })
         );
         await motorLowerButton.click();
-        expect(motorLowerButton).toBeTruthy();
+        expect(setMotorAction).toHaveBeenCalled();
     });
 });

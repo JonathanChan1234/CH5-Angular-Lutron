@@ -1,9 +1,5 @@
 import { Component } from '@angular/core';
-import {
-    PAGE_ROOMS_PANEL,
-    PAGE_SCENE_TABLE,
-    PAGE_SETTING,
-} from 'src/app/service/router/route';
+import { PAGE_ROOMS_PANEL, PAGE_SETTING } from 'src/app/service/router/route';
 import {
     BottomNavigation,
     RouterService,
@@ -21,7 +17,6 @@ export class NavBarComponent {
             route: PAGE_ROOMS_PANEL,
             icon: 'home',
         },
-        { label: 'navBar.scene', route: PAGE_SCENE_TABLE, icon: 'memory' },
         { label: 'navBar.setting', route: PAGE_SETTING, icon: 'settings' },
     ];
 

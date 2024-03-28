@@ -1,0 +1,102 @@
+@use '../../../theme/color.scss' as color;
+
+@media (min-width: 600px) and (max-width: 839.99px) and (orientation: portrait) {
+    .portrait-main-wrapper {
+        width: 100%;
+    }
+
+    .middle-row {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 10px;
+
+        >* {
+            padding: 10px;
+        }
+
+        .number-keypad {
+            flex: 1;
+        }
+
+        .media-keypad {
+            flex: 1;
+        }
+
+        .volume-column {
+            display: flex;
+            flex-direction: column;
+
+            .mute-button {
+                flex: 1;
+            }
+
+            .volume-button-group {
+                flex: 5;
+                height: 100%;
+            }
+        }
+
+        .unused-container {
+            flex: 1;
+
+            div {
+                height: 100%;
+                background-color: color.$unused-button-color;
+                border-radius: 5px;
+                box-shadow: rgba(255, 255, 255, 0.24) 0px 3px 8px;
+            }
+        }
+    }
+
+    .bottom-row {
+        color: color.$text-color;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 10px;
+
+        >* {
+            padding: 10px;
+        }
+
+
+        .unused-button-container {
+            flex: 1;
+
+            div {
+                height: 100%;
+                background-color: color.$unused-button-color;
+                border-radius: 5px;
+                box-shadow: rgba(255, 255, 255, 0.24) 0px 3px 8px;
+            }
+        }
+    }
+
+    .portrait-main-container {
+        display: flex;
+        padding: 10px;
+        justify-content: space-around;
+    }
+
+    .media-keypad {
+        flex: 0;
+    }
+
+    .dpad {
+        flex: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .number-keypad {
+        flex: 0;
+    }
+
+    .function-button {
+        flex: 1;
+    }
+}

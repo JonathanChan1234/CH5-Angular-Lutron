@@ -1,0 +1,16 @@
+.function-button-container {
+    background-color: var(--button-color);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    box-shadow: var(--button-shadow-color) 0px 3px 8px;
+    padding: 10px;
+
+    .function-button-bar {
+        height: 25px;
+        width: 25px;
+        border-radius: 50%;
+    }
+}

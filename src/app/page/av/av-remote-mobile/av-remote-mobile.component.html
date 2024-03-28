@@ -1,0 +1,53 @@
+<div>
+    <div class="keypad-container">
+        <app-icon-button
+            class="icon-button"
+            icon="arrow_left"
+            (click)="changeKeypad()"
+        ></app-icon-button>
+        <ng-container *ngIf="showNumberKeypad; else showMediaKeypad">
+            <app-number-keypad
+                class="number-keypad"
+                size="small"
+            ></app-number-keypad>
+        </ng-container>
+        <ng-template #showMediaKeypad>
+            <app-media-keypad class="media-keypad"></app-media-keypad>
+        </ng-template>
+        <app-icon-button
+            class="icon-button"
+            icon="arrow_right"
+            (click)="changeKeypad()"
+        ></app-icon-button>
+    </div>
+
+    <div class="av-remote-bottom-container">
+        <div class="keypad-volume-channel-container">
+            <app-updown-button-group label="VOL"></app-updown-button-group>
+            <div class="dpad-container">
+                <app-av-custom-dpad [size]="150"> </app-av-custom-dpad>
+            </div>
+            <app-updown-button-group label="CH"></app-updown-button-group>
+        </div>
+
+        <div class="function-button-container">
+            <app-icon-button icon="volume_off"></app-icon-button>
+            <app-function-button
+                backgroundColor="#DF0404"
+                class="function-button"
+            ></app-function-button>
+            <app-function-button
+                backgroundColor="#FAD301"
+                class="function-button"
+            ></app-function-button>
+            <app-function-button
+                backgroundColor="#5F8F4B"
+                class="function-button"
+            ></app-function-button>
+            <app-function-button
+                backgroundColor="#6A8BA3"
+                class="function-button"
+            ></app-function-button>
+        </div>
+    </div>
+</div>

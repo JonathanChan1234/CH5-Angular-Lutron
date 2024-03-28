@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DomSanitizer } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
@@ -15,6 +16,7 @@ import { RouterService } from './service/router/router.service';
 })
 export class AppComponent implements OnInit {
     defaultLang: 'en' | 'zh' | 'jp';
+    darkModeEnabled = false;
     route$: Observable<string>;
     appSubscription: Subscription;
 
@@ -56,6 +58,11 @@ export class AppComponent implements OnInit {
                 { duration: 2000 }
             );
         });
+    }
+
+    onThemeChanged({ checked }: MatSlideToggleChange): void {
+        this.darkModeEnabled = checked;
+        document.body.setAttribute('data-theme', checked ? 'dark' : 'light');
     }
 
     navigate(route: string) {

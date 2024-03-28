@@ -1,9 +1,12 @@
-import { Room } from './room';
+export enum DeviceType {
+    Dimmer = 1,
+    Switch = 2,
+    Motor = 3,
+    Av = 4,
+}
 
-export type DeviceType = 'dimmer' | 'switch' | 'motor';
 export type Device = {
-    id: number;
-    name: string;
     type: DeviceType;
-    room: Room;
+    name: string;
+    joinId: number;
 };

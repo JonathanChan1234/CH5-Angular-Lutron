@@ -46,7 +46,7 @@ export class MotorActionFormComponent implements OnInit {
         }
         this.sceneService
             .addMotorActionToScene(this.sceneId, {
-                deviceId: this.device.id,
+                deviceId: this.device.joinId,
                 action:
                     this.formGroup.value.motorAction === 'raise'
                         ? 'raise'

@@ -13,14 +13,14 @@ export class MotorLoadComponent {
     constructor(private crestronService: CrestronService) {}
 
     raise() {
-        this.crestronService.setMotorAction(this.load.id, 'raise');
+        this.crestronService.setMotorAction(this.load.joinId, 'raise');
     }
 
     stop() {
-        this.crestronService.setMotorAction(this.load.id, 'stop');
+        this.crestronService.setMotorAction(this.load.joinId, 'stop');
     }
 
     lower() {
-        this.crestronService.setMotorAction(this.load.id, 'lower');
+        this.crestronService.setMotorAction(this.load.joinId, 'lower');
     }
 }

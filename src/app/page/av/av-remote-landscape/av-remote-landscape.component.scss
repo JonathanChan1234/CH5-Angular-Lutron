@@ -1,0 +1,82 @@
+@use '../../../theme/color.scss' as color;
+
+@media (min-width: 960px) and (max-width: 1279.99px) and (orientation: landscape) {
+    .middle-row {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 10px;
+
+        >* {
+            padding: 10px;
+        }
+
+        .unused-container {
+            flex: 1;
+
+            div {
+                height: 100%;
+                background-color: var(--unused-button-color);
+                border-radius: 5px;
+                box-shadow: var(--button-shadow-color) 0px 3px 8px;
+            }
+        }
+    }
+
+    .bottom-row {
+        color: color.$text-color;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 10px;
+
+        >* {
+            padding: 10px;
+        }
+
+
+        .unused-button-container {
+            flex: 1;
+
+            div {
+                height: 100%;
+                background-color: var(--unused-button-color);
+                border-radius: 5px;
+                box-shadow: var(--button-shadow-color) 0px 3px 8px;
+            }
+        }
+    }
+
+    .volume-button-group {
+        flex: 1;
+    }
+
+    .channel-button-group {
+        flex: 1;
+    }
+
+    .media-keypad {
+        flex: 3;
+    }
+
+    .dpad-container {
+        flex: 4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .number-keypad {
+        flex: 3
+    }
+
+    .mute-button {
+        flex: 1;
+    }
+
+    .function-button {
+        flex: 1;
+    }
+}

@@ -3,19 +3,26 @@
         <p class="page-title">{{ name }}</p>
     </div>
     <div class="device-container">
-        <div *ngFor="let load of devices$ | async" [ngSwitch]="load.type">
+        <div *ngFor="let load of devices" [ngSwitch]="load.type">
             <app-dimmer-load
                 [load]="load"
-                *ngSwitchCase="'dimmer'"
+                *ngSwitchCase="DeviceType.Dimmer"
             ></app-dimmer-load>
             <app-switch-load
                 [load]="load"
-                *ngSwitchCase="'switch'"
+                *ngSwitchCase="DeviceType.Switch"
             ></app-switch-load>
             <app-motor-load
                 [load]="load"
-                *ngSwitchCase="'motor'"
+                *ngSwitchCase="DeviceType.Motor"
             ></app-motor-load>
+            <app-av-device
+                [load]="load"
+                *ngSwitchCase="DeviceType.Av"
+            ></app-av-device>
         </div>
+    </div>
+    <div>
+        {{ deviceData }}
     </div>
 </div>

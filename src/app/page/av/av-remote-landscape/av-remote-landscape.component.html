@@ -1,0 +1,41 @@
+<div class="middle-row">
+    <app-updown-button-group
+        class="volume-button-group"
+        label="VOL"
+    ></app-updown-button-group>
+    <app-updown-button-group
+        class="channel-button-group"
+        label="CH"
+    ></app-updown-button-group>
+    <app-media-keypad class="media-keypad"></app-media-keypad>
+    <div class="dpad-container">
+        <app-av-custom-dpad class="dpad" [size]="250"></app-av-custom-dpad>
+    </div>
+    <app-number-keypad class="number-keypad"></app-number-keypad>
+    <div class="unused-container">
+        <div></div>
+    </div>
+</div>
+
+<div class="bottom-row">
+    <app-icon-button icon="volume_off" class="mute-button"></app-icon-button>
+    <app-function-button
+        backgroundColor="#DF0404"
+        class="function-button"
+    ></app-function-button>
+    <app-function-button
+        backgroundColor="#FAD301"
+        class="function-button"
+    ></app-function-button>
+    <app-function-button
+        backgroundColor="#5F8F4B"
+        class="function-button"
+    ></app-function-button>
+    <app-function-button
+        backgroundColor="#6A8BA3"
+        class="function-button"
+    ></app-function-button>
+    <div class="unused-button-container">
+        <div></div>
+    </div>
+</div>

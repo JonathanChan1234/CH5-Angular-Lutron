@@ -1,6 +1,6 @@
 <div class="root-container">
     <div class="app-header">
-        <mat-toolbar>{{ 'header.title' | translate }} </mat-toolbar>
+        <app-app-toolbar></app-app-toolbar>
     </div>
     <div [ngSwitch]="route$ | async" class="main-container">
         <ng-container *ngSwitchCase="'room_panel'">
@@ -23,6 +23,9 @@
         </ng-container>
         <ng-container *ngSwitchCase="'scene_action_create'">
             <app-scene-action-create></app-scene-action-create>
+        </ng-container>
+        <ng-container *ngSwitchCase="'av_remote'">
+            <app-av-remote></app-av-remote>
         </ng-container>
         <ng-container *ngSwitchDefault="">
             <app-rooms-panel></app-rooms-panel>

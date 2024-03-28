@@ -6,9 +6,9 @@ import {
     OnInit,
 } from '@angular/core';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
-import { Subscription } from 'rxjs';
 import { Device } from 'src/app/model/device';
-import { CrestronService } from 'src/app/service/crestron/crestron.service';
+
+declare var CrComLib: any;
 
 @Component({
     selector: 'app-switch-load',
@@ -18,28 +18,37 @@ import { CrestronService } from 'src/app/service/crestron/crestron.service';
 export class SwitchLoadComponent implements OnInit, OnDestroy {
     @Input() load: Device;
     power = false;
-    crestronSubscription: Subscription;
+    subscriptionId?: string;
 
-    constructor(
-        private crestronService: CrestronService,
-        private changeDetectorRef: ChangeDetectorRef
-    ) {}
+    constructor(private changeDetectorRef: ChangeDetectorRef) {}
 
     ngOnInit(): void {
-        this.crestronSubscription = this.crestronService
-            .getLoadFbById(this.load.id)
-            .subscribe((value) => {
-                this.power = value > 0;
-                this.changeDetectorRef.detectChanges();
-            });
-        this.crestronService.askForLoadFb(this.load.id);
+        this.subscriptionId = CrComLib.subscribeState(
+            'n',
+            this.load.joinId.toString(),
+            this.onFeedbackReceived.bind(this)
+        );
+    }
+
+    onFeedbackReceived(level: number) {
+        this.power = level > 0;
+        this.changeDetectorRef.detectChanges();
     }
 
     onToggleChange({ checked }: MatSlideToggleChange) {
-        this.crestronService.setSwitchLevel(this.load.id, checked);
+        CrComLib.publishEvent(
+            'n',
+            this.load.joinId.toString(),
+            checked ? 100 : 0
+        );
     }
 
     ngOnDestroy(): void {
-        this.crestronSubscription.unsubscribe();
+        if (!this.subscriptionId) return;
+        CrComLib.unsubscribeState(
+            'n',
+            this.load.joinId.toString(),
+            this.subscriptionId
+        );
     }
 }

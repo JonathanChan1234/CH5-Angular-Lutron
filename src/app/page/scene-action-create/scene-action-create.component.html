@@ -36,7 +36,7 @@
                         *ngFor="let load of load$ | async"
                         [value]="load"
                     >
-                        {{ load.name }} ({{ load.type | uppercase }})
+                        {{ load.name }} ({{ load.type.toString() | uppercase }})
                     </mat-option>
                 </mat-select>
             </mat-form-field>

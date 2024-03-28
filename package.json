@@ -8,7 +8,8 @@
         "test": "ng test",
         "lint": "ng lint",
         "e2e": "ng e2e",
-        "archive": "ng build -c production && ch5-cli archive -p ch5_test -d dist/crcom-basic -o dist && ch5-cli deploy -H 192.168.86.49 -t touchscreen dist/ch5_test.ch5z -p"
+        "archive": "ch5-cli archive -p ch5_test -d dist/crcom-basic -o dist ",
+        "deploy": "ng build -c production && ch5-cli archive -p ch5_test -d dist/crcom-basic -o dist && ch5-cli deploy -H 192.168.86.49 -t touchscreen dist/ch5_test.ch5z -p"
     },
     "private": true,
     "dependencies": {
@@ -23,7 +24,7 @@
         "@angular/platform-browser": "~9.1.9",
         "@angular/platform-browser-dynamic": "~9.1.9",
         "@angular/router": "~9.1.9",
-        "@crestron/ch5-crcomlib": "^1.0.0",
+        "@crestron/ch5-crcomlib": "^1.2.0",
         "@crestron/ch5-theme": "^1.0.0",
         "@ngx-translate/core": "12",
         "@ngx-translate/http-loader": "5",

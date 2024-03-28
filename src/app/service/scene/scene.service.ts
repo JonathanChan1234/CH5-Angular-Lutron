@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import { catchError, finalize, shareReplay } from 'rxjs/operators';
+import { Observable, of, throwError } from 'rxjs';
+import { catchError, finalize } from 'rxjs/operators';
 import {
     DimmerAction,
     MotorAction,
@@ -46,15 +46,16 @@ export class SceneService {
     }
 
     getSceneList(clearCache: boolean): Observable<Scene[]> {
-        if (clearCache) this.sceneCacheSerivce.clearCache();
-        let scene$ = this.sceneCacheSerivce.getValue();
-        if (!scene$) {
-            scene$ = this.httpClient
-                .get<Scene[]>('/scene')
-                .pipe(shareReplay(1), catchError(this.handleError));
-            this.sceneCacheSerivce.setValue(scene$);
-        }
-        return scene$;
+        // if (clearCache) this.sceneCacheSerivce.clearCache();
+        // let scene$ = this.sceneCacheSerivce.getValue();
+        // if (!scene$) {
+        //     scene$ = this.httpClient
+        //         .get<Scene[]>('/scene')
+        //         .pipe(shareReplay(1), catchError(this.handleError));
+        //     this.sceneCacheSerivce.setValue(scene$);
+        // }
+        // return scene$;
+        return of([]);
     }
 
     getSceneActions(id: string): Observable<SceneAction[]> {

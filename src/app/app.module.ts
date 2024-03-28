@@ -1,4 +1,4 @@
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -21,13 +21,22 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { AppComponent } from './app.component';
+import { AppToolbarComponent } from './components/app-toolbar/app-toolbar.component';
+import { AvDeviceComponent } from './components/av-device/av-device.component';
+import { AvCustomDpadComponent } from './components/av/av-custom-dpad/av-custom-dpad.component';
+import { AvOptionBarComponent } from './components/av/av-option-bar/av-option-bar.component';
+import { FunctionButtonComponent } from './components/av/function-button/function-button.component';
+import { IconButtonComponent } from './components/av/icon-button/icon-button.component';
+import { MediaKeypadComponent } from './components/av/media-keypad/media-keypad.component';
+import { NumberKeypadComponent } from './components/av/number-keypad/number-keypad.component';
+import { UpdownButtonGroupComponent } from './components/av/updown-button-group/updown-button-group.component';
+import { VolumeSlidebarComponent } from './components/av/volume-slidebar/volume-slidebar.component';
 import { CreateSceneDialogComponent } from './components/create-scene-dialog/create-scene-dialog.component';
 import { DeleteSceneDialogComponent } from './components/delete-scene-dialog/delete-scene-dialog.component';
 import { DimmerActionFormComponent } from './components/dimmer-action-form/dimmer-action-form.component';
 import { DimmerLoadComponent } from './components/dimmer-load/dimmer-load.component';
 import { ErrorMessageBarComponent } from './components/error-message-bar/error-message-bar.component';
 import { LoadCardHeaderComponent } from './components/load-card-header/load-card-header.component';
-import { ModalWithoutJoinComponent } from './components/modal-without-join/modal-without-join.component';
 import { MotorActionFormComponent } from './components/motor-action-form/motor-action-form.component';
 import { MotorLoadComponent } from './components/motor-load/motor-load.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
@@ -37,6 +46,10 @@ import { SwitchActionFormComponent } from './components/switch-action-form/switc
 import { SwitchLoadComponent } from './components/switch-load/switch-load.component';
 import { StopPropagationDirective } from './directive/stop-propagation.directive';
 import { ApiInterceptor } from './http/ApiInterceptor';
+import { AvRemoteLandscapeComponent } from './page/av/av-remote-landscape/av-remote-landscape.component';
+import { AvRemoteMobileComponent } from './page/av/av-remote-mobile/av-remote-mobile.component';
+import { AvRemotePortraitComponent } from './page/av/av-remote-portrait/av-remote-portrait.component';
+import { AvRemoteComponent } from './page/av/av-remote/av-remote.component';
 import { MonitoringComponent } from './page/monitoring/monitoring.component';
 import { RoomViewComponent } from './page/room-view/room-view.component';
 import { RoomsPanelComponent } from './page/rooms-panel/rooms-panel.component';
@@ -49,7 +62,6 @@ import CustomLoader from './translation/CustomLoader';
 @NgModule({
     declarations: [
         AppComponent,
-        ModalWithoutJoinComponent,
         NavChildComponent,
         NavBarComponent,
         RoomCardComponent,
@@ -71,6 +83,20 @@ import CustomLoader from './translation/CustomLoader';
         SettingComponent,
         CreateSceneDialogComponent,
         DeleteSceneDialogComponent,
+        AvDeviceComponent,
+        AvRemoteComponent,
+        AvOptionBarComponent,
+        UpdownButtonGroupComponent,
+        MediaKeypadComponent,
+        NumberKeypadComponent,
+        IconButtonComponent,
+        VolumeSlidebarComponent,
+        FunctionButtonComponent,
+        AvRemoteLandscapeComponent,
+        AvRemotePortraitComponent,
+        AvRemoteMobileComponent,
+        AppToolbarComponent,
+        AvCustomDpadComponent,
     ],
     imports: [
         BrowserModule,

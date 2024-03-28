@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModalWithoutJoinComponent } from './modal-without-join.component';
+import { AvRemoteComponent } from './av-remote.component';
 
-describe('ModalWithoutJoinComponent', () => {
-  let component: ModalWithoutJoinComponent;
-  let fixture: ComponentFixture<ModalWithoutJoinComponent>;
+describe('AvRemoteComponent', () => {
+  let component: AvRemoteComponent;
+  let fixture: ComponentFixture<AvRemoteComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ModalWithoutJoinComponent ]
+      declarations: [ AvRemoteComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ModalWithoutJoinComponent);
+    fixture = TestBed.createComponent(AvRemoteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -75,7 +75,7 @@ export class DimmerActionFormComponent implements OnInit {
 
         this.sceneService
             .addDimmerActionToScene(this.sceneId, {
-                deviceId: this.device.id,
+                deviceId: this.device.joinId,
                 brightness: this.sliderValue,
                 delay,
                 fade,

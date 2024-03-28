@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import { catchError, shareReplay } from 'rxjs/operators';
+import { Observable, of, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { Device } from '../../model/device';
 import { Room } from '../../model/room';
 import { DeviceCacheService } from './device-cache.service';
@@ -18,14 +18,15 @@ export class RoomService {
     ) {}
 
     getRoomList(): Observable<Room[]> {
-        let room$ = this.roomCacheService.getValue();
-        if (!room$) {
-            room$ = this.httpClient
-                .get<Room[]>('/room')
-                .pipe(shareReplay(1), catchError(this.handleError));
-            this.roomCacheService.setValue(room$);
-        }
-        return room$;
+        // let room$ = this.roomCacheService.getValue();
+        // if (!room$) {
+        //     room$ = this.httpClient
+        //         .get<Room[]>('/room')
+        //         .pipe(shareReplay(1), catchError(this.handleError));
+        //     this.roomCacheService.setValue(room$);
+        // }
+        // return room$;
+        return of<Room[]>([]);
     }
 
     clearRoomCache() {
@@ -33,15 +34,16 @@ export class RoomService {
     }
 
     getRoomLoadList(room: string): Observable<Device[]> {
-        const object = { room }; // cache key
-        let device$ = this.deviceCacheService.getValue(object);
-        if (!device$) {
-            device$ = this.httpClient
-                .get<Device[]>(`/device?room=${room}`)
-                .pipe(shareReplay(1), catchError(this.handleError));
-            this.deviceCacheService.setValue(device$, object);
-        }
-        return device$;
+        // const object = { room }; // cache key
+        // let device$ = this.deviceCacheService.getValue(object);
+        // if (!device$) {
+        //     device$ = this.httpClient
+        //         .get<Device[]>(`/device?room=${room}`)
+        //         .pipe(shareReplay(1), catchError(this.handleError));
+        //     this.deviceCacheService.setValue(device$, object);
+        // }
+        // return device$;
+        return of<Device[]>([]);
     }
 
     clearDeviceCache() {

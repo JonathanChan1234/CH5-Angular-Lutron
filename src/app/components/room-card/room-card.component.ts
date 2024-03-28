@@ -40,38 +40,38 @@ export class RoomCardComponent implements OnInit {
     }
 
     changeRoomName() {
-        if (!this.nameFormControl.valid) {
-            this.appService.showSnackBarMsg({
-                msg: 'Please fill in the name field',
-                type: 'error',
-            });
-            return;
-        }
-        const newRoomName = this.nameFormControl.value;
-        if (this.room.name === newRoomName) {
-            this.editMode = false;
-            return;
-        }
-        this.roomService.changeRoomName(this.room.id, newRoomName).subscribe(
-            () => {
-                this.appService.showSnackBarMsg({
-                    msg: `${this.translationService.instant(
-                        'room.changeRoomMessage'
-                    )}`,
-                    type: 'success',
-                });
-                this.room.name = newRoomName;
-                this.editMode = false;
-            },
-            (error) => {
-                this.editMode = false;
-                this.appService.showSnackBarMsg({
-                    msg: error.message,
-                    type: 'error',
-                });
-                this.nameFormControl.setValue(this.room.name);
-            }
-        );
+        // if (!this.nameFormControl.valid) {
+        //     this.appService.showSnackBarMsg({
+        //         msg: 'Please fill in the name field',
+        //         type: 'error',
+        //     });
+        //     return;
+        // }
+        // const newRoomName = this.nameFormControl.value;
+        // if (this.room.name === newRoomName) {
+        //     this.editMode = false;
+        //     return;
+        // }
+        // this.roomService.changeRoomName(this.room.id, newRoomName).subscribe(
+        //     () => {
+        //         this.appService.showSnackBarMsg({
+        //             msg: `${this.translationService.instant(
+        //                 'room.changeRoomMessage'
+        //             )}`,
+        //             type: 'success',
+        //         });
+        //         this.room.name = newRoomName;
+        //         this.editMode = false;
+        //     },
+        //     (error) => {
+        //         this.editMode = false;
+        //         this.appService.showSnackBarMsg({
+        //             msg: error.message,
+        //             type: 'error',
+        //         });
+        //         this.nameFormControl.setValue(this.room.name);
+        //     }
+        // );
     }
 
     navigateRoom() {

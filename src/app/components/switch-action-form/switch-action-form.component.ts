@@ -40,7 +40,7 @@ export class SwitchActionFormComponent implements OnInit {
     addScene() {
         this.sceneService
             .addSwitchActionToScene(this.sceneId, {
-                deviceId: this.device.id,
+                deviceId: this.device.joinId,
                 power: this.powerState,
             })
             .subscribe(

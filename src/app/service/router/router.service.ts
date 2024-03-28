@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { PAGE_ROOMS_PANEL, PAGE_SCENE_TABLE, PAGE_SETTING } from './route';
+import {
+    PAGE_AV_REMOTE,
+    PAGE_ROOMS_PANEL,
+    PAGE_SCENE_TABLE,
+    PAGE_SETTING,
+} from './route';
 
 export type RouteInfo = {
     path: string;
@@ -10,13 +15,14 @@ export type RouteInfo = {
 export type BottomNavigation =
     | typeof PAGE_ROOMS_PANEL
     | typeof PAGE_SCENE_TABLE
-    | typeof PAGE_SETTING;
+    | typeof PAGE_SETTING
+    | typeof PAGE_AV_REMOTE;
 
 @Injectable({
     providedIn: 'root',
 })
 export class RouterService {
-    readonly DEFAULT_ROUTE: BottomNavigation = PAGE_SCENE_TABLE;
+    readonly DEFAULT_ROUTE: BottomNavigation = PAGE_AV_REMOTE;
     route$ = new BehaviorSubject<RouteInfo>({
         path: this.DEFAULT_ROUTE,
         params: null,

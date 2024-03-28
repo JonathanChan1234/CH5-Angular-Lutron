@@ -1,0 +1,15 @@
+<mat-toolbar class="app-toolbar">
+    <div class="app-toolbar-content-container">
+        <span>
+            {{ 'header.title' | translate }}
+        </span>
+        <div class="dark-mode-toggle-container">
+            <mat-icon>dark_mode</mat-icon>
+            <mat-slide-toggle
+                class="dark-mode-toggle"
+                [checked]="darkModeEnabled"
+                (change)="onThemeChanged($event)"
+            ></mat-slide-toggle>
+        </div>
+    </div>
+</mat-toolbar>

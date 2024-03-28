@@ -1,0 +1,29 @@
+.large-keypad {
+    grid-auto-rows: minmax(50px, 90px);
+}
+
+.medium-keypad {
+    grid-auto-rows: minmax(50px, 80px);
+}
+
+.small-keypad {
+    grid-auto-rows: minmax(50px, 70px);
+}
+
+.number-pad-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+    .number-button {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--button-color);
+        font-size: 25px;
+        color: var(--text-color);
+        border: 3px solid var(--background-color);
+        border-radius: 5px;
+        box-shadow: var(--button-shadow-color) 0px 3px 8px;
+    }
+}

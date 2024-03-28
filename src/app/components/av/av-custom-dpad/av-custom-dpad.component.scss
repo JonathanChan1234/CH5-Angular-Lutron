@@ -1,0 +1,23 @@
+.dpad-wrapper {
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    color: var(--text-color);
+
+    .unused {
+        visibility: hidden;
+    }
+
+    .arrow-wrapper {
+        background-color: var(--button-color);
+        box-shadow: var(--button-shadow-color) 0px 3px 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid var(--background-color);
+        border-radius: 5px;
+
+        .medium-icon {
+            transform: scale(2) !important;
+        }
+    }
+}

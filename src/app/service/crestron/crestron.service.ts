@@ -55,7 +55,7 @@ export class CrestronService implements OnDestroy {
         // for testing only
         if (!environment.production)
             CrComLib.publishEvent('s', this.fbSignal, `${id},${level}`);
-        CrComLib.publishEvent('s', this.controlSignal, `1,${id},${level},1,0`);
+        CrComLib.publishEvent('n', id, (level * 65534) / 100);
     }
 
     setSwitchLevel(id: number, power: boolean) {
@@ -103,20 +103,20 @@ export class CrestronService implements OnDestroy {
                     case 'dimmer':
                         const dimmerAction = action as DimmerAction;
                         cmd.push(
-                            `1,${action.device.id},${dimmerAction.brightness},${dimmerAction.fade},${dimmerAction.delay}`
+                            `1,${action.device.joinId},${dimmerAction.brightness},${dimmerAction.fade},${dimmerAction.delay}`
                         );
                         break;
                     case 'switch':
                         const switchAction = action as SwitchAction;
                         cmd.push(
-                            `2,${action.device.id},${
+                            `2,${action.device.joinId},${
                                 switchAction.power ? 100 : 0
                             },0`
                         );
                         break;
                     case 'motor':
                         cmd.push(
-                            `3,${action.device.id},${
+                            `3,${action.device.joinId},${
                                 (action as MotorAction).action === 'raise'
                                     ? 2
                                     : 3

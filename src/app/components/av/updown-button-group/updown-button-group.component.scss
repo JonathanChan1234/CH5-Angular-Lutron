@@ -1,0 +1,37 @@
+.button-group-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--text-color);
+    font-size: 25px;
+    height: 100%;
+
+    >* {
+        background-color: var(--button-color);
+        display: flex;
+        justify-content: center;
+        padding: 5px;
+        box-shadow: var(--button-shadow-color) 0px 3px 8px;
+    }
+
+    .button-wrapper {
+        flex: 5;
+        align-items: center;
+    }
+
+    .top {
+        border-radius: 5px 5px 0px 0px;
+    }
+
+    .bottom {
+        border-radius: 0px 0px 5px 5px;
+    }
+
+    .button-group-text {
+        flex: 1;
+
+        div {
+            padding: 5px;
+        }
+    }
+}

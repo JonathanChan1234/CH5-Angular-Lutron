@@ -13,6 +13,7 @@
     flex-direction: column;
 }
 
+
 .app-header,
 .app-nav-bar {
     width: 100%;
@@ -29,4 +30,8 @@
 
 .app-nav-bar {
     width: 100%;
+}
+
+.medium-icon {
+    transform: scale(1.5);
 }
