@@ -1,5 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { Observable } from 'rxjs';
+import {
+    RouteInfo,
+    RouterService,
+} from 'src/app/service/router/router.service';
 
 @Component({
     selector: 'app-app-toolbar',
@@ -7,15 +12,24 @@ import { MatSlideToggleChange } from '@angular/material/slide-toggle';
     styleUrls: ['./app-toolbar.component.scss'],
 })
 export class AppToolbarComponent implements OnInit {
-    darkModeEnabled = true;
+    darkModeEnabled = false;
+    history$!: Observable<RouteInfo[]>;
 
-    constructor() {}
+    constructor(
+        private readonly router: RouterService,
+        private readonly changeDetectRef: ChangeDetectorRef
+    ) {}
 
     ngOnInit(): void {
         document.body.setAttribute(
             'data-theme',
             this.darkModeEnabled ? 'dark' : 'light'
         );
+        this.history$ = this.router.getCurrentHistory();
+    }
+
+    back(): void {
+        this.router.pop();
     }
 
     onThemeChanged({ checked }: MatSlideToggleChange): void {

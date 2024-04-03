@@ -1,0 +1,32 @@
+.room-selection-bar-container {
+    position: fixed;
+    bottom: 0;
+    height: 10vh;
+    width: 100%;
+    background-color: var(--secondary-background-color);
+    color: var(--text-color);
+    font-size: 3vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: var(--button-shadow-color) 0px 3px 8px;
+    border-radius: 0.2em;
+
+    .room-selection-button {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        user-select: none;
+
+        padding: 1vh 0 1vh 0;
+
+        .room-selection-line {
+            background-color: var(--text-color);
+            margin-top: 2vh;
+            height: 0.5vh;
+            width: 20%;
+        }
+    }
+}

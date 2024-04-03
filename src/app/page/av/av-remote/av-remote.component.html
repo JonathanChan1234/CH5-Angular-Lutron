@@ -1,8 +1,4 @@
 <div class="av-remote-background">
-    <app-av-option-bar
-        [fontSize]="breakpoint === Breakpoint.Mobile ? 15 : 20"
-    ></app-av-option-bar>
-
     <div [ngSwitch]="breakpoint">
         <ng-container *ngSwitchCase="Breakpoint.TabletLandscape">
             <app-av-remote-landscape></app-av-remote-landscape>

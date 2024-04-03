@@ -1,17 +1,17 @@
-<div class="option-button-bar" [style.fontSize]="fontSize + 'px'">
-    <div class="option-button">
+<div class="av-option-button-bar" [style.fontSize.px]="fontSize">
+    <div class="option-button" (click)="onMenuButtonClick()">
         <div>MENU</div>
         <mat-icon>menu</mat-icon>
     </div>
-    <div class="option-button">
+    <div class="option-button" (click)="onCancelButtonClick()">
         <div>CANCEL</div>
         <mat-icon>cancel</mat-icon>
     </div>
-    <div class="option-button">
+    <div class="option-button" (click)="onInfoButtonClick()">
         <div>INFO</div>
         <mat-icon>info</mat-icon>
     </div>
-    <div class="option-button">
+    <div class="option-button" (click)="onPowerButtonClick()">
         <div>POWER</div>
         <mat-icon>power_settings_new</mat-icon>
     </div>

@@ -15,9 +15,17 @@
         align-items: center;
         border: 1px solid var(--background-color);
         border-radius: 5px;
+        cursor: pointer;
+        user-select: none;
 
         .medium-icon {
             transform: scale(2) !important;
         }
+    }
+
+    .arrow-wrapper:active {
+        background-color: var(--selected-button-color);
+        color: var(--selected-button-text-color);
+        box-shadow: var(--button-shadow-color) 0px 3px 8px;
     }
 }

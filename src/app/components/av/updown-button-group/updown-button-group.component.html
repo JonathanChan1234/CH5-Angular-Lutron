@@ -1,11 +1,11 @@
 <div class="button-group-container">
-    <div class="top button-wrapper">
+    <div class="top button-wrapper" (click)="upButtonClick()">
         <mat-icon class="medium-icon">add</mat-icon>
     </div>
     <div class="button-group-text">
         <div>{{ label }}</div>
     </div>
-    <div class="bottom button-wrapper">
+    <div class="bottom button-wrapper" (click)="downButtonClick()">
         <mat-icon class="medium-icon">remove</mat-icon>
     </div>
 </div>

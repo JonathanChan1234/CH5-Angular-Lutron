@@ -1,6 +1,4 @@
-@use '../../../theme/color.scss' as color;
-
-@media (min-width: 960px) and (max-width: 1279.99px) and (orientation: landscape) {
+.av-remote-landscape-container {
     .middle-row {
         width: 100%;
         display: flex;
@@ -8,7 +6,7 @@
         justify-content: center;
         padding: 10px;
 
-        >* {
+        > * {
             padding: 10px;
         }
 
@@ -25,17 +23,16 @@
     }
 
     .bottom-row {
-        color: color.$text-color;
+        color: var(--text-color);
         width: 100%;
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
         padding: 10px;
 
-        >* {
+        > * {
             padding: 10px;
         }
-
 
         .unused-button-container {
             flex: 1;
@@ -69,7 +66,7 @@
     }
 
     .number-keypad {
-        flex: 3
+        flex: 3;
     }
 
     .mute-button {

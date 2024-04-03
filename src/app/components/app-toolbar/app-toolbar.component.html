@@ -1,8 +1,20 @@
 <mat-toolbar class="app-toolbar">
     <div class="app-toolbar-content-container">
-        <span>
-            {{ 'header.title' | translate }}
-        </span>
+        <div class="app-toolbar-title-container">
+            <button
+                mat-icon-button
+                *ngIf="(history$ | async).length > 0"
+                (click)="back()"
+            >
+                <mat-icon
+                    svgIcon="custom:back"
+                    style="height: 3vh; width: 3vh"
+                ></mat-icon>
+            </button>
+            <span>
+                {{ 'header.title' | translate }}
+            </span>
+        </div>
         <div class="dark-mode-toggle-container">
             <mat-icon>dark_mode</mat-icon>
             <mat-slide-toggle

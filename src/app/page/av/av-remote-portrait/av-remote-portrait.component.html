@@ -1,39 +1,54 @@
 <div class="portrait-main-container">
+    <app-av-option-bar [fontSize]="20" [av]="av"></app-av-option-bar>
     <div class="portrait-main-wrapper">
-        <div class="middle-row">
-            <app-media-keypad class="media-keypad"></app-media-keypad>
-            <app-number-keypad class="number-keypad"></app-number-keypad>
+        <div class="keypad-row">
+            <app-media-keypad class="media-keypad" [av]="av"></app-media-keypad>
+            <app-number-keypad
+                class="number-keypad"
+                [av]="av"
+            ></app-number-keypad>
         </div>
         <div class="middle-row">
             <app-updown-button-group
                 class="volume-button-group"
                 label="VOL"
+                (onUpButtonCilck)="pulse(av?.volumeUp)"
+                (onDownButtonClick)="pulse(av?.volumeDown)"
             ></app-updown-button-group>
+            <app-av-custom-dpad></app-av-custom-dpad>
             <app-updown-button-group
                 class="channel-button-group"
                 label="CH"
+                (onUpButtonCilck)="pulse(av?.channelUp)"
+                (onDownButtonClick)="pulse(av?.channelDown)"
             ></app-updown-button-group>
-            <app-av-custom-dpad></app-av-custom-dpad>
         </div>
     </div>
-</div>
 
-<div class="bottom-row">
-    <app-icon-button icon="volume_off" class="mute-button"></app-icon-button>
-    <app-function-button
-        backgroundColor="#DF0404"
-        class="function-button"
-    ></app-function-button>
-    <app-function-button
-        backgroundColor="#FAD301"
-        class="function-button"
-    ></app-function-button>
-    <app-function-button
-        backgroundColor="#5F8F4B"
-        class="function-button"
-    ></app-function-button>
-    <app-function-button
-        backgroundColor="#6A8BA3"
-        class="function-button"
-    ></app-function-button>
+    <div class="bottom-row">
+        <app-icon-button
+            icon="volume_off"
+            (onClick)="pulse(av?.mute)"
+        ></app-icon-button>
+        <app-function-button
+            backgroundColor="#DF0404"
+            class="function-button"
+            (onClick)="pulse(av?.red)"
+        ></app-function-button>
+        <app-function-button
+            backgroundColor="#FAD301"
+            class="function-button"
+            (onClick)="pulse(av?.yellow)"
+        ></app-function-button>
+        <app-function-button
+            backgroundColor="#5F8F4B"
+            class="function-button"
+            (onClick)="pulse(av?.green)"
+        ></app-function-button>
+        <app-function-button
+            backgroundColor="#6A8BA3"
+            class="function-button"
+            (onClick)="pulse(av?.cyan)"
+        ></app-function-button>
+    </div>
 </div>

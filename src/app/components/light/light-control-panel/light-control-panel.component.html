@@ -1,0 +1,50 @@
+<div class="light-control-panel-container">
+    <div class="light-name">{{ light.name }}</div>
+
+    <div class="light-control-button-group-container">
+        <div class="light-control-button-group">
+            <app-rounded-icon-button
+                [isSvgIcon]="true"
+                iconName="custom:light_off"
+                (click)="turnOff()"
+                size="3vh"
+            ></app-rounded-icon-button>
+            <app-rounded-icon-button
+                [class.hidden]="!light.hasLevel"
+                [isSvgIcon]="true"
+                iconName="custom:left_arrow"
+                (click)="decrementLevel()"
+                size="3vh"
+            ></app-rounded-icon-button>
+            <app-rounded-icon-button
+                [class.hidden]="!light.hasLevel"
+                [isSvgIcon]="true"
+                iconName="custom:right_arrow"
+                (click)="incrementLevel()"
+                size="3vh"
+            ></app-rounded-icon-button>
+            <app-rounded-icon-button
+                [isSvgIcon]="true"
+                iconName="custom:light_on"
+                (click)="turnOn()"
+                size="3vh"
+            ></app-rounded-icon-button>
+        </div>
+        <div class="light-level-text">
+            <div>
+                {{ levelText }}
+            </div>
+        </div>
+    </div>
+
+    <div
+        class="light-control-slider-container"
+        [class.hidden]="!light.hasLevel"
+    >
+        <app-slider
+            [value]="level"
+            (onValueChanged)="onLevelChanged($event)"
+            width="70vw"
+        ></app-slider>
+    </div>
+</div>

@@ -1,0 +1,8 @@
+<div class="lighting-control-container">
+    <app-light-control-panel
+        *ngFor="let light of lights"
+        [light]="light"
+        [class.wide-panel]="wideView"
+        [class.narrow-panel]="!wideView"
+    ></app-light-control-panel>
+</div>

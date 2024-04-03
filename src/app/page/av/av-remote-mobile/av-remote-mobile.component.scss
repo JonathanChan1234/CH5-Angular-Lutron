@@ -1,51 +1,53 @@
-.keypad-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    >* {
-        padding: 10px;
-    }
-
-    .icon-button {
-        flex: 1;
-    }
-
-    .number-keypad {
-        flex: 5;
-    }
-
-    .media-keypad {
-        flex: 5;
-    }
-}
-
-.av-remote-bottom-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    .keypad-volume-channel-container {
+.av-remote-mobile-container {
+    .middle-row {
         display: flex;
-        justify-content: space-around;
-    }
+        justify-content: center;
+        align-items: center;
 
-    >* {
-        padding: 10px;
-    }
-
-    .dpad-container {
-        >* {
+        > * {
             padding: 10px;
+        }
+
+        .icon-button {
+            flex: 1;
+        }
+
+        .number-keypad {
+            flex: 5;
+        }
+
+        .media-keypad {
+            flex: 5;
         }
     }
 
-    .function-button-container {
+    .bottom-row {
         display: flex;
+        flex-direction: column;
         justify-content: center;
 
-        >* {
+        .keypad-volume-channel-container {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        > * {
             padding: 10px;
+        }
+
+        .dpad-container {
+            > * {
+                padding: 10px;
+            }
+        }
+
+        .function-button-container {
+            display: flex;
+            justify-content: center;
+
+            > * {
+                padding: 10px;
+            }
         }
     }
 }

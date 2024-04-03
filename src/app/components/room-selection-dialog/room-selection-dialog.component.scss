@@ -1,0 +1,18 @@
+.room-selection-dialog-container {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    min-height: 100%;
+    width: 100%;
+
+    .room-option {
+        width: 100%;
+        font-size: 2.5vh;
+        cursor: pointer;
+        user-select: none;
+
+        p {
+            padding: 2vh;
+            margin: 0 !important;
+        }
+    }
+}

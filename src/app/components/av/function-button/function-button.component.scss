@@ -14,3 +14,8 @@
         border-radius: 50%;
     }
 }
+
+.function-button-container:active {
+    background-color: var(--selected-button-color);
+    color: var(--selected-button-text-color);
+}

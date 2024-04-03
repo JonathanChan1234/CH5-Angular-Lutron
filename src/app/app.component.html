@@ -3,35 +3,23 @@
         <app-app-toolbar></app-app-toolbar>
     </div>
     <div [ngSwitch]="route$ | async" class="main-container">
-        <ng-container *ngSwitchCase="'room_panel'">
-            <app-rooms-panel></app-rooms-panel>
-        </ng-container>
-        <ng-container *ngSwitchCase="'room_view'">
-            <app-room-view></app-room-view>
-        </ng-container>
-        <ng-container *ngSwitchCase="'monitoring'">
-            <app-monitoring></app-monitoring>
-        </ng-container>
-        <ng-container *ngSwitchCase="'setting'">
-            <app-setting></app-setting>
-        </ng-container>
-        <ng-container *ngSwitchCase="'scene_table'">
-            <app-scene-table></app-scene-table>
-        </ng-container>
-        <ng-container *ngSwitchCase="'scene_details'">
-            <app-scene-details></app-scene-details>
-        </ng-container>
-        <ng-container *ngSwitchCase="'scene_action_create'">
-            <app-scene-action-create></app-scene-action-create>
-        </ng-container>
-        <ng-container *ngSwitchCase="'av_remote'">
+        <ng-container *ngSwitchCase="Route.AV_REMOTE">
             <app-av-remote></app-av-remote>
         </ng-container>
-        <ng-container *ngSwitchDefault="">
-            <app-rooms-panel></app-rooms-panel>
+        <ng-container *ngSwitchCase="Route.AC_CONTROL">
+            <app-ac-control></app-ac-control>
         </ng-container>
-    </div>
-    <div class="app-nav-bar">
-        <app-nav-bar></app-nav-bar>
+        <ng-container *ngSwitchCase="Route.CURTAIN">
+            <app-shade></app-shade>
+        </ng-container>
+        <ng-container *ngSwitchCase="Route.LIGHTING">
+            <app-lighting></app-lighting>
+        </ng-container>
+        <ng-container *ngSwitchCase="Route.DEVICE_OVERVIEW">
+            <app-device-overview></app-device-overview>
+        </ng-container>
+        <ng-container *ngSwitchDefault="">
+            <app-device-overview></app-device-overview>
+        </ng-container>
     </div>
 </div>

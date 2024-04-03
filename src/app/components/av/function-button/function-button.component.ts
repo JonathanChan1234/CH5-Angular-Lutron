@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
     selector: 'app-function-button',
@@ -8,6 +8,9 @@ import { Component, Input, OnInit } from '@angular/core';
 export class FunctionButtonComponent implements OnInit {
     @Input()
     backgroundColor: string;
+
+    @Output()
+    onClick = new EventEmitter();
 
     constructor() {}
 

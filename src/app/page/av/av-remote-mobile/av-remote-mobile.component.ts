@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { pulse } from 'src/app/crestron/crestron-utils';
+import { Av } from 'src/app/model/av';
 
 @Component({
     selector: 'app-av-remote-mobile',
@@ -6,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./av-remote-mobile.component.scss'],
 })
 export class AvRemoteMobileComponent implements OnInit {
+    @Input()
+    av: Av;
+
     showNumberKeypad = true;
+    pulse = pulse;
 
     constructor() {}
 

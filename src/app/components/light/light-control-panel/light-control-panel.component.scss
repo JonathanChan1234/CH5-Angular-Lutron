@@ -1,0 +1,57 @@
+.light-control-panel-container {
+    color: var(--text-color);
+    background: var(--secondary-background-color);
+    padding: 2vh 2vw 2vh 2vw;
+    border-radius: 0.5em;
+
+    > * {
+        padding: 1vh 0px 1vh 0px;
+    }
+
+    .light-name {
+        font-size: 2.5vh;
+        padding: 1em;
+    }
+
+    .light-control-button-group-container {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-around;
+
+        .light-control-button-group {
+            padding: 10px 0px 10px 0px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .hidden {
+                visibility: hidden;
+            }
+        }
+
+        .light-level-text {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 3em;
+            font-size: 2vh;
+        }
+    }
+
+    .light-control-slider-container {
+        padding: 10px 0px 10px 0px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        > * {
+            padding-right: 10px;
+        }
+    }
+
+    .hidden {
+        visibility: hidden;
+    }
+}

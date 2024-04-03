@@ -1,27 +1,27 @@
 <div class="video-button-bar">
-    <div class="video-button">
+    <div class="video-button" (click)="onFastRewindButtonClick()">
         <mat-icon class="icon">fast_rewind</mat-icon>
     </div>
     <div class="video-button unused"></div>
-    <div class="video-button">
+    <div class="video-button" (click)="onFastForwardButtonClick()">
         <mat-icon class="icon">fast_forward</mat-icon>
     </div>
-    <div class="video-button">
+    <div class="video-button" (click)="onSkipPreviousButtonClick()">
         <mat-icon class="icon">skip_previous</mat-icon>
     </div>
-    <div class="video-button">
+    <div class="video-button" (click)="onPlayButtonClick()">
         <mat-icon class="icon">play_arrow</mat-icon>
     </div>
-    <div class="video-button">
+    <div class="video-button" (click)="onSkipNextButtonClick()">
         <mat-icon class="icon">skip_next</mat-icon>
     </div>
-    <div class="video-button">
+    <div class="video-button" (click)="onStopRecordButtonClick()">
         <mat-icon class="icon">stop_circle</mat-icon>
     </div>
-    <div class="video-button">
+    <div class="video-button" (click)="onPauseButtonClick()">
         <mat-icon class="icon">pause</mat-icon>
     </div>
-    <div class="video-button">
+    <div class="video-button" (click)="onStopButtonClick()">
         <mat-icon class="icon">stop</mat-icon>
     </div>
     <div class="unused video-button"></div>

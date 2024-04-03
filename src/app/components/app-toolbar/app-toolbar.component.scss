@@ -1,5 +1,15 @@
 .app-toolbar {
-    background-color: var(--background-color);
+    height: 10vh;
+    font-size: 3vh;
+    background-color: var(--secondary-background-color);
+
+    .app-toolbar-title-container {
+        display: flex;
+        justify-content: center;
+        > * {
+            padding: 0em 0.5em 0em 0.5em;
+        }
+    }
 
     .app-toolbar-content-container {
         width: 100%;

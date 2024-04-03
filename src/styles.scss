@@ -2,7 +2,7 @@
 
 /* Importing Bootstrap SCSS file. */
 
-@import "themes";
+@import 'themes';
 
 body,
 html {
@@ -37,4 +37,8 @@ body {
 
 .w-100 {
     width: 100%;
+}
+
+.custom-modalbox > mat-dialog-container {
+    background-color: var(--background-color);
 }

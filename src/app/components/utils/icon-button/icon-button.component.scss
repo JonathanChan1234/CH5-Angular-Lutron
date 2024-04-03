@@ -1,0 +1,27 @@
+.icon-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--text-color);
+
+    div {
+        background-color: var(--button-color);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: var(--button-shadow-color) 0px 3px 8px;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    div:active {
+        background-color: var(--selected-button-color);
+        color: var(--selected-button-text-color);
+    }
+
+    .medium-icon {
+        transform: scale(1.5);
+    }
+}

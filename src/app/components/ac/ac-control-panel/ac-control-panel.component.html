@@ -1,0 +1,66 @@
+<div class="ac-control-panel-container">
+    <div class="ac-status-container">
+        <div>{{ ac.name }}</div>
+        <div>{{ ac.roomTemperature }}°C</div>
+    </div>
+    <div class="ac-temperature-container">
+        <div class="ac-temperature-control-title">Set</div>
+        <div class="ac-temperature-control">
+            <div class="ac-temperature-text">
+                <div>{{ ac.setTemperature }}°C</div>
+            </div>
+            <div
+                class="ac-temperature-control-button"
+                (click)="decrementTemperature()"
+            >
+                <mat-icon>remove</mat-icon>
+            </div>
+            <div
+                class="ac-temperature-control-button"
+                (click)="incrementTemperature()"
+            >
+                <mat-icon>add</mat-icon>
+            </div>
+        </div>
+    </div>
+    <div class="ac-advanced-control-container">
+        <div
+            class="ac-advanced-control-title"
+            (click)="toggleShowAdvancedMenu()"
+        >
+            <div>MODE & FAN</div>
+            <mat-icon>expand_more</mat-icon>
+        </div>
+        <div [@openClose]="showAdvancedMenu ? 'open' : 'closed'">
+            <div class="ac-advanced-control-panel">
+                <mat-divider></mat-divider>
+                <div class="ac-advanced-control-label">MODE</div>
+                <div class="ac-advanced-control-options">
+                    <div
+                        class="ac-advanced-control-option"
+                        [class.selected]="mode === ac.mode"
+                        *ngFor="let mode of ac.modeAvailable"
+                        (click)="changeMode(mode)"
+                    >
+                        <div>
+                            {{ mode | uppercase }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ac-advanced-control-panel">
+                <div class="ac-advanced-control-label">FAN</div>
+                <div class="ac-advanced-control-options">
+                    <div
+                        class="ac-advanced-control-option"
+                        [class.selected]="mode === ac.fan"
+                        *ngFor="let mode of ac.fanAvailable"
+                        (click)="changeFan(mode)"
+                    >
+                        <div>{{ mode | uppercase }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

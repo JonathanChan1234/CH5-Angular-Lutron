@@ -25,5 +25,13 @@
         border: 3px solid var(--background-color);
         border-radius: 5px;
         box-shadow: var(--button-shadow-color) 0px 3px 8px;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .number-button:active {
+        background-color: var(--selected-button-color);
+        color: var(--selected-button-text-color);
+        box-shadow: var(--button-shadow-color) 0px 3px 8px;
     }
 }

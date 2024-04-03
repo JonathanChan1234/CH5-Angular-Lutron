@@ -1,0 +1,68 @@
+.custom-slider {
+    --c: var(--selected-button-color); // active color
+    --g: 8px; // gap
+    --l: 5px; // line thickness
+    --s: 3vh; // thumb size
+
+    --_c: color-mix(in srgb, --c, #000, var(--p, 0%));
+    height: var(--s);
+    max-width: 400px;
+    appearance: none;
+    background: none;
+    cursor: pointer;
+    overflow: hidden;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+input[type='range' i]::-webkit-slider-thumb {
+    height: var(--s);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    box-shadow: 0 0 0 var(--b, var(--s)) inset var(--c);
+    transition: 0.3s;
+    appearance: none;
+    border-image: linear-gradient(90deg, var(--c) 50%, #ababab 0);
+    border-image-slice: 0 1; // top and bottom | left and right
+    border-image-width: calc(50% - var(--l) / 2) 100vw; // top and bottom | left and right
+    border-image-outset: 0 calc(100vw + var(--g)); // top and bottom | left and right
+}
+
+input[type='range' i]:active::-webkit-slider-thumb,
+input[type='range' i]:focus-visible::-webkit-slider-thumb {
+    --b: var(--s);
+}
+
+input[type='range' i]:hover::-webkit-slider-thumb,
+input[type='range' i]:focus-visible::-webkit-slider-thumb {
+    --p: 25%;
+}
+
+input[type='range']::-moz-range-thumb {
+    height: var(--s);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    box-shadow: 0 0 0 var(--b, var(--l)) inset var(--_c);
+    transition: 0.3s;
+    appearance: none;
+    border-image: linear-gradient(90deg, var(--_c) 50%, #ababab 0);
+    border-image-slice: 0 1; // top and bottom | left and right
+    border-image-width: calc(50% - var(--l) / 2) 100vw; // top and bottom | left and right
+    border-image-outset: 0 calc(100vw + var(--g)); // top and bottom | left and right
+}
+
+input[type='range' i]:active::-moz-range-thumb,
+input[type='range' i]:focus-visible::-moz-range-thumb {
+    --b: var(--s);
+}
+
+input[type='range' i]:hover::-moz-range-thumb,
+input[type='range' i]:focus-visible::-moz-range-thumb {
+    --p: 25%;
+}
+
+@supports not (color: color-mix(in srgb, red, red)) {
+    input {
+        --_c: var(--c); /* if no support we keep the color as defined */
+    }
+}

@@ -1,5 +1,6 @@
-<div>
-    <div class="keypad-container">
+<div class="av-remote-mobile-container">
+    <app-av-option-bar [fontSize]="15" [av]="av"></app-av-option-bar>
+    <div class="middle-row">
         <app-icon-button
             class="icon-button"
             icon="arrow_left"
@@ -9,10 +10,11 @@
             <app-number-keypad
                 class="number-keypad"
                 size="small"
+                [av]="av"
             ></app-number-keypad>
         </ng-container>
         <ng-template #showMediaKeypad>
-            <app-media-keypad class="media-keypad"></app-media-keypad>
+            <app-media-keypad class="media-keypad" [av]="av"></app-media-keypad>
         </ng-template>
         <app-icon-button
             class="icon-button"
@@ -21,32 +23,48 @@
         ></app-icon-button>
     </div>
 
-    <div class="av-remote-bottom-container">
+    <div class="bottom-row">
         <div class="keypad-volume-channel-container">
-            <app-updown-button-group label="VOL"></app-updown-button-group>
+            <app-updown-button-group
+                label="VOL"
+                (onUpButtonCilck)="pulse(av?.volumeUp)"
+                (onDownButtonClick)="pulse(av?.volumeDown)"
+            ></app-updown-button-group>
             <div class="dpad-container">
-                <app-av-custom-dpad [size]="150"> </app-av-custom-dpad>
+                <app-av-custom-dpad [size]="150" [av]="av">
+                </app-av-custom-dpad>
             </div>
-            <app-updown-button-group label="CH"></app-updown-button-group>
+            <app-updown-button-group
+                label="CH"
+                (onUpButtonCilck)="pulse(av?.channelUp)"
+                (onDownButtonClick)="pulse(av?.channelDown)"
+            ></app-updown-button-group>
         </div>
 
         <div class="function-button-container">
-            <app-icon-button icon="volume_off"></app-icon-button>
+            <app-icon-button
+                icon="volume_off"
+                (onClick)="pulse(av?.mute)"
+            ></app-icon-button>
             <app-function-button
                 backgroundColor="#DF0404"
                 class="function-button"
+                (onClick)="pulse(av?.red)"
             ></app-function-button>
             <app-function-button
                 backgroundColor="#FAD301"
                 class="function-button"
+                (onClick)="pulse(av?.yellow)"
             ></app-function-button>
             <app-function-button
                 backgroundColor="#5F8F4B"
                 class="function-button"
+                (onClick)="pulse(av?.green)"
             ></app-function-button>
             <app-function-button
                 backgroundColor="#6A8BA3"
                 class="function-button"
+                (onClick)="pulse(av?.cyan)"
             ></app-function-button>
         </div>
     </div>

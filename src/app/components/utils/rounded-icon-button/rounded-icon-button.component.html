@@ -1,0 +1,12 @@
+<div class="rounded-button" (click)="onClick.emit()">
+    <ng-container *ngIf="isSvgIcon; else icon">
+        <mat-icon
+            [svgIcon]="iconName"
+            [style.width]="size"
+            [style.height]="size"
+        ></mat-icon>
+    </ng-container>
+    <ng-template #icon>
+        <mat-icon>{{ iconName }}</mat-icon>
+    </ng-template>
+</div>
