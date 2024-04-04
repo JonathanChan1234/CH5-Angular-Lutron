@@ -33,10 +33,13 @@ import { UpdownButtonGroupComponent } from './components/av/updown-button-group/
 import { DeviceTileComponent } from './components/device/device-tile/device-tile.component';
 import { ErrorMessageBarComponent } from './components/error-message-bar/error-message-bar.component';
 import { LightControlPanelComponent } from './components/light/light-control-panel/light-control-panel.component';
+import { RoomSelectionBarComponent } from './components/room-selection-bar/room-selection-bar.component';
 import { ShadeControlPanelComponent } from './components/shade/shade-control-panel/shade-control-panel.component';
 import { ControlPanelComponent } from './components/utils/control-panel/control-panel.component';
 import { IconButtonComponent } from './components/utils/icon-button/icon-button.component';
 import { RoundedIconButtonComponent } from './components/utils/rounded-icon-button/rounded-icon-button.component';
+import { SelectOptionsDialogComponent } from './components/utils/select-options-dialog/select-options-dialog.component';
+import { SliderToggleComponent } from './components/utils/slider-toggle/slider-toggle.component';
 import { SliderComponent } from './components/utils/slider/slider.component';
 import { StopPropagationDirective } from './directive/stop-propagation.directive';
 import { ApiInterceptor } from './http/ApiInterceptor';
@@ -50,8 +53,6 @@ import { LightingComponent } from './page/lighting/lighting.component';
 import { SettingComponent } from './page/setting/setting.component';
 import { ShadeComponent } from './page/shade/shade.component';
 import CustomLoader from './translation/CustomLoader';
-import { RoomSelectionBarComponent } from './components/room-selection-bar/room-selection-bar.component';
-import { RoomSelectionDialogComponent } from './components/room-selection-dialog/room-selection-dialog.component';
 
 @NgModule({
     declarations: [
@@ -84,7 +85,8 @@ import { RoomSelectionDialogComponent } from './components/room-selection-dialog
         DeviceOverviewComponent,
         DeviceTileComponent,
         RoomSelectionBarComponent,
-        RoomSelectionDialogComponent,
+        SelectOptionsDialogComponent,
+        SliderToggleComponent,
     ],
     imports: [
         BrowserModule,

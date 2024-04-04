@@ -1,4 +1,4 @@
-<div class="rounded-button" (click)="onClick.emit()">
+<div class="rounded-button" [class.active]="isActive" (click)="onClick.emit()">
     <ng-container *ngIf="isSvgIcon; else icon">
         <mat-icon
             [svgIcon]="iconName"

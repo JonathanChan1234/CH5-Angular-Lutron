@@ -1,27 +1,18 @@
 <mat-toolbar class="app-toolbar">
-    <div class="app-toolbar-content-container">
-        <div class="app-toolbar-title-container">
-            <button
-                mat-icon-button
+    <div class="toolbar-button-group-container">
+        <div class="icon-button" (click)="home()">
+            <mat-icon svgIcon="custom:home"></mat-icon>
+        </div>
+        <div class="icon-button" (click)="back()">
+            <mat-icon
+                svgIcon="custom:back"
                 *ngIf="(history$ | async).length > 0"
-                (click)="back()"
-            >
-                <mat-icon
-                    svgIcon="custom:back"
-                    style="height: 3vh; width: 3vh"
-                ></mat-icon>
-            </button>
-            <span>
-                {{ 'header.title' | translate }}
-            </span>
+            ></mat-icon>
         </div>
-        <div class="dark-mode-toggle-container">
-            <mat-icon>dark_mode</mat-icon>
-            <mat-slide-toggle
-                class="dark-mode-toggle"
-                [checked]="darkModeEnabled"
-                (change)="onThemeChanged($event)"
-            ></mat-slide-toggle>
-        </div>
+    </div>
+    <div class="app-toolbar-content-container">
+        <app-room-selection-bar
+            class="app-toolbar-room-selection-bar"
+        ></app-room-selection-bar>
     </div>
 </mat-toolbar>

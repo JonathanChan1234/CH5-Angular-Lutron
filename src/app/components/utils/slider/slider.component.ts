@@ -1,11 +1,19 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+    Component,
+    EventEmitter,
+    Input,
+    OnChanges,
+    OnInit,
+    Output,
+    SimpleChanges,
+} from '@angular/core';
 
 @Component({
     selector: 'app-slider',
     templateUrl: './slider.component.html',
     styleUrls: ['./slider.component.scss'],
 })
-export class SliderComponent implements OnInit {
+export class SliderComponent implements OnInit, OnChanges {
     @Input()
     width: string;
 
@@ -15,11 +23,20 @@ export class SliderComponent implements OnInit {
     @Output()
     onValueChanged = new EventEmitter<number>();
 
+    background: string;
+
     constructor() {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.background = `linear-gradient(to right, #fff455 ${this.value}%, #ccc ${this.value}%)`;
+    }
+
+    ngOnChanges(changes: SimpleChanges): void {
+        this.background = `linear-gradient(to right, #fff455 ${this.value}%, #ccc ${this.value}%)`;
+    }
 
     sliderValueChanged(event: Event): void {
         this.onValueChanged.emit(Number.parseInt(event.target['value']));
+        this.background = `linear-gradient(to right, #fff455 ${this.value}%, #ccc ${this.value}%)`;
     }
 }

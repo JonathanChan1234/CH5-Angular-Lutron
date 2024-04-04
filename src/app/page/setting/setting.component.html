@@ -1,21 +1,28 @@
-<div style="margin: 10px">
-    <p class="page-title">Settings</p>
-    <div>
-        <h5>Language</h5>
-        <mat-form-field appearance="fill">
-            <mat-label>Language</mat-label>
-            <mat-select required [formControl]="langFormControl">
-                <mat-option value="en">English</mat-option>
-                <mat-option value="zh">Chinese</mat-option>
-                <mat-option value="jp">Japanese</mat-option>
-            </mat-select>
-        </mat-form-field>
+<div class="settings-container">
+    <div class="settings-option-container">
+        <p>{{ 'settings.language' | translate }}</p>
+        <p class="open-dialog-text" (click)="openLanguageSelectionDialog()">
+            {{ currentLang.label }}
+        </p>
     </div>
     <mat-divider></mat-divider>
-    <div>
-        <h5>Cache</h5>
-        <button mat-raised-button color="primary" (click)="clearCache()">
-            Clear All Cache
-        </button>
+    <div class="settings-option-container">
+        <p>{{ 'settings.darkMode' | translate }}</p>
+        <mat-slide-toggle
+            class="dark-mode-toggle"
+            [checked]="darkModeEnabled"
+            (change)="onThemeChanged($event)"
+        ></mat-slide-toggle>
     </div>
+    <mat-divider></mat-divider>
+    <div class="settings-option-container">
+        <p>{{ 'settings.version' | translate }}</p>
+        <p>{{ version }}</p>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="settings-option-container">
+        <p>{{ 'settings.author' | translate }}</p>
+        <p>Jonathan Chan</p>
+    </div>
+    <mat-divider></mat-divider>
 </div>

@@ -1,57 +1,27 @@
 .light-control-panel-container {
     color: var(--text-color);
     background: var(--secondary-background-color);
+    width: 85vw;
     padding: 2vh 2vw 2vh 2vw;
     border-radius: 0.5em;
+    box-shadow: var(--button-shadow-color) 0px 3px 8px;
 
-    > * {
-        padding: 1vh 0px 1vh 0px;
-    }
-
-    .light-name {
-        font-size: 2.5vh;
-        padding: 1em;
-    }
-
-    .light-control-button-group-container {
+    .light-name-container {
         display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: space-around;
+        justify-content: space-between;
+        padding: 1vh 0vh 1vh 0vh;
 
-        .light-control-button-group {
-            padding: 10px 0px 10px 0px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            .hidden {
-                visibility: hidden;
-            }
+        .light-name {
+            font-size: 2vh;
+            padding: 0.8vh;
+            font-weight: 700;
         }
 
         .light-level-text {
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 3em;
-            font-size: 2vh;
+            font-size: 1.5vh;
+            font-weight: 400;
+            padding: 0.8vh;
+            color: grey;
         }
-    }
-
-    .light-control-slider-container {
-        padding: 10px 0px 10px 0px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        > * {
-            padding-right: 10px;
-        }
-    }
-
-    .hidden {
-        visibility: hidden;
     }
 }

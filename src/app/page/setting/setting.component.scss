@@ -1,0 +1,23 @@
+.settings-container {
+    height: 100%;
+    background-color: var(--secondary-background-color);
+    color: var(--text-color);
+    padding: 2vh 2vw 2vh 2vw;
+    font-size: 2vh;
+
+    .settings-option-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 2vh 2vw 2vh 2vw;
+
+        .open-dialog-text {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        p {
+            margin: 0px;
+        }
+    }
+}

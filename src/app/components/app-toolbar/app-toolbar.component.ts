@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { Observable } from 'rxjs';
 import {
@@ -15,10 +15,7 @@ export class AppToolbarComponent implements OnInit {
     darkModeEnabled = false;
     history$!: Observable<RouteInfo[]>;
 
-    constructor(
-        private readonly router: RouterService,
-        private readonly changeDetectRef: ChangeDetectorRef
-    ) {}
+    constructor(private readonly router: RouterService) {}
 
     ngOnInit(): void {
         document.body.setAttribute(
@@ -30,6 +27,10 @@ export class AppToolbarComponent implements OnInit {
 
     back(): void {
         this.router.pop();
+    }
+
+    home(): void {
+        this.router.reset();
     }
 
     onThemeChanged({ checked }: MatSlideToggleChange): void {

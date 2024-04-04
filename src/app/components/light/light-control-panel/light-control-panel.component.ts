@@ -19,35 +19,23 @@ export class LightControlPanelComponent implements OnInit {
         this.levelText = this.getLevelText();
     }
 
+    onToggleChange(checked: boolean): void {
+        this.level = checked ? 100 : 0;
+        this.levelText = this.getLevelText();
+    }
+
     onLevelChanged(value: number): void {
         this.level = value;
         this.levelText = this.getLevelText();
     }
 
-    incrementLevel(): void {
-        if (this.level >= 100) return;
-        this.level++;
-        this.levelText = this.getLevelText();
-    }
-
-    decrementLevel(): void {
-        if (this.level <= 0) return;
-        this.level--;
-        this.levelText = this.getLevelText();
-    }
-
-    turnOn(): void {
-        this.level = 100;
-        this.levelText = this.getLevelText();
-    }
-
-    turnOff(): void {
-        this.level = 0;
-        this.levelText = this.getLevelText();
-    }
-
     getLevelText(): string {
-        if (this.light.hasLevel) return `${this.level}%`;
+        if (this.light.hasLevel)
+            return this.level === 0
+                ? 'OFF'
+                : this.level === 100
+                ? 'ON'
+                : `${this.level}%`;
         return this.level > 0 ? 'ON' : 'OFF';
     }
 }

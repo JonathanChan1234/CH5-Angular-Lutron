@@ -1,7 +1,8 @@
 <div class="device-overview-container">
-    <app-device-tile
-        *ngFor="let category of cateogories"
-        [category]="category"
-    ></app-device-tile>
+    <div class="device-tiles-container">
+        <app-device-tile
+            *ngFor="let category of cateogories"
+            [category]="category"
+        ></app-device-tile>
+    </div>
 </div>
-<app-room-selection-bar></app-room-selection-bar>

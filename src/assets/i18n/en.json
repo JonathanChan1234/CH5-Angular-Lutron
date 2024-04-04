@@ -2,6 +2,19 @@
     "header": {
         "title": "Crestron CH5 Demo"
     },
+    "settings": {
+        "language": "Language",
+        "darkMode": "Dark Mode",
+        "version": "Version",
+        "author": "Author"
+    },
+    "devices" : {
+        "lighting": "Lighting",
+        "curtain": "Curtain",
+        "comfort": "Comfort",
+        "watch": "Watch",
+        "settings": "Settings"
+    },
     "navBar": {
         "room": "Room",
         "monitoring": "Monitoring",

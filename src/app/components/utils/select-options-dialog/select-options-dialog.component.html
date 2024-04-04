@@ -1,0 +1,10 @@
+<div class="selection-dialog-container">
+    <div
+        class="option"
+        *ngFor="let option of data.options"
+        (click)="onOptionSelected(option)"
+    >
+        <p>{{ option.label }}</p>
+        <mat-divider></mat-divider>
+    </div>
+</div>

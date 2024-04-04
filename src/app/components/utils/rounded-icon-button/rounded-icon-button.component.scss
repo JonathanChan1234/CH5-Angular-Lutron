@@ -1,17 +1,28 @@
 .rounded-button {
     background-color: var(--button-color);
+    color: var(--text-color);
     border-radius: 50%;
-    width: 7vh;
-    height: 7vh;
+    width: 4vh;
+    height: 4vh;
     margin: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
     user-select: none;
+
+    mat-icon {
+        margin-bottom: 5px;
+    }
 }
 
 .rounded-button:active {
+    background-color: var(--selected-button-color);
+    color: var(--selected-button-text-color);
+    box-shadow: var(--button-shadow-color) 0px 3px 8px;
+}
+
+.active {
     background-color: var(--selected-button-color);
     color: var(--selected-button-text-color);
     box-shadow: var(--button-shadow-color) 0px 3px 8px;

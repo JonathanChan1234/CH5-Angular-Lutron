@@ -15,6 +15,9 @@ export class RoundedIconButtonComponent implements OnInit {
     @Input()
     size: string = '1vh';
 
+    @Input()
+    isActive = false;
+
     @Output()
     onClick = new EventEmitter();
 

@@ -1,0 +1,16 @@
+<label
+    class="switch"
+    [class.medium-switch]="size == 'medium'"
+    [class.big-switch]="size === 'big'"
+>
+    <input
+        type="checkbox"
+        [checked]="checked"
+        (change)="onChecked.emit($event.target['checked'])"
+    />
+    <span
+        [class.medium-slider]="size === 'medium'"
+        [class.big-slider]="size === 'big'"
+        class="slider round"
+    ></span>
+</label>

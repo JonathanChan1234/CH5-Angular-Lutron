@@ -1,14 +1,24 @@
 .ac-control-panel-container {
     color: var(--text-color);
     background-color: var(--secondary-background-color);
-    font-size: 2.5vh;
-    padding: 20px;
+    font-size: 2vh;
+    width: 85vw;
+    padding: 2vh 2vw 2vh 2vw;
     border-radius: 0.5em;
 
     .ac-status-container {
         display: flex;
         justify-content: space-between;
         padding: 1vh 0vh 1vh 0vh;
+
+        .ac-name {
+            font-weight: 700;
+        }
+
+        .ac-room-temperature {
+            color: grey;
+            font-weight: 400;
+        }
     }
 
     .ac-temperature-container {
@@ -21,31 +31,11 @@
         .ac-temperature-control {
             display: flex;
 
-            .ac-temperature-control-button {
-                border-radius: 50%;
-                background-color: var(--button-color);
-                width: 2em;
-                height: 2em;
+            .ac-set-temperature {
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                margin: 10px;
-                padding: 20px;
-                cursor: pointer;
-                user-select: none;
-            }
-
-            .ac-temperature-control-button:active {
-                background-color: var(--selected-button-color);
-                color: var(--selected-button-text-color);
-                box-shadow: var(--button-shadow-color) 0px 3px 8px;
-            }
-
-            .ac-temperature-text {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                font-size: 3vh;
+                font-size: 2vh;
                 margin-right: 10px;
             }
         }

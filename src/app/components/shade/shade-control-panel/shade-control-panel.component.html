@@ -1,38 +1,25 @@
 <div class="shade-control-panel-container">
-    <div class="shade-name">{{ shade.name }}</div>
-    <div class="shade-control-button-group">
-        <app-rounded-icon-button
-            [isSvgIcon]="true"
-            iconName="custom:left_arrow"
-            size="3vh"
-            (onClick)="decrementLevel()"
-        ></app-rounded-icon-button>
-        <app-rounded-icon-button
-            [isSvgIcon]="true"
-            iconName="custom:stop"
-            size="3vh"
-        ></app-rounded-icon-button>
-        <app-rounded-icon-button
-            [isSvgIcon]="true"
-            iconName="custom:right_arrow"
-            size="3vh"
-            (onClick)="incrementLevel()"
-        ></app-rounded-icon-button>
+    <div class="shade-info-container">
+        <div class="shade-name">{{ shade.name }}</div>
+        <div class="shade-level-text" *ngIf="shade.hasLevel">
+            {{ levelText }}
+        </div>
     </div>
-    <div
-        class="shade-control-slider-container"
-        [class.hidden]="!shade.hasLevel"
-    >
-        <app-slider
-            [width]="'60vw'"
-            class="shade-control-slider"
-            [value]="level"
-            (onValueChanged)="sliderValueChanged($event)"
-        ></app-slider>
-        <div class="shade-level-text">
-            <div>
-                {{ levelText }}
-            </div>
+    <mat-divider></mat-divider>
+    <div class="shade-control-button-group">
+        <div class="text-button">
+            <p>Open</p>
+        </div>
+        <mat-divider [vertical]="true"></mat-divider>
+        <mat-icon svgIcon="custom:up_arrow"></mat-icon>
+        <mat-divider [vertical]="true"></mat-divider>
+        <mat-icon svgIcon="custom:stop"></mat-icon>
+        <mat-divider [vertical]="true"></mat-divider>
+        <mat-icon svgIcon="custom:down_arrow"></mat-icon>
+        <mat-divider [vertical]="true"></mat-divider>
+        <div class="text-button">
+            <p>Close</p>
         </div>
     </div>
 </div>
+<mat-divider></mat-divider>

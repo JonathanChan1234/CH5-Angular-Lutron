@@ -15,9 +15,9 @@ export class LightingComponent implements OnInit {
     @Input()
     lights: Light[] = [
         { name: 'Dimmer 1', joinId: 1, hasLevel: true },
-        { name: 'Dimmer 2', joinId: 1, hasLevel: false },
-        { name: 'Dimmer 3', joinId: 1, hasLevel: true },
-        { name: 'Dimmer 4', joinId: 1, hasLevel: false },
+        { name: 'Switch 1', joinId: 1, hasLevel: false },
+        { name: 'Dimmer 2', joinId: 1, hasLevel: true },
+        { name: 'Switch 2', joinId: 1, hasLevel: false },
     ];
 
     wideView = false;

@@ -33,7 +33,7 @@ export class DeviceTileComponent implements OnInit {
                 this.router.navigate(Route.AV_REMOTE);
                 break;
             case DeviceCategory.Settings:
-                // this.router.navigate(Route.SETTINGS);
+                this.router.navigate(Route.SETTINGS);
                 break;
         }
     }

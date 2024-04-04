@@ -2,6 +2,19 @@
     "header": {
         "title": "智能家居"
     },
+    "settings": {
+        "language": "語言",
+        "darkMode": "黑夜模式",
+        "version": "版本",
+        "author": "作者"
+    },
+    "devices" : {
+        "lighting":"燈光",
+        "curtain": "窗簾",
+        "comfort": "空調",
+        "watch": "影音",
+        "settings": "設定"
+    },
     "navBar": {
         "room": "房間",
         "monitoring": "監控",

@@ -1,31 +1,40 @@
 .custom-slider {
-    --c: var(--selected-button-color); // active color
+    --c: #fff455; // active color
     --g: 8px; // gap
-    --l: 5px; // line thickness
-    --s: 3vh; // thumb size
+    --l: 3vh; // line thickness
+    --s: 3.5vh; // thumb size
 
     --_c: color-mix(in srgb, --c, #000, var(--p, 0%));
-    height: var(--s);
-    max-width: 400px;
+    // overflow: hidden;
+    // background: none;
     appearance: none;
-    background: none;
     cursor: pointer;
-    overflow: hidden;
     -webkit-appearance: none;
     -moz-appearance: none;
+    border-radius: 20px;
+    height: var(--s);
+    width: 100%;
+    outline: none;
+    background: #ccc;
 }
 
-input[type='range' i]::-webkit-slider-thumb {
-    height: var(--s);
-    aspect-ratio: 1;
-    border-radius: 50%;
-    box-shadow: 0 0 0 var(--b, var(--s)) inset var(--c);
-    transition: 0.3s;
+input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
     appearance: none;
-    border-image: linear-gradient(90deg, var(--c) 50%, #ababab 0);
-    border-image-slice: 0 1; // top and bottom | left and right
-    border-image-width: calc(50% - var(--l) / 2) 100vw; // top and bottom | left and right
-    border-image-outset: 0 calc(100vw + var(--g)); // top and bottom | left and right
+    // aspect-ratio: 1;
+
+    height: var(--s);
+    width: var(--s);
+    border-radius: 50%;
+    transition: 0.3s;
+    border: 12px solid var(--button-color);
+    background: #fff455;
+
+    // box-shadow: 0 0 0 var(--b, var(--s)) inset var(--c);
+    // border-image: linear-gradient(90deg, var(--c) 50%, #ababab 0);
+    // border-image-slice: 0 1; // top and bottom | left and right
+    // border-image-width: calc(50% - var(--l) / 2) 100vw; // top and bottom | left and right
+    // border-image-outset: 0 calc(100vw + var(--g)); // top and bottom | left and right
 }
 
 input[type='range' i]:active::-webkit-slider-thumb,
@@ -39,16 +48,22 @@ input[type='range' i]:focus-visible::-webkit-slider-thumb {
 }
 
 input[type='range']::-moz-range-thumb {
-    height: var(--s);
-    aspect-ratio: 1;
-    border-radius: 50%;
-    box-shadow: 0 0 0 var(--b, var(--l)) inset var(--_c);
-    transition: 0.3s;
+    -webkit-appearance: none;
     appearance: none;
-    border-image: linear-gradient(90deg, var(--_c) 50%, #ababab 0);
-    border-image-slice: 0 1; // top and bottom | left and right
-    border-image-width: calc(50% - var(--l) / 2) 100vw; // top and bottom | left and right
-    border-image-outset: 0 calc(100vw + var(--g)); // top and bottom | left and right
+    // aspect-ratio: 1;
+
+    height: var(--s);
+    width: var(--s);
+    border-radius: 50%;
+    transition: 0.3s;
+    border: 10px solid var(--button-color);
+    background: #fff455;
+
+    // box-shadow: 0 0 0 var(--b, var(--s)) inset var(--c);
+    // border-image: linear-gradient(90deg, var(--c) 50%, #ababab 0);
+    // border-image-slice: 0 1; // top and bottom | left and right
+    // border-image-width: calc(50% - var(--l) / 2) 100vw; // top and bottom | left and right
+    // border-image-outset: 0 calc(100vw + var(--g)); // top and bottom | left and right
 }
 
 input[type='range' i]:active::-moz-range-thumb,

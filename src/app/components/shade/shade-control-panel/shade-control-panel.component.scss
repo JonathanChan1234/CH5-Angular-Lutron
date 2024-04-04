@@ -1,73 +1,57 @@
 .shade-control-panel-container {
     color: var(--text-color);
     background: var(--secondary-background-color);
-    padding: 2vh 2vw 2vh 2vw;
+    width: 85vw;
     border-radius: 0.5em;
-    border-radius: 0.5em;
+    box-shadow: var(--button-shadow-color) 0px 3px 8px;
 
-    > * {
-        padding: 1vh 0px 1vh 0px;
-    }
+    .shade-info-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1vh 2vw 1vh 2vw;
+        font-size: 2vh;
 
-    .shade-name {
-        font-size: 2.5vh;
-        padding: 1em;
+        .shade-name {
+            padding: 0.8vh;
+            font-weight: 700;
+        }
+
+        .shade-level-text {
+            color: grey;
+        }
     }
 
     .shade-control-button-group {
-        padding: 10px 0px 10px 0px;
         display: flex;
         justify-content: center;
         align-items: center;
+        height: 8vh;
 
-        .shade-control-button {
-            background-color: var(--button-color);
-            border-radius: 50%;
-            width: 3em;
-            height: 3em;
-            margin: 10px;
+        .text-button {
+            flex: 1;
             display: flex;
             justify-content: center;
             align-items: center;
             cursor: pointer;
             user-select: none;
 
-            .button-icon {
-                transform: scale(1.5);
+            p {
+                font-size: 1.8vh;
+                margin: 0px;
             }
         }
 
-        .shade-control-button:active {
-            background-color: var(--selected-button-color);
-            color: var(--selected-button-text-color);
-            box-shadow: var(--button-shadow-color) 0px 3px 8px;
-        }
-    }
-
-    .shade-control-slider-container {
-        padding: 1vh 0px 1vh 0px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        > * {
-            padding-right: 2vh;
+        mat-icon {
+            flex: 1;
+            height: 3vh;
+            width: 3vh;
+            cursor: pointer;
+            user-select: none;
         }
 
-        .shade-level-text {
+        mat-divider {
             height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 3em;
-
-            div {
-                font-size: 2vh;
-            }
         }
-    }
-
-    .hidden {
-        visibility: hidden;
     }
 }

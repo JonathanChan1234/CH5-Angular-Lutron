@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { RoomSelectionDialogComponent } from '../room-selection-dialog/room-selection-dialog.component';
+import { SelectOptionsDialogComponent } from '../utils/select-options-dialog/select-options-dialog.component';
 
 @Component({
     selector: 'app-room-selection-bar',
@@ -9,18 +9,31 @@ import { RoomSelectionDialogComponent } from '../room-selection-dialog/room-sele
 })
 export class RoomSelectionBarComponent implements OnInit {
     currentRoom: string = 'Living Room';
+    rooms: string[] = [
+        'Living Room',
+        'Dining Room',
+        'Bedroom 1',
+        'Bedroom 2',
+        'Master Bedroom',
+    ];
 
     constructor(public dialog: MatDialog) {}
 
     ngOnInit(): void {}
 
     openRoomSelectionDialog(): void {
-        const dialogRef = this.dialog.open(RoomSelectionDialogComponent, {
+        const dialogRef = this.dialog.open(SelectOptionsDialogComponent, {
             panelClass: 'custom-modalbox',
+            data: {
+                options: this.rooms.map((room) => ({
+                    label: room,
+                    value: room,
+                })),
+            },
         });
         dialogRef.afterClosed().subscribe((room) => {
             if (!room) return;
-            this.currentRoom = room;
+            this.currentRoom = room.value;
         });
     }
 }

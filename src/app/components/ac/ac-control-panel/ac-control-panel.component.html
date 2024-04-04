@@ -1,26 +1,28 @@
 <div class="ac-control-panel-container">
     <div class="ac-status-container">
-        <div>{{ ac.name }}</div>
-        <div>{{ ac.roomTemperature }}°C</div>
+        <div class="ac-name">{{ ac.name }}</div>
+        <div class="ac-room-temperature">{{ ac.roomTemperature }}°C</div>
     </div>
     <div class="ac-temperature-container">
         <div class="ac-temperature-control-title">Set</div>
         <div class="ac-temperature-control">
-            <div class="ac-temperature-text">
+            <div class="ac-set-temperature">
                 <div>{{ ac.setTemperature }}°C</div>
             </div>
-            <div
+            <app-rounded-icon-button
+                [isSvgIcon]="true"
+                iconName="custom:remove"
                 class="ac-temperature-control-button"
-                (click)="decrementTemperature()"
-            >
-                <mat-icon>remove</mat-icon>
-            </div>
-            <div
+                (onClick)="decrementTemperature()"
+                size="1.5vh"
+            ></app-rounded-icon-button>
+            <app-rounded-icon-button
+                [isSvgIcon]="true"
+                iconName="custom:add"
                 class="ac-temperature-control-button"
-                (click)="incrementTemperature()"
-            >
-                <mat-icon>add</mat-icon>
-            </div>
+                (onClick)="incrementTemperature()"
+                size="1.5vh"
+            ></app-rounded-icon-button>
         </div>
     </div>
     <div class="ac-advanced-control-container">
@@ -63,4 +65,5 @@
             </div>
         </div>
     </div>
+    <mat-divider></mat-divider>
 </div>

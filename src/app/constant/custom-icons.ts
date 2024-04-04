@@ -11,4 +11,9 @@ export const icons: string[] = [
     'light_on',
     'stop',
     'back',
+    'up_arrow',
+    'down_arrow',
+    'home',
+    'add',
+    'remove',
 ];

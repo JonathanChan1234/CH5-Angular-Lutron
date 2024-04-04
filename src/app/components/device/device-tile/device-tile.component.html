@@ -5,22 +5,22 @@
 >
     <ng-container *ngSwitchCase="DeviceCategory.Lighting">
         <mat-icon svgIcon="custom:lighting" class="device-tile-icon"></mat-icon>
-        <div class="device-tile-text">Lighting</div>
+        <div class="device-tile-text">{{ 'devices.lighting' | translate }}</div>
     </ng-container>
     <ng-container *ngSwitchCase="DeviceCategory.Curtain">
         <mat-icon svgIcon="custom:curtain" class="device-tile-icon"></mat-icon>
-        <div class="device-tile-text">Curtain</div>
+        <div class="device-tile-text">{{ 'devices.curtain' | translate }}</div>
     </ng-container>
     <ng-container *ngSwitchCase="DeviceCategory.Ac">
         <mat-icon svgIcon="custom:ac" class="device-tile-icon"></mat-icon>
-        <div class="device-tile-text">Comfort</div>
+        <div class="device-tile-text">{{ 'devices.comfort' | translate }}</div>
     </ng-container>
     <ng-container *ngSwitchCase="DeviceCategory.Av">
         <mat-icon svgIcon="custom:av" class="device-tile-icon"></mat-icon>
-        <div class="device-tile-text">Watch</div>
+        <div class="device-tile-text">{{ 'devices.watch' | translate }}</div>
     </ng-container>
     <ng-container *ngSwitchCase="DeviceCategory.Settings">
         <mat-icon svgIcon="custom:settings" class="device-tile-icon"></mat-icon>
-        <div class="device-tile-text">Settings</div>
+        <div class="device-tile-text">{{ 'devices.settings' | translate }}</div>
     </ng-container>
 </div>
