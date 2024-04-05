@@ -18,7 +18,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { AppComponent } from './app.component';
 import { AcControlPanelComponent } from './components/ac/ac-control-panel/ac-control-panel.component';
@@ -90,7 +90,8 @@ import CustomLoader from './translation/CustomLoader';
     ],
     imports: [
         BrowserModule,
-        BrowserAnimationsModule,
+        // BrowserAnimationsModule,
+        NoopAnimationsModule,
         FormsModule,
         ReactiveFormsModule,
         HttpClientModule,

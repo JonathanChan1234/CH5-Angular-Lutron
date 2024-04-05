@@ -30,6 +30,8 @@
 
         .text-button {
             flex: 1;
+            height: 100%;
+            width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -42,12 +44,29 @@
             }
         }
 
-        mat-icon {
+        .text-button:active {
+            background-color: var(--selected-button-color);
+            color: var(--selected-button-text-color);
+        }
+
+        .icon-button-wrapper {
             flex: 1;
-            height: 3vh;
-            width: 3vh;
-            cursor: pointer;
-            user-select: none;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            mat-icon {
+                height: 3vh;
+                width: 3vh;
+                cursor: pointer;
+                user-select: none;
+            }
+        }
+
+        .icon-button-wrapper:active {
+            background-color: var(--selected-button-color);
+            color: var(--selected-button-text-color);
         }
 
         mat-divider {

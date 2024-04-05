@@ -8,12 +8,17 @@
         "version": "版本",
         "author": "作者"
     },
-    "devices" : {
-        "lighting":"燈光",
+    "devices": {
+        "lighting": "燈光",
         "curtain": "窗簾",
         "comfort": "空調",
         "watch": "影音",
         "settings": "設定"
+    },
+    "shade": {
+        "open": "開",
+        "close": "關",
+        "closed": "關"
     },
     "navBar": {
         "room": "房間",

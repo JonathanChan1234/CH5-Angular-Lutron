@@ -7,18 +7,24 @@
     </div>
     <mat-divider></mat-divider>
     <div class="shade-control-button-group">
-        <div class="text-button">
-            <p>Open</p>
+        <div class="text-button" (click)="open()">
+            <p>{{ 'shade.open' | translate }}</p>
         </div>
         <mat-divider [vertical]="true"></mat-divider>
-        <mat-icon svgIcon="custom:up_arrow"></mat-icon>
+        <div class="icon-button-wrapper" (click)="incrementLevel()">
+            <mat-icon svgIcon="custom:up_arrow"></mat-icon>
+        </div>
         <mat-divider [vertical]="true"></mat-divider>
-        <mat-icon svgIcon="custom:stop"></mat-icon>
+        <div class="icon-button-wrapper">
+            <mat-icon svgIcon="custom:stop"></mat-icon>
+        </div>
         <mat-divider [vertical]="true"></mat-divider>
-        <mat-icon svgIcon="custom:down_arrow"></mat-icon>
+        <div class="icon-button-wrapper" (click)="decrementLevel()">
+            <mat-icon svgIcon="custom:down_arrow"></mat-icon>
+        </div>
         <mat-divider [vertical]="true"></mat-divider>
-        <div class="text-button">
-            <p>Close</p>
+        <div class="text-button" (click)="close()">
+            <p>{{ 'shade.close' | translate }}</p>
         </div>
     </div>
 </div>

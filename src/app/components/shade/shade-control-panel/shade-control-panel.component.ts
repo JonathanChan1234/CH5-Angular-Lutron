@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { Shade } from 'src/app/model/shade';
 
 @Component({
@@ -13,7 +14,7 @@ export class ShadeControlPanelComponent implements OnInit {
     level: number = 0;
     levelText = ``;
 
-    constructor() {}
+    constructor(private translate: TranslateService) {}
 
     ngOnInit(): void {
         this.levelText = this.getLevelText();
@@ -21,6 +22,16 @@ export class ShadeControlPanelComponent implements OnInit {
 
     sliderValueChanged(value: number): void {
         this.level = value;
+        this.levelText = this.getLevelText();
+    }
+
+    open(): void {
+        this.level = 100;
+        this.levelText = this.getLevelText();
+    }
+
+    close(): void {
+        this.level = 0;
         this.levelText = this.getLevelText();
     }
 
@@ -38,9 +49,9 @@ export class ShadeControlPanelComponent implements OnInit {
 
     getLevelText(): string {
         return this.level === 0
-            ? 'Closed'
+            ? this.translate.instant('shade.closed')
             : this.level === 100
-            ? 'Open'
-            : `${this.level}%`;
+            ? this.translate.instant('shade.open')
+            : `${this.level}% ${this.translate.instant('shade.open')}`;
     }
 }

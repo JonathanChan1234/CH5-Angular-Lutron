@@ -1,7 +1,7 @@
 .app-toolbar {
     height: 10vh;
     font-size: 3vh;
-    background-color: var(--toolbar-color);
+    background-color: var(--secondary-background-color);
 
     .toolbar-button-group-container {
         display: flex;
@@ -20,8 +20,8 @@
     }
 
     .app-toolbar-content-container {
-        width: 100%;
         display: flex;
+        width: 100%;
         align-items: center;
         justify-content: center;
         color: var(--text-color);

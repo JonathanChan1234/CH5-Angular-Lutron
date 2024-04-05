@@ -1,26 +1,11 @@
 <div class="av-remote-mobile-container">
     <app-av-option-bar [fontSize]="15" [av]="av"></app-av-option-bar>
     <div class="middle-row">
-        <app-icon-button
-            class="icon-button"
-            icon="arrow_left"
-            (click)="changeKeypad()"
-        ></app-icon-button>
-        <ng-container *ngIf="showNumberKeypad; else showMediaKeypad">
-            <app-number-keypad
-                class="number-keypad"
-                size="small"
-                [av]="av"
-            ></app-number-keypad>
-        </ng-container>
-        <ng-template #showMediaKeypad>
-            <app-media-keypad class="media-keypad" [av]="av"></app-media-keypad>
-        </ng-template>
-        <app-icon-button
-            class="icon-button"
-            icon="arrow_right"
-            (click)="changeKeypad()"
-        ></app-icon-button>
+        <app-number-keypad
+            class="number-keypad"
+            size="small"
+            [av]="av"
+        ></app-number-keypad>
     </div>
 
     <div class="bottom-row">
@@ -66,6 +51,18 @@
                 class="function-button"
                 (onClick)="pulse(av?.cyan)"
             ></app-function-button>
+        </div>
+        <div class="function-button-container">
+            <app-icon-button icon="fast_rewind"></app-icon-button>
+            <app-icon-button icon="fast_forward"></app-icon-button>
+            <app-icon-button icon="skip_previous"></app-icon-button>
+            <app-icon-button icon="skip_next"></app-icon-button>
+        </div>
+        <div class="function-button-container">
+            <app-icon-button icon="play_arrow"></app-icon-button>
+            <app-icon-button icon="pause"></app-icon-button>
+            <app-icon-button icon="stop"></app-icon-button>
+            <app-icon-button icon="stop_circle"></app-icon-button>
         </div>
     </div>
 </div>

@@ -3,14 +3,14 @@
     flex-direction: column;
     justify-content: center;
     color: var(--text-color);
-    font-size: 25px;
+    font-size: 2vh;
     height: 100%;
 
-    > * {
+    >* {
         background-color: var(--button-color);
         display: flex;
         justify-content: center;
-        padding: 5px;
+        padding: 0.5vh;
         box-shadow: var(--button-shadow-color) 0px 3px 8px;
     }
 
@@ -28,18 +28,18 @@
     }
 
     .top {
-        border-radius: 5px 5px 0px 0px;
+        border-radius: 0.5vh 0.5vh 0px 0px;
     }
 
     .bottom {
-        border-radius: 0px 0px 5px 5px;
+        border-radius: 0vh 0vh 0.5vh 0.5vh;
     }
 
     .button-group-text {
         flex: 1;
 
         div {
-            padding: 5px;
+            padding: 0.5em;
         }
     }
 }

@@ -2,12 +2,11 @@
     .middle-row {
         width: 100%;
         display: flex;
-        flex-wrap: wrap;
         justify-content: center;
-        padding: 10px;
+        padding: 1vh 1vw 1vh 1vw;
 
-        > * {
-            padding: 10px;
+        >* {
+            padding: 1vh 1vw 1vh 1vw;
         }
 
         .unused-container {
@@ -30,7 +29,7 @@
         justify-content: center;
         padding: 10px;
 
-        > * {
+        >* {
             padding: 10px;
         }
 

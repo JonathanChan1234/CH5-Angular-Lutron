@@ -4,8 +4,8 @@
         justify-content: center;
         align-items: center;
 
-        > * {
-            padding: 10px;
+        >* {
+            padding: 0vh 5vw 0vh 5vw;
         }
 
         .icon-button {
@@ -13,10 +13,6 @@
         }
 
         .number-keypad {
-            flex: 5;
-        }
-
-        .media-keypad {
             flex: 5;
         }
     }
@@ -31,12 +27,12 @@
             justify-content: space-around;
         }
 
-        > * {
-            padding: 10px;
+        >* {
+            padding: 1vh 2vw 1vh 2vw;
         }
 
         .dpad-container {
-            > * {
+            >* {
                 padding: 10px;
             }
         }
@@ -45,8 +41,8 @@
             display: flex;
             justify-content: center;
 
-            > * {
-                padding: 10px;
+            >* {
+                padding: 0.5vh 2vw 0.5vh 2vw;
             }
         }
     }

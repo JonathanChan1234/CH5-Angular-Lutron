@@ -12,7 +12,7 @@ export type RouteInfo = {
 })
 export class RouterService {
     private readonly DEFAULT_ROUTE: RouteInfo = {
-        route: Route.AV_REMOTE,
+        route: Route.DEVICE_OVERVIEW,
     };
     route$ = new BehaviorSubject<RouteInfo>(this.DEFAULT_ROUTE);
     history$ = new BehaviorSubject<RouteInfo[]>([]);

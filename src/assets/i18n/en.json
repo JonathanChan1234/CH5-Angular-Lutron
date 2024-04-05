@@ -8,12 +8,17 @@
         "version": "Version",
         "author": "Author"
     },
-    "devices" : {
+    "devices": {
         "lighting": "Lighting",
         "curtain": "Curtain",
         "comfort": "Comfort",
         "watch": "Watch",
         "settings": "Settings"
+    },
+    "shade": {
+        "open": "Open",
+        "close": "Close",
+        "closed": "Closed"
     },
     "navBar": {
         "room": "Room",
