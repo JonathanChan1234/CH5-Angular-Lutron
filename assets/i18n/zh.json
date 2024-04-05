@@ -20,6 +20,24 @@
         "close": "關",
         "closed": "關"
     },
+    "lighting": {
+        "on": "開",
+        "off": "關"
+    },
+    "ac": {
+        "off": "關",
+        "set": "設定",
+        "advancedOptionTitle": "模式和風速",
+        "mode": "模式",
+        "heat": "暖房",
+        "cool": "冷房",
+        "auto": "自動",
+        "dry": "除濕",
+        "fan": "風速",
+        "low": "低",
+        "medium": "中",
+        "high": "高"
+    },
     "navBar": {
         "room": "房間",
         "monitoring": "監控",
