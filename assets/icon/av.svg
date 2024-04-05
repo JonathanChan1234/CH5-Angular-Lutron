@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:svg="http://www.w3.org/2000/svg" id="svg2" viewBox="0 0 256 256" version="1.1">
+  <defs id="defs4">
+    <linearGradient id="linearGradient3190" y2="229.01" gradientUnits="userSpaceOnUse" x2="34" gradientTransform="matrix(.68252 0 0 .68252 8.8957 826.54)" y1="-92.163" x1="34">
+      <stop id="stop3157" stop-color="#fff" offset="0"/>
+      <stop id="stop3159" stop-color="#fff" stop-opacity="0" offset="1"/>
+    </linearGradient>
+    <linearGradient id="linearGradient3193" y2="11.4" gradientUnits="userSpaceOnUse" x2="56.569" gradientTransform="matrix(.68252 0 0 .68252 8.8957 826.54)" y1="336.16" x1="43.437">
+      <stop id="stop3026" stop-color="#1a1a1a" offset="0"/>
+      <stop id="stop3028" stop-color="#4d4d4d" offset="1"/>
+    </linearGradient>
+    <linearGradient id="linearGradient3213" y2="274.19" gradientUnits="userSpaceOnUse" x2="261.74" gradientTransform="matrix(.68252 0 0 .68252 9.4645 827.69)" y1="274.19" x1="93.203">
+      <stop id="stop3124" stop-color="#fff" stop-opacity="0" offset="0"/>
+      <stop id="stop3130" stop-color="#fff" offset=".21757"/>
+      <stop id="stop3132" stop-color="#fff" stop-opacity=".52157" offset=".88612"/>
+      <stop id="stop3126" stop-color="#fff" stop-opacity="0" offset="1"/>
+    </linearGradient>
+    <linearGradient id="linearGradient3217" y2="252.81" gradientUnits="userSpaceOnUse" x2="204.95" gradientTransform="matrix(.68252 0 0 .68252 9.4645 826.54)" y1="252.81" x1="142.62">
+      <stop id="stop3036" stop-color="#4d4d4d" offset="0"/>
+      <stop id="stop3042" stop-color="#ccc" offset=".22574"/>
+      <stop id="stop3044" stop-color="#808080" offset=".7692"/>
+      <stop id="stop3038" stop-color="#333" offset="1"/>
+    </linearGradient>
+    <linearGradient id="linearGradient3220" y2="251.56" gradientUnits="userSpaceOnUse" x2="97.581" gradientTransform="matrix(.68252 0 0 .68252 9.4645 30.174)" y1="278.43" x1="248.19">
+      <stop id="stop3099" offset="0"/>
+      <stop id="stop3101" stop-color="#333" offset="1"/>
+    </linearGradient>
+  </defs>
+  <g id="layer1" transform="translate(0 -796.36)">
+    <g id="g3225" fill-rule="evenodd">
+      <path id="rect3095" d="m80.812 200.44l-5.437 17.87h-0.063v1.38h104.91v-1.31h0.09l-6.84-17.94h-92.658z" fill="url(#linearGradient3220)" transform="translate(0 796.36)"/>
+      <path id="path3058" d="m107.87 974v28.537l0.0442 4.1565 40.949 0.045v-32.739z" fill="url(#linearGradient3217)"/>
+      <path id="path3117" d="m75.754 1014.5-0.40524 1.365h0.10664l0.2986-1.0238h104.04l0.38391 1.0238h0.12798l-0.51189-1.365h-104.04z" fill="url(#linearGradient3213)"/>
+      <path id="rect3000" d="m19.237 835.35h217.18c1.3368 0 2.4131 1.0762 2.4131 2.4131v143.75c0 1.3368-1.0762 2.4131-2.4131 2.4131h-217.18c-1.3368 0-2.4131-1.0762-2.4131-2.4131v-143.75c0-1.3368 1.0762-2.4131 2.4131-2.4131z" fill="url(#linearGradient3193)"/>
+      <path id="path3150" opacity=".4" d="m19.24 837.29c-0.30357 0-0.46923 0.16565-0.46923 0.46923v143.75c0 0.30357 0.16566 0.46923 0.46923 0.46923h217.17c0.30357 0 0.46923-0.16566 0.46923-0.46923v-143.75c0-0.30357-0.16566-0.46923-0.46923-0.46923h-217.17z" fill="url(#linearGradient3190)"/>
+      <path id="path3021" d="m26.13 844.64v129.98h203.39v-129.98z" fill="#ccc"/>
+    </g>
+  </g>
+  <metadata>
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+        <cc:license rdf:resource="http://creativecommons.org/licenses/publicdomain/"/>
+        <dc:publisher>
+          <cc:Agent rdf:about="http://openclipart.org/">
+            <dc:title>Openclipart</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title>TV icon</dc:title>
+        <dc:date>2010-10-13T12:03:28</dc:date>
+        <dc:description>TV icon</dc:description>
+        <dc:source>http://openclipart.org/detail/90709/tv-icon-by-jhnri4</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>jhnri4</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>black</rdf:li>
+            <rdf:li>clip art</rdf:li>
+            <rdf:li>clipart</rdf:li>
+            <rdf:li>hd tv</rdf:li>
+            <rdf:li>hdtv</rdf:li>
+            <rdf:li>icon</rdf:li>
+            <rdf:li>television</rdf:li>
+            <rdf:li>tv</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License rdf:about="http://creativecommons.org/licenses/publicdomain/">
+        <cc:permits rdf:resource="http://creativecommons.org/ns#Reproduction"/>
+        <cc:permits rdf:resource="http://creativecommons.org/ns#Distribution"/>
+        <cc:permits rdf:resource="http://creativecommons.org/ns#DerivativeWorks"/>
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>

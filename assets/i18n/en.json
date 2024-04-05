@@ -1,0 +1,66 @@
+{
+    "header": {
+        "title": "Crestron CH5 Demo"
+    },
+    "settings": {
+        "language": "Language",
+        "darkMode": "Dark Mode",
+        "version": "Version",
+        "author": "Author"
+    },
+    "devices": {
+        "lighting": "Lighting",
+        "curtain": "Curtain",
+        "comfort": "Comfort",
+        "watch": "Watch",
+        "settings": "Settings"
+    },
+    "shade": {
+        "open": "Open",
+        "close": "Close",
+        "closed": "Closed"
+    },
+    "navBar": {
+        "room": "Room",
+        "monitoring": "Monitoring",
+        "setting": "Settings",
+        "scene": "Scene"
+    },
+    "room": {
+        "device": "devices",
+        "dimmer": "dimmer",
+        "switch": "switch",
+        "motor": "motor",
+        "on": "ON",
+        "off": "OFF",
+        "changeRoomMessage": "Change room name successfully",
+        "changeDeviceMessage": "Change device name successfully"
+    },
+    "scene": {
+        "scene": "Scenes",
+        "addScene": "Add Scene",
+        "name": "name",
+        "numberOfAction": "Number of Actions",
+        "actions": "Actions",
+        "edit": "Edit",
+        "delete": "Delete",
+        "start": "Activate",
+        "back": "Back",
+        "selectDevice": "Please select a device",
+        "selectAction": "Please select an action",
+        "delay": "Delay",
+        "fade": "Fade",
+        "room": "Room",
+        "addAction": "Add action",
+        "device": "Device",
+        "createAction": "Please create an action",
+        "save": "Save",
+        "raise": "Raise",
+        "lower": "Lower",
+        "brightness": "Brightness",
+        "power": "Power",
+        "on": "ON",
+        "off": "OFF",
+        "options": "Options"
+    }
+}
