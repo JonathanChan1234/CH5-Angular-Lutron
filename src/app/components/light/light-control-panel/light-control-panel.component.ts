@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { Light } from 'src/app/model/light';
 
 @Component({
@@ -13,7 +14,7 @@ export class LightControlPanelComponent implements OnInit {
     level = 0;
     levelText = '';
 
-    constructor() {}
+    constructor(private translate: TranslateService) {}
 
     ngOnInit(): void {
         this.levelText = this.getLevelText();
@@ -32,10 +33,12 @@ export class LightControlPanelComponent implements OnInit {
     getLevelText(): string {
         if (this.light.hasLevel)
             return this.level === 0
-                ? 'OFF'
+                ? this.translate.instant('lighting.off')
                 : this.level === 100
-                ? 'ON'
+                ? this.translate.instant('lighting.on')
                 : `${this.level}%`;
-        return this.level > 0 ? 'ON' : 'OFF';
+        return this.level > 0
+            ? this.translate.instant('lighting.on')
+            : this.translate.instant('lighting.off');
     }
 }

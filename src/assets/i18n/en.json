@@ -20,6 +20,24 @@
         "close": "Close",
         "closed": "Closed"
     },
+    "lighting": {
+        "on": "ON",
+        "off": "OFF"
+    },
+    "ac": {
+        "off": "OFF",
+        "set": "SET",
+        "advancedOptionTitle": "MODE & FAN",
+        "mode": "MODE",
+        "heat": "HEAT",
+        "cool": "COOL",
+        "auto": "AUTO",
+        "dry": "DRY",
+        "fan": "FAN",
+        "low": "LOW",
+        "medium": "MEDIUM",
+        "high": "HIGH"
+    },
     "navBar": {
         "room": "Room",
         "monitoring": "Monitoring",

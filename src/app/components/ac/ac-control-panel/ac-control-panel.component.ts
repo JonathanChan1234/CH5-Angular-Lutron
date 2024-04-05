@@ -6,6 +6,7 @@ import {
     trigger,
 } from '@angular/animations';
 import { Component, Input, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { Ac } from 'src/app/model/ac';
 
 @Component({
@@ -38,7 +39,7 @@ export class AcControlPanelComponent implements OnInit {
 
     showAdvancedMenu = false;
 
-    constructor() {}
+    constructor(private translate: TranslateService) {}
 
     ngOnInit(): void {}
 
@@ -60,5 +61,9 @@ export class AcControlPanelComponent implements OnInit {
 
     changeFan(mode: string): void {
         this.ac.fan = mode;
+    }
+
+    getModeTranslation(mode: string): string {
+        return this.translate.instant(`ac.${mode}`);
     }
 }

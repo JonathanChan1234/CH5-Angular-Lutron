@@ -4,7 +4,9 @@
         <div class="ac-room-temperature">{{ ac.roomTemperature }}°C</div>
     </div>
     <div class="ac-temperature-container">
-        <div class="ac-temperature-control-title">Set</div>
+        <div class="ac-temperature-control-title">
+            {{ 'ac.set' | translate }}
+        </div>
         <div class="ac-temperature-control">
             <div class="ac-set-temperature">
                 <div>{{ ac.setTemperature }}°C</div>
@@ -30,13 +32,15 @@
             class="ac-advanced-control-title"
             (click)="toggleShowAdvancedMenu()"
         >
-            <div>MODE & FAN</div>
+            <div>{{ 'ac.advancedOptionTitle' | translate }}</div>
             <mat-icon>expand_more</mat-icon>
         </div>
         <div [@openClose]="showAdvancedMenu ? 'open' : 'closed'">
             <div class="ac-advanced-control-panel">
                 <mat-divider></mat-divider>
-                <div class="ac-advanced-control-label">MODE</div>
+                <div class="ac-advanced-control-label">
+                    {{ 'ac.mode' | translate }}
+                </div>
                 <div class="ac-advanced-control-options">
                     <div
                         class="ac-advanced-control-option"
@@ -45,13 +49,15 @@
                         (click)="changeMode(mode)"
                     >
                         <div>
-                            {{ mode | uppercase }}
+                            {{ getModeTranslation(mode) }}
                         </div>
                     </div>
                 </div>
             </div>
             <div class="ac-advanced-control-panel">
-                <div class="ac-advanced-control-label">FAN</div>
+                <div class="ac-advanced-control-label">
+                    {{ 'ac.fan' | translate }}
+                </div>
                 <div class="ac-advanced-control-options">
                     <div
                         class="ac-advanced-control-option"
@@ -59,7 +65,7 @@
                         *ngFor="let mode of ac.fanAvailable"
                         (click)="changeFan(mode)"
                     >
-                        <div>{{ mode | uppercase }}</div>
+                        {{ getModeTranslation(mode) }}
                     </div>
                 </div>
             </div>
