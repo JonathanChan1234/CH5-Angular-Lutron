@@ -1,16 +1,11 @@
 <mat-toolbar class="app-toolbar">
-    <div class="toolbar-button-group-container">
-        <!-- <div class="icon-button" (click)="home()">
-            <mat-icon svgIcon="custom:home"></mat-icon>
-        </div> -->
+    <div class="app-toolbar-content-container">
         <div class="icon-button" (click)="back()">
             <mat-icon
                 svgIcon="custom:back"
                 *ngIf="(history$ | async).length > 0"
             ></mat-icon>
         </div>
-    </div>
-    <div class="app-toolbar-content-container">
         <app-room-selection-bar
             class="app-toolbar-room-selection-bar"
         ></app-room-selection-bar>
